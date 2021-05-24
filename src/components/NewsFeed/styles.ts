@@ -35,21 +35,19 @@ export const Comment = styled.input`
 `;
 
 export const ImageUpLoad = styled.img`
-  width:100%
-  height:100%
   border-radius: 15px
   object-fit: cover;
+  height: 360px;
 `;
 
 export const WrapperImageUpload = styled.div`
-<<<<<<< HEAD
   width: 100%;
-  // height: 297px;
-=======
-  // width: 527px;
-  height: 297px;
->>>>>>> 203e964a6013dd24103e9c0f0b2309bfc744b884
+  max-height: 360px;
   margin: 10px 0px 12px 0px;
+  display: grid;
+  justify-content: center;
+  background-color: black;
+  border-radius: 15px;
 `;
 
 export const Reaction = styled.img`

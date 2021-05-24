@@ -11,22 +11,24 @@ const Post = props => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 8fr",
+          gridTemplateColumns: "1fr 11fr",
         }}
       >
         <div>
-          <img
-            src="https://ggstorage.oxii.vn/images/oxii-2019-3-29/728x436/cristiano-ronaldo-pics_1564_1064_949.jpg"
-            alt="123"
-            width="100%"
-            height="100%"
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              border: "1px solid",
-            }}
-          />
+          <div>
+            <img
+              src="https://ggstorage.oxii.vn/images/oxii-2019-3-29/728x436/cristiano-ronaldo-pics_1564_1064_949.jpg"
+              alt="123"
+              width="100%"
+              height="100%"
+              style={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "50%",
+                border: "1px solid",
+              }}
+            />
+          </div>
         </div>
         <div>
           <div>
@@ -35,7 +37,7 @@ const Post = props => {
           </div>
           <S.WrapperImageUpload>
             <S.ImageUpLoad
-              src="https://www.almaghreb24.com/wp-content/uploads/2019/05/21.jpg"
+              src="https://znews-photo.zadn.vn/w660/Uploaded/mdf_Nexqxk/2018_03_18/CristianoRonaldopotugal.jpg"
               alt=""
             />
           </S.WrapperImageUpload>
