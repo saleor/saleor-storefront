@@ -1,11 +1,12 @@
 import React from "react";
 
 import CommentBox from "../CommentBox";
+import CommentInput from "../CommentInput";
 import * as I from "../Image/index";
 import * as S from "../styles";
 
 const Post = props => {
-  const { LikeAction, like } = props;
+  const { LikeAction, like, posts } = props;
   return (
     <div>
       <div
@@ -15,25 +16,23 @@ const Post = props => {
         }}
       >
         <div>
-          <div>
-            <img
-              src="https://ggstorage.oxii.vn/images/oxii-2019-3-29/728x436/cristiano-ronaldo-pics_1564_1064_949.jpg"
-              alt="123"
-              width="100%"
-              height="100%"
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                border: "1px solid",
-              }}
-            />
-          </div>
+          <img
+            src={posts?.imgAvatar}
+            alt="123"
+            width="100%"
+            height="100%"
+            style={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              border: "1px solid",
+            }}
+          />
         </div>
         <div>
           <div>
-            <p>Name User</p>
-            <p>Caption Title</p>
+            <p>{posts.name}</p>
+            <p>{posts.caption}</p>
           </div>
           <S.WrapperImageUpload>
             <S.ImageUpLoad
@@ -54,6 +53,7 @@ const Post = props => {
               )}
             </div>
           </div>
+          <CommentInput />
           <CommentBox />
         </div>
       </div>
