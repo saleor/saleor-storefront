@@ -7,8 +7,7 @@ export const Wrapper = styled.div`
   padding: 1rem;
 `;
 
-export const CommentWrap = styled.div`
-`;
+export const CommentWrap = styled.div``;
 
 export const CommentItem = styled.div`
   display: flex;

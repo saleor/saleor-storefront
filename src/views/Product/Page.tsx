@@ -9,6 +9,7 @@ import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import ProductDetail from "@components/organisms/ProductDetail";
 import { orange, white } from "@styles/constants";
+import ChatBox from "@temp/components/ChatBox";
 
 import {
   Breadcrumbs,
@@ -180,6 +181,7 @@ const Page: React.FC<
 
         <SlideCarousel products={product.category.products.edges} />
       </div>
+      <ChatBox />
     </div>
   );
 };
