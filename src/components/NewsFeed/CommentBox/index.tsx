@@ -22,14 +22,6 @@ function CommentBox(props) {
   );
 }
 
-const Container = {
-  width: "100vw",
-  height: "auto",
-  background: "#f2f2f2",
-  display: "flex",
-  justifyContent: "center",
-};
-
 const mocker = [
   {
     id: 1,

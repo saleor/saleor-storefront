@@ -3,6 +3,7 @@ import React from "react";
 
 import { Loader } from "@components/atoms";
 import { orange } from "@styles/constants";
+import ChatBox from "@temp/components/ChatBox";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 import { channelSlug } from "@temp/constants";
@@ -250,6 +251,8 @@ const Page: React.FC<Props> = ({ storeId }) => {
           );
         }}
       </TypedListCarousel>
+
+      <ChatBox />
     </>
   );
 };
