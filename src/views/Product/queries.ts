@@ -1,5 +1,7 @@
 import gql from "graphql-tag";
 
+import { TypedMutation } from "@temp/core/mutations";
+
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
@@ -186,3 +188,17 @@ export const TypedProductVariantsQuery = TypedQuery<
   VariantList,
   VariantListVariables
 >(productVariantsQuery);
+
+export const sendMessageMutation = gql`
+  mutation SendMessage($id: ID!, $input: SendMessageInput!) {
+    productSendMessage(id: $id, input: $input) {
+      productErrors {
+        message
+      }
+    }
+  }
+`;
+
+export const TypedSendMessageMutation = TypedMutation<any, any>(
+  sendMessageMutation
+);

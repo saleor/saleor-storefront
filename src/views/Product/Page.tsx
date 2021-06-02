@@ -176,7 +176,7 @@ const Page: React.FC<
           />
         </div>
         <div ref={contactSupplierRef}>
-          <ContactSupplier />
+          <ContactSupplier productID={product.id} storeID={product.store.id} />
         </div>
 
         <SlideCarousel products={product.category.products.edges} />
