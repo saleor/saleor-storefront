@@ -122,7 +122,7 @@ const Page: React.FC<
                       }}
                     >
                       <StyledButton onClick={() => executeScroll()}>
-                        <FormattedMessage defaultMessage="Contact Supplier" />
+                        <FormattedMessage defaultMessage="Request Quota" />
                       </StyledButton>
                       <div className="product-page__product__info">
                         {addToCartSection}
@@ -152,7 +152,7 @@ const Page: React.FC<
                         }}
                       >
                         <StyledButton onClick={() => executeScroll()}>
-                          <FormattedMessage defaultMessage="Contact Supplier" />
+                          <FormattedMessage defaultMessage="Request Quota" />
                         </StyledButton>
                         <div
                           className="product-page__product__info"

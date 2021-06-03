@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 40px;
   display: flex;
   align-items: flex-end;
+  z-index: 10;
 `;
 
 export const Circle = styled.div`
@@ -15,6 +16,41 @@ export const Circle = styled.div`
   border-radius: 50%;
   margin-left: 1rem;
   cursor: pointer;
+  position: relative;
+
+  &:before {
+    content: "Message Store";
+    color: #fff;
+    position: absolute;
+    top: -60%;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0;
+    left: -50%;
+    margin: 0;
+    width: 100px;
+    background: #ff6a00;
+    height: fit-content;
+    z-index: 300;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    padding: 0;
+    left: 26%;
+    margin: 0;
+    // width: 20px;
+    // background: blue;
+    // height: 20px;
+    z-index: 300;
+
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #ff6a00;
+  }
 `;
 
 export const Wrapper = styled.div<{ stt: boolean }>`
@@ -25,7 +61,7 @@ export const Wrapper = styled.div<{ stt: boolean }>`
   overflow: hidden;
   display: ${props => props.stt && "none"};
   box-shadow: -1px 0px 24px -7px #00000050;
-  z-index: 100;
+  z-index: 200;
 `;
 
 // detail

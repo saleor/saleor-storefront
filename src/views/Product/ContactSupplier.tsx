@@ -55,7 +55,7 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
   return (
     <S.Wrapper>
       <S.TileWrapper>
-        <p style={{ marginLeft: "1rem" }}>Send your message to this supplier</p>
+        <p style={{ marginLeft: "1rem" }}>Message Supplier</p>
       </S.TileWrapper>
       <S.Content>
         <TypedSendMessageMutation
