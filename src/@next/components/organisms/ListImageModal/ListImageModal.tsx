@@ -12,6 +12,7 @@ export const ListImageModal: React.FC<IProps> = ({
   listImage,
   selectedImage,
   onChangeIndex,
+  title,
 }: IProps) => {
   const images = listImage.map((item: any) => ({
     original: item.url,
@@ -22,7 +23,7 @@ export const ListImageModal: React.FC<IProps> = ({
       <Modal
         submitButtonTestingContext="submitAddressFormModalButton"
         testingContext="submitAddressFormModal"
-        title="Image product"
+        title={title || "Image Product"}
         hide={() => {
           setShowModal(false);
         }}

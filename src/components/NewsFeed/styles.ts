@@ -105,20 +105,23 @@ export const WrapPost = styled.div`
 `;
 
 export const WrapActionStatus = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
 `;
 
 export const WrapMaincontent = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: white;
   padding: 0px 20px;
+  width: 100%;
 `;
 
 export const WrapperNewsFeed = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr 2fr 1fr;
+  display: flex;
 `;
 
 export const PostImg = styled.img`

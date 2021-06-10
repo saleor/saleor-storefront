@@ -30,7 +30,7 @@ const InputWrap = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  border: 1px solid #000;
+  border: 1px solid #d5d5d5;
   border-radius: 15px;
   padding: 0.5rem;
 `;
