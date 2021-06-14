@@ -97,10 +97,14 @@ export const attributeFragment = gql`
     id
     name
     slug
-    values {
-      id
-      name
-      slug
+    choices(first: 100) {
+      edges {
+        node {
+          id
+          name
+          slug
+        }
+      }
     }
   }
 `;

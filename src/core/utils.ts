@@ -3,7 +3,11 @@ import { FetchResult } from "apollo-link";
 
 import { channelSlug } from "@temp/constants";
 
-import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
+import {
+  AttributeInput,
+  OrderDirection,
+  ProductOrderField,
+} from "../../gqlTypes/globalTypes";
 import { IFilterAttributes } from "../@next/types";
 import { FormError } from "./types";
 
@@ -14,7 +18,7 @@ export const slugify = (text: string | number): string =>
     .trim()
     .replace(/\s+/g, "-") // Replace spaces with -
     .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+    .replace(/[^\w\-]+/g, "") // Remove all non-word charssrc/views/Category/utils.ts
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 
 export const priceToString = (
@@ -36,10 +40,10 @@ interface AttributeDict {
 }
 export const convertToAttributeScalar = (
   attributes: AttributeDict | IFilterAttributes
-) =>
+): AttributeInput[] =>
   Object.entries(attributes)
     .map(([key, value]) =>
-      value.map((attribute: any) => ({ slug: key, value: attribute }))
+      value.map((attribute: any) => ({ slug: key, values: [attribute] }))
     )
     .reduce((prev, curr) => [...prev, ...curr], []);
 

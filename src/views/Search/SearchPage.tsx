@@ -14,7 +14,6 @@ import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  maybe,
 } from "../../core/utils";
 import { filtersChangeHandler } from "../Category/utils";
 import Page from "./Page";
@@ -45,7 +44,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({
     ...filters,
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
-      : {},
+      : [],
     channel: channelSlug,
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
@@ -82,12 +81,9 @@ export const SearchPage: NextPage<SearchPageProps> = ({
               return (
                 <Page
                   clearFilters={clearFilters}
-                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  attributes={data.attributes.edges.map(({ node }) => node)}
                   displayLoader={loading}
-                  hasNextPage={maybe(
-                    () => data.products.pageInfo.hasNextPage,
-                    false
-                  )}
+                  hasNextPage={data.products?.pageInfo?.hasNextPage ?? false}
                   sortOptions={SORT_OPTIONS}
                   setSearch={setSearch}
                   search={search}

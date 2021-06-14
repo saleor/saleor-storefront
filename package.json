@@ -8,7 +8,7 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@lhci/cli": "^0.7.0",
-    "@saleor/sdk": "^0.3.0-8",
+    "@saleor/sdk": "git://github.com/mirumee/saleor-sdk.git#attributes_update",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
     "@stripe/react-stripe-js": "^1.1.2",
@@ -192,7 +192,7 @@
     "start:optimize": "cross-env OPTIMIZE=true next dev -p 3000",
     "start:worker": "cross-env SERVICE_WORKER=true npm run start",
     "build": "next build",
-    "build:start": "npm run build && next start",
+    "build:start": "NODE_OPTIONS='--inspect' npm run build && next start",
     "build:export": "cross-env NEXT_EXPORT=true npm run build && cross-env NEXT_EXPORT=true next export -o dist",
     "storybook": "start-storybook -p 9002",
     "build-storybook": "build-storybook -o ./dist/storybook",
