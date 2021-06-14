@@ -3,10 +3,10 @@ import * as React from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
-import { FeaturedProducts } from "@graphql/gqlTypes/FeaturedProducts";
 import { channelSlug } from "@temp/constants";
 import { IFilters } from "@types";
 import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
+import { FeaturedProducts } from "@utils/ssr";
 
 import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -90,9 +90,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({
                   activeSortOption={filters.sortBy}
                   filters={filters}
                   products={data.products}
-                  featuredProducts={featuredProducts.collection.products.edges.map(
-                    e => e.node
-                  )}
+                  featuredProducts={featuredProducts.products}
                   onAttributeFiltersChange={filtersChangeHandler(
                     filters,
                     attributeFilters,
