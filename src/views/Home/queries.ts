@@ -1,25 +1,17 @@
 import gql from "graphql-tag";
 
-import { TypedQuery } from "../../core/queries";
-import { ProductsList } from "./gqlTypes/ProductsList";
-
-export const homePageQuery = gql`
-  query ProductsList($channel: String) {
+export const homePageProductsQuery = gql`
+  query HomePageProducts {
     shop {
       description
       name
-    }
-    collection(slug: "featured-products", channel: $channel) {
-      backgroundImage {
-        url
-        alt
-      }
     }
     categories(level: 0, first: 4) {
       edges {
         node {
           id
           name
+          slug
           backgroundImage {
             url
           }
@@ -28,5 +20,3 @@ export const homePageQuery = gql`
     }
   }
 `;
-
-export const TypedHomePageQuery = TypedQuery<ProductsList, {}>(homePageQuery);

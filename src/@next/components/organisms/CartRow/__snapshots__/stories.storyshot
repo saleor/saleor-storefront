@@ -341,7 +341,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
       className="c2"
     >
       <a
-        href="/product/the-great-square-table/3"
+        href="/product/slug"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -358,7 +358,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
       className="c3"
     >
       <a
-        href="/product/the-great-square-table/3"
+        href="/product/slug"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -986,7 +986,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
       className="c2"
     >
       <a
-        href="/product/the-great-square-table/3"
+        href="/product/slug"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -1003,7 +1003,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
       className="c3"
     >
       <a
-        href="/product/the-great-square-table/3"
+        href="/product/slug"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >

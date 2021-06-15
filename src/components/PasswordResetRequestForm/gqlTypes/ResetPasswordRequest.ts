@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface ResetPasswordRequest_requestPasswordReset_errors {
-  __typename: "Error";
+  __typename: "AccountError";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -22,9 +22,6 @@ export interface ResetPasswordRequest_requestPasswordReset_errors {
 
 export interface ResetPasswordRequest_requestPasswordReset {
   __typename: "RequestPasswordReset";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
   errors: ResetPasswordRequest_requestPasswordReset_errors[];
 }
 
@@ -38,4 +35,5 @@ export interface ResetPasswordRequest {
 export interface ResetPasswordRequestVariables {
   email: string;
   redirectUrl: string;
+  channel?: string | null;
 }

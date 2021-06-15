@@ -27,7 +27,7 @@ export const DropdownSelect: React.FC<IProps> = ({
         <Label>
           <FormattedMessage defaultMessage="Sort by:" />{" "}
         </Label>
-        <S.Value>{` ${value ? value.label : ""}`}</S.Value>
+        <S.Value>{value?.label || ""}</S.Value>
         <S.Indicator rotate={String(menuIsOpen)}>
           <Icon name="select_arrow" size={10} />
         </S.Indicator>

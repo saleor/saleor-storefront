@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { ButtonLink, Checkbox } from "@components/atoms";
@@ -14,26 +14,26 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
   valuesShowLimitNumber = 5,
   onValueClick,
 }: IProps) => {
-  const [viewAllOptions, setViewAllOptions] = React.useState(!valuesShowLimit);
+  const [viewAllOptions, setViewAllOptions] = useState(!valuesShowLimit);
 
   return (
     <S.Wrapper>
       {title && <S.Header>{title}</S.Header>}
       {values &&
-        values.map((value, index) => {
-          if (!viewAllOptions && index > valuesShowLimitNumber - 1) {
-            return <></>;
-          }
-          return (
+        values.map((value, index) =>
+          !viewAllOptions && index > valuesShowLimitNumber - 1 ? (
+            <Fragment key={index} />
+          ) : (
             <Checkbox
+              key={index}
               name={name}
               checked={!!value.selected}
               onChange={() => onValueClick(value)}
             >
               {value && value.name}
             </Checkbox>
-          );
-        })}
+          )
+        )}
       {!viewAllOptions && values.length > valuesShowLimitNumber && (
         <S.ViewMoreButton>
           <ButtonLink

@@ -1,18 +1,19 @@
 const baseUrl = "/";
-const slugUrl = "[slug]/[id]/";
+const slugUrl = ":slug";
 const accountBaseUrl = `${baseUrl}account/`;
 const checkoutBaseUrl = `${baseUrl}checkout/`;
 
 export const paths = {
+  notFound: `${baseUrl}404`,
   accountConfirm: `${baseUrl}account-confirm`,
   cart: `${baseUrl}cart`,
   category: `${baseUrl}category/${slugUrl}`,
   collection: `${baseUrl}collection/${slugUrl}`,
-  guestOrderDetail: `${baseUrl}order-history/[token]`,
+  guestOrderDetail: `${baseUrl}order-history/:token`,
   home: baseUrl,
   login: `${baseUrl}login`,
   orderFinalized: `${baseUrl}order-finalized`,
-  page: `${baseUrl}page/[slug]`,
+  page: `${baseUrl}page/:slug`,
   passwordReset: `${baseUrl}reset-password`,
   product: `${baseUrl}product/${slugUrl}`,
   search: `${baseUrl}search`,
@@ -32,6 +33,14 @@ export const paths = {
   account: accountBaseUrl,
   accountAddressBook: `${accountBaseUrl}address-book`,
   // FIXME: User order should be accessible via order id
-  accountOrderDetail: `${accountBaseUrl}order-history/[token]`,
+  accountOrderDetail: `${accountBaseUrl}order-history/:token`,
   accountOrderHistory: `${accountBaseUrl}order-history`,
 };
+
+/**
+ * Paths which should not be generated at build time.
+ */
+export const DYNAMIC_REDIRECT_PATHS = [
+  paths.accountOrderDetail,
+  paths.guestOrderDetail,
+];

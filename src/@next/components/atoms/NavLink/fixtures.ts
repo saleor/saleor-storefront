@@ -1,4 +1,4 @@
 export const mockItemRoute = {
   name: "Route",
-  page: "/",
+  page: { slug: "article" },
 };

@@ -39,7 +39,7 @@ const returnTab: any = (path: string, userDetails) => {
   return tabContent;
 };
 
-const Account: NextPage = () => {
+export const AccountView: NextPage = () => {
   const intl = useIntl();
   const { user, loaded } = useAuth();
   const { asPath, pathname } = useRouter();
@@ -82,5 +82,3 @@ const Account: NextPage = () => {
     <Loader />
   );
 };
-
-export default Account;

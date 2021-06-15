@@ -1,5 +1,6 @@
+import { NextPage } from "next";
 import Link from "next/link";
-import * as React from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { paths } from "@paths";
@@ -12,7 +13,7 @@ interface NotFoundProps {
   message?: string;
 }
 
-const NotFound: React.FC<NotFoundProps> = () => (
+const NotFound: NextPage<NotFoundProps> = () => (
   <div className="not-found-page">
     <h2 className="not-found-page__header">
       <FormattedMessage defaultMessage="404" />

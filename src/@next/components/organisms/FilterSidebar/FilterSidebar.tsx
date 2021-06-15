@@ -6,14 +6,14 @@ import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
 
-import { IFilters, ISingleFilterAttribute } from "../../../types";
+import { IFilterAttribute, IFilters } from "../../../types";
 import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 
 const checkIfAttributeIsChecked = (
   filters: IFilters,
-  value: ISingleFilterAttribute,
+  value: IFilterAttribute,
   slug: string
 ) => {
   if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
@@ -36,6 +36,7 @@ export const FilterSidebar: React.FC<IProps> = ({
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
+
   return (
     <Overlay
       duration={0}
@@ -58,18 +59,23 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
-        {attributes.map(({ id, name, slug, values }) => {
+        {attributes.map(({ id, slug, name, choices }) => {
+          const values = (choices?.edges.map(({ node }) => node) ||
+            []) as IFilterAttribute[];
+
           return (
             <AttributeValuesChecklist
               key={id}
               title={name}
-              name={slug}
+              name={slug!}
               values={values.map(value => ({
                 ...value,
-                selected: checkIfAttributeIsChecked(filters, value, slug),
+                selected: checkIfAttributeIsChecked(filters, value, slug!),
               }))}
               valuesShowLimit
-              onValueClick={value => onAttributeFiltersChange(slug, value.slug)}
+              onValueClick={value =>
+                onAttributeFiltersChange(slug!, value.slug)
+              }
             />
           );
         })}

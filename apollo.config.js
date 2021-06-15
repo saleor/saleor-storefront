@@ -1,9 +1,15 @@
+const dotenv = require("dotenv");
+
+const config = {
+  ...dotenv.config().parsed,
+  ...dotenv.config({ path: ".env.local" }).parsed,
+};
+
 module.exports = {
   client: {
     excludes: ["**/__tests__/**/*", "**/@sdk/**/*"],
     service: {
-      name: "saleor",
-      url: "http://localhost:8000/graphql/",
+      url: config.NEXT_PUBLIC_API_URI,
     },
   },
 };

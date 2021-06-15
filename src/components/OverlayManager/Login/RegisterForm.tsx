@@ -3,6 +3,7 @@ import { AlertManager, useAlert } from "react-alert";
 import { IntlShape, useIntl } from "react-intl";
 
 import { paths } from "@paths";
+import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";
@@ -51,7 +52,14 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
               const redirectUrl = `${location.origin}${paths.accountConfirm}`;
-              registerCustomer({ variables: { email, password, redirectUrl } });
+              registerCustomer({
+                variables: {
+                  email,
+                  password,
+                  redirectUrl,
+                  channel: channelSlug,
+                },
+              });
             }}
           >
             <TextField

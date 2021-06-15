@@ -1,8 +1,8 @@
 import { Formik } from "formik";
-import { pick } from "lodash";
 import React from "react";
 
 import { IAddress } from "@types";
+import { pick } from "@utils/misc";
 
 import { AddressFormContent } from "./AddressFormContent";
 import { IProps } from "./types";

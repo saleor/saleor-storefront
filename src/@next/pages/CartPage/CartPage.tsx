@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Button, CartFooter, CartHeader } from "@components/atoms";
+import { Button, CartFooter, CartHeader, Loader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
@@ -62,6 +62,7 @@ const generateCart = (
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
       id={variant?.product?.id || ""}
+      slug={variant.product?.slug || ""}
       name={variant?.product?.name || ""}
       maxQuantity={variant.quantityAvailable || quantity}
       quantity={quantity}
@@ -119,8 +120,8 @@ export const CartPage: React.FC<NextPage> = () => {
     net: discount,
   };
 
-  if (loaded && items?.length) {
-    return (
+  return loaded ? (
+    items?.length ? (
       <Cart
         title={title}
         button={getCheckoutButton(user)}
@@ -133,7 +134,10 @@ export const CartPage: React.FC<NextPage> = () => {
         )}
         cart={items && generateCart(items, removeItem, updateItem)}
       />
-    );
-  }
-  return <CartEmpty button={getShoppingButton()} />;
+    ) : (
+      <CartEmpty button={getShoppingButton()} />
+    )
+  ) : (
+    <Loader />
+  );
 };

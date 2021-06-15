@@ -26,6 +26,7 @@ export interface GetCategories_categories_edges_node {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface GetCategories_categories_edges {

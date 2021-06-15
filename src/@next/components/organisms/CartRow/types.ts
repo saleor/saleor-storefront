@@ -13,6 +13,7 @@ export interface IProps {
    * Id of the product
    */
   id: string;
+  slug: string;
   /**
    * Price for single unit
    */

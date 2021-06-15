@@ -3,7 +3,7 @@ import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { TaxedMoney } from "../../containers";

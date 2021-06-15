@@ -1,63 +1,17 @@
 import gql from "graphql-tag";
 
+import {
+  basicProductFragment,
+  productPricingFragment,
+  taxedPriceFragment,
+} from "@graphql";
+
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
   ProductDetailsVariables,
 } from "./gqlTypes/ProductDetails";
 import { VariantList, VariantListVariables } from "./gqlTypes/VariantList";
-
-export const priceFragment = gql`
-  fragment Price on TaxedMoney {
-    gross {
-      amount
-      currency
-    }
-    net {
-      amount
-      currency
-    }
-  }
-`;
-
-export const basicProductFragment = gql`
-  fragment BasicProductFields on Product {
-    id
-    name
-    thumbnail {
-      url
-      alt
-    }
-    thumbnail2x: thumbnail(size: 510) {
-      url
-    }
-  }
-`;
-
-export const productPricingFragment = gql`
-  ${priceFragment}
-  fragment ProductPricingField on Product {
-    pricing {
-      onSale
-      priceRangeUndiscounted {
-        start {
-          ...Price
-        }
-        stop {
-          ...Price
-        }
-      }
-      priceRange {
-        start {
-          ...Price
-        }
-        stop {
-          ...Price
-        }
-      }
-    }
-  }
-`;
 
 export const selectedAttributeFragment = gql`
   fragment SelectedAttributeFields on SelectedAttribute {
@@ -73,7 +27,7 @@ export const selectedAttributeFragment = gql`
 `;
 
 export const productVariantFragment = gql`
-  ${priceFragment}
+  ${taxedPriceFragment}
   fragment ProductVariantFields on ProductVariant {
     id
     sku
@@ -87,10 +41,10 @@ export const productVariantFragment = gql`
     pricing {
       onSale
       priceUndiscounted {
-        ...Price
+        ...TaxedPrice
       }
       price {
-        ...Price
+        ...TaxedPrice
       }
     }
     attributes(variantSelection: VARIANT_SELECTION) {

@@ -14,6 +14,7 @@ storiesOf("components/OverlayManager/Search/ProductItem", module)
         thumbnail2x: null,
         id: "UHJvZHVjdDo3Mg==",
         name: "Product Name",
+        slug: "product-name",
         category: {
           __typename: "Category",
           id: "categoryId",
@@ -31,6 +32,7 @@ storiesOf("components/OverlayManager/Search/ProductItem", module)
         thumbnail2x: null,
         id: "UHJvZHVjdDo3Mg==",
         name: "Product Name",
+        slug: "product-name2",
         category: null,
       }}
     />

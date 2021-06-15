@@ -8,8 +8,16 @@ import {
 
 // fixme: this will be fixed in issue https://github.com/mirumee/saleor-storefront/issues/500
 const passwordResetRequestMutation = gql`
-  mutation ResetPasswordRequest($email: String!, $redirectUrl: String!) {
-    requestPasswordReset(email: $email, redirectUrl: $redirectUrl) {
+  mutation ResetPasswordRequest(
+    $email: String!
+    $redirectUrl: String!
+    $channel: String
+  ) {
+    requestPasswordReset(
+      email: $email
+      redirectUrl: $redirectUrl
+      channel: $channel
+    ) {
       errors {
         field
         message

@@ -6,10 +6,9 @@ import { IProductVariantsAttributes } from "@types";
 export const useProductVariantsAttributes = (
   productVariants: ProductDetails_product_variants[]
 ): IProductVariantsAttributes => {
-  const [
-    productVariantsAttributes,
-    setProductVariantsAttributes,
-  ] = useState<IProductVariantsAttributes>({});
+  const [productVariantsAttributes, setProductVariantsAttributes] = useState<
+    IProductVariantsAttributes
+  >({});
 
   useEffect(() => {
     const variantsAttributes: IProductVariantsAttributes = {};
