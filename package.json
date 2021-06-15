@@ -8,7 +8,7 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@lhci/cli": "^0.7.0",
-    "@saleor/sdk": "git://github.com/mirumee/saleor-sdk.git#attributes_update",
+    "@saleor/sdk": "^0.3.0-9",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
     "@stripe/react-stripe-js": "^1.1.2",
@@ -70,6 +70,7 @@
     "typeface-montserrat": "0.0.54",
     "url-join": "^4.0.0",
     "use-query-params": "^0.4.1",
+    "versions": "^8.4.7",
     "workbox-core": "^6.0.2",
     "workbox-expiration": "^6.0.2",
     "workbox-precaching": "^6.0.2",
