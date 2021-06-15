@@ -34,7 +34,7 @@ export const useProductsQuery = (
       channel: channelSlug,
       attributes: filters.attributes
         ? convertToAttributeScalar(filters.attributes)
-        : {},
+        : [],
     },
     channel: channelSlug,
     first: PRODUCTS_PER_PAGE,

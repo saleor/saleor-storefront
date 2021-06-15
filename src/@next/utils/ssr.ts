@@ -72,7 +72,7 @@ export const exhaustList = async <
 
 export type FeaturedProducts = {
   products: FeaturedProductsQuery_collection_products_edges_node[];
-} & Pick<FeaturedProductsQuery_collection, "name" | "backgroundImage">;
+} & Partial<Pick<FeaturedProductsQuery_collection, "name" | "backgroundImage">>;
 
 export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
   const { apolloClient } = await getSaleorApi();
@@ -85,8 +85,8 @@ export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
   });
 
   return {
-    ...data.collection!,
-    products: data.collection!.products!.edges.map(e => e.node) || [],
+    ...data.collection,
+    products: data.collection?.products?.edges.map(e => e.node) || [],
   };
 };
 

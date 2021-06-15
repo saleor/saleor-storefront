@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-import { productPricingFragment } from "@graphql";
+import { attributeFragment, productPricingFragment } from "@graphql";
 
 import { TypedQuery } from "../../core/queries";
 import {
@@ -10,6 +10,7 @@ import {
 
 export const searchProductsQuery = gql`
   ${productPricingFragment}
+  ${attributeFragment}
   query SearchProducts(
     $query: String!
     $channel: String!
@@ -31,6 +32,7 @@ export const searchProductsQuery = gql`
           ...ProductPricingField
           id
           name
+          slug
           thumbnail {
             url
             alt
@@ -52,14 +54,7 @@ export const searchProductsQuery = gql`
     attributes(filter: { filterableInStorefront: true }, first: 100) {
       edges {
         node {
-          id
-          name
-          slug
-          values {
-            id
-            name
-            slug
-          }
+          ...Attribute
         }
       }
     }

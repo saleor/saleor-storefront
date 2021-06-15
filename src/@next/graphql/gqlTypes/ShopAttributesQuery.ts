@@ -7,7 +7,7 @@
 // GraphQL query operation: ShopAttributesQuery
 // ====================================================
 
-export interface ShopAttributesQuery_attributes_edges_node_values {
+export interface ShopAttributesQuery_attributes_edges_node_choices_edges_node {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -21,6 +21,19 @@ export interface ShopAttributesQuery_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+}
+
+export interface ShopAttributesQuery_attributes_edges_node_choices_edges {
+  __typename: "AttributeValueCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: ShopAttributesQuery_attributes_edges_node_choices_edges_node;
+}
+
+export interface ShopAttributesQuery_attributes_edges_node_choices {
+  __typename: "AttributeValueCountableConnection";
+  edges: ShopAttributesQuery_attributes_edges_node_choices_edges[];
 }
 
 export interface ShopAttributesQuery_attributes_edges_node {
@@ -40,7 +53,7 @@ export interface ShopAttributesQuery_attributes_edges_node {
   /**
    * List of attribute's values.
    */
-  values: (ShopAttributesQuery_attributes_edges_node_values | null)[] | null;
+  choices: ShopAttributesQuery_attributes_edges_node_choices | null;
 }
 
 export interface ShopAttributesQuery_attributes_edges {

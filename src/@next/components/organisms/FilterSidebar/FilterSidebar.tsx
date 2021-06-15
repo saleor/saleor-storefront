@@ -36,6 +36,7 @@ export const FilterSidebar: React.FC<IProps> = ({
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
+
   return (
     <Overlay
       duration={0}
@@ -58,19 +59,26 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
-        {attributes.map(({ id, slug, name, values }) => (
-          <AttributeValuesChecklist
-            key={id}
-            title={name}
-            name={slug}
-            values={values?.map(value => ({
-              ...value,
-              selected: checkIfAttributeIsChecked(filters, value, slug),
-            }))}
-            valuesShowLimit
-            onValueClick={value => onAttributeFiltersChange(slug, value.slug)}
-          />
-        ))}
+        {attributes.map(({ id, slug, name, choices }) => {
+          const values = (choices?.edges.map(({ node }) => node) ||
+            []) as IFilterAttribute[];
+
+          return (
+            <AttributeValuesChecklist
+              key={id}
+              title={name}
+              name={slug!}
+              values={values.map(value => ({
+                ...value,
+                selected: checkIfAttributeIsChecked(filters, value, slug!),
+              }))}
+              valuesShowLimit
+              onValueClick={value =>
+                onAttributeFiltersChange(slug!, value.slug)
+              }
+            />
+          );
+        })}
       </S.Wrapper>
     </Overlay>
   );

@@ -1,7 +1,17 @@
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { AttributeList } from "@temp/components/ProductFilters";
 import { IFilters } from "@types";
 import { UknownObject } from "@utils/tsUtils";
+
+export interface Filters {
+  attributes: AttributeList;
+  pageSize: number;
+  sortBy: string;
+  priceLte: number;
+  priceGte: number;
+}
+export interface AttributeList {
+  [attributeSlug: string]: string[];
+}
 
 export const filtersChangeHandler = (
   filters: IFilters,
@@ -40,7 +50,8 @@ export const getActiveFilterAttributes = (
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     const valueName = attributes
       ?.find(({ slug }) => attributeSlug === slug)
-      ?.values.find(({ slug }) => valueSlug === slug).name;
+      .choices.edges?.map(({ node }) => node)
+      .find(({ slug }) => valueSlug === slug).name;
 
     return valueName
       ? {
