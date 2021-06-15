@@ -2,6 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="frame-src * https://localhost:3000/ https://vars.hotjar.com/ https://www.facebook.com/ https://js.stripe.com https://hooks.stripe.com; form-action *;"
+    />
     <title>STORITALIA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="<%= htmlWebpackPlugin.options.API_URI %>" />

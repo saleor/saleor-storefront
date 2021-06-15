@@ -13,6 +13,7 @@ class Nav extends React.PureComponent {
         <div className="container">
           <TypedSecondaryMenuQueryPartner>
             {({ data }) => {
+              if(!data.menu) return null
               return data.menu.items.map(item => (
                 <div className="footer-nav__section" key={item.id}>
                   <h4 className="footer-nav__section-header">
