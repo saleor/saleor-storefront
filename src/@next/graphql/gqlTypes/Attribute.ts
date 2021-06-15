@@ -7,7 +7,7 @@
 // GraphQL fragment: Attribute
 // ====================================================
 
-export interface Attribute_values {
+export interface Attribute_choices_edges_node {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -21,6 +21,19 @@ export interface Attribute_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+}
+
+export interface Attribute_choices_edges {
+  __typename: "AttributeValueCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: Attribute_choices_edges_node;
+}
+
+export interface Attribute_choices {
+  __typename: "AttributeValueCountableConnection";
+  edges: Attribute_choices_edges[];
 }
 
 export interface Attribute {
@@ -40,5 +53,5 @@ export interface Attribute {
   /**
    * List of attribute's values.
    */
-  values: (Attribute_values | null)[] | null;
+  choices: Attribute_choices | null;
 }

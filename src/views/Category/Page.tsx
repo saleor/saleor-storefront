@@ -14,10 +14,9 @@ import { FeaturedProducts } from "@utils/ssr";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
-  Filters,
   ProductsFeatured,
 } from "../../components";
-import { getActiveFilterAttributes } from "./utils";
+import { Filters, getActiveFilterAttributes } from "./utils";
 
 import "./scss/index.scss";
 

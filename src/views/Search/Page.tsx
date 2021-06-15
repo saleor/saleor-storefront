@@ -3,9 +3,10 @@ import { useIntl } from "react-intl";
 
 import { ProductListHeader } from "@components/molecules";
 import { FilterSidebar, ProductList } from "@components/organisms";
+import { Attribute } from "@graphql/gqlTypes/Attribute";
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
-import { IFilterAttributes, IFilters } from "@types";
+import { IFilters } from "@types";
 import { SortOptions } from "@utils/collections";
 
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
@@ -16,7 +17,7 @@ import "./scss/index.scss";
 
 interface PageProps {
   activeFilters: number;
-  attributes: IFilterAttributes[];
+  attributes: Attribute[];
   activeSortOption: string;
   displayLoader: boolean;
   filters: IFilters;
@@ -64,7 +65,8 @@ const Page: React.FC<PageProps> = ({
       attributeSlug,
       valueName: attributes
         .find(({ slug }) => attributeSlug === slug)
-        .values.find(({ slug }) => valueSlug === slug).name,
+        .choices.edges.map(({ node }) => node)
+        .find(({ slug }) => valueSlug === slug).name,
       valueSlug,
     };
   };

@@ -1,7 +1,8 @@
-import { IFilterAttributes, IFilters } from "@types";
+import { Attribute } from "@graphql/gqlTypes/Attribute";
+import { IFilters } from "@types";
 
 export interface IProps {
-  attributes: IFilterAttributes[];
+  attributes: Attribute[];
   filters: IFilters;
   hide: () => void;
   onAttributeFiltersChange: (attributeSlug: string, values: string) => void;

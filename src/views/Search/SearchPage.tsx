@@ -3,10 +3,10 @@ import * as React from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
-import { FeaturedProducts } from "@graphql/gqlTypes/FeaturedProducts";
 import { channelSlug } from "@temp/constants";
 import { IFilters } from "@types";
 import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
+import { FeaturedProducts } from "@utils/ssr";
 
 import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -14,7 +14,6 @@ import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  maybe,
 } from "../../core/utils";
 import { filtersChangeHandler } from "../Category/utils";
 import Page from "./Page";
@@ -45,7 +44,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({
     ...filters,
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
-      : {},
+      : [],
     channel: channelSlug,
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
@@ -82,21 +81,16 @@ export const SearchPage: NextPage<SearchPageProps> = ({
               return (
                 <Page
                   clearFilters={clearFilters}
-                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  attributes={data.attributes.edges.map(({ node }) => node)}
                   displayLoader={loading}
-                  hasNextPage={maybe(
-                    () => data.products.pageInfo.hasNextPage,
-                    false
-                  )}
+                  hasNextPage={data.products?.pageInfo?.hasNextPage ?? false}
                   sortOptions={SORT_OPTIONS}
                   setSearch={setSearch}
                   search={search}
                   activeSortOption={filters.sortBy}
                   filters={filters}
                   products={data.products}
-                  featuredProducts={featuredProducts.collection.products.edges.map(
-                    e => e.node
-                  )}
+                  featuredProducts={featuredProducts.products}
                   onAttributeFiltersChange={filtersChangeHandler(
                     filters,
                     attributeFilters,
