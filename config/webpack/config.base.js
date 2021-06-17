@@ -132,6 +132,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       COMPANY_NAME: undefined,
       COLLECTION_ID: undefined,
       COMPANY_PIVA: undefined,
+      STRIPE_PUBLIC_KEY: undefined,
     }),
   ],
   resolve: {
