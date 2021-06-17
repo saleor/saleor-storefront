@@ -92,8 +92,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     };
 
     if (window) {
+      // @ts-ignore
       window?.dataLayer.push(dataLayer);
       // eslint-disable-next-line func-names
+      // @ts-ignore
       window?.dataLayer.push(function (this: any) {
         this.reset();
       });
@@ -113,7 +115,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   useImperativeHandle(ref, () => ({
     complete: async () => {
       changeSubmitProgress(true);
-      console.log("qui entra")
       let data;
       let dataError;
       if (payment?.gateway === "mirumee.payments.adyen") {
@@ -124,7 +125,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         const response = await completeCheckout();
         // console.log(response);
         data = response.data;
-        console.log(response, data)
         // console.log(data);
         if (data?.confirmationNeeded) {
           changeSubmitProgress(false);
@@ -173,8 +173,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
             };
 
             if (window) {
+              // @ts-ignore
               window?.dataLayer.push(dataLayer);
               // eslint-disable-next-line func-names
+              // @ts-ignore
               window?.dataLayer.push(function (this: any) {
                 this.reset();
               });
@@ -257,8 +259,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
             };
 
             if (window) {
+              // @ts-ignore
               window?.dataLayer.push(dataLayer);
               // eslint-disable-next-line func-names
+              // @ts-ignore
               window?.dataLayer.push(function (this: any) {
                 this.reset();
               });
@@ -288,6 +292,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   };
 
   useEffect(() => {
+    // @ts-ignore
     const handler = event => {
       if (event.data === "3DS-authentication-complete") {
         on3DSComplete();
@@ -309,6 +314,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         paymentMethodName={getPaymentMethodDescription()}
         email={checkout?.email}
         errors={errors}
+        // @ts-ignore
         iframe={iframe}
       />
     </>

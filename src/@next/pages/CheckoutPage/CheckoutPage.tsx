@@ -242,6 +242,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
       history.push(steps[activeStepIndex - 1].link);
+      // @ts-ignore
       setPaymentGatewayErrors(data);
     }
   };

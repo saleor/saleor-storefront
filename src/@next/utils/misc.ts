@@ -31,6 +31,7 @@ export function getJsonFromUrl(
       ? url.substring(hash)
       : url.substring(question + 1, hash);
 
+  // @ts-ignore
   const result: { [key: string]: string | Array } = {};
 
   query.split("&").forEach(function (part) {

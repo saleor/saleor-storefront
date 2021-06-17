@@ -19,9 +19,9 @@ const CheckoutReview: React.FC<IProps> = ({
   paymentMethodName,
   email,
   errors,
+  // @ts-ignore
   iframe,
-}: // getNote,
-IProps) => {
+}: IProps) => {
   return (
     <S.Wrapper data-test="sectionTitle">
       {iframe ? (
@@ -38,6 +38,7 @@ IProps) => {
                 height="600px"
                 id="myId"
                 className="myClassname"
+                // @ts-ignore
                 display="flex"
                 position="relative"
               />
