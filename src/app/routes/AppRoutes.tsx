@@ -9,11 +9,11 @@ import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
-import { CollectionPartnerPage } from "../../views/CollectionPartner";
 import { HomePage } from "../../views/Home";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
-
+import { AfterPayRedirect } from "../../views/AfterPayRedirect";
+import { CollectionPartnerPage } from "../../views/CollectionPartner"
 import * as paths from "./paths";
 
 export const Routes: React.FC = () => (
@@ -25,8 +25,8 @@ export const Routes: React.FC = () => (
     <Route path={paths.productUrl} component={ProductPage} />
     <Route path={paths.cartUrl} component={CartPage} />
     <Route path={paths.checkoutLoginUrl} component={CheckoutLogin} />
-    <Route path={paths.pageUrl} component={ArticlePage} />
     <Route path={accountPaths.baseUrl} component={UserAccount} />
+    <Route path={paths.afterPayRedirectUrl} component={AfterPayRedirect} />
     <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
     <Route path={paths.guestOrderDetailsUrl} component={OrderDetails} />
     <Route path={paths.accountUrl} component={Account} />
@@ -39,6 +39,7 @@ export const Routes: React.FC = () => (
     <Route component={NotFound} />
   </Switch>
 );
+
 
 export const RoutesPartner: React.FC = () => (
   <Switch>

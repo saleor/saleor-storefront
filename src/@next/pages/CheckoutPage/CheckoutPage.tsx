@@ -32,6 +32,16 @@ import {
 } from "./subpages";
 import { IProps } from "./types";
 
+declare global {
+  namespace NodeJS {
+    interface Global {
+      document: Document;
+      window: Window;
+      navigator: Navigator;
+    }
+  }
+}
+
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
   subtotalPrice?: ITaxedMoney | null,
@@ -212,6 +222,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     currentStep: CheckoutStep,
     data?: object
   ) => {
+    // console.log(data);
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
       history.push({
@@ -220,6 +231,18 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       });
     } else {
       history.push(steps[activeStepIndex + 1].link);
+    }
+  };
+
+  const handleStepSubmitFailure = (
+    currentStep: CheckoutStep,
+    data?: object
+  ) => {
+    // console.log(data);
+    const activeStepIndex = getActiveStepIndex();
+    if (currentStep === CheckoutStep.Review) {
+      history.push(steps[activeStepIndex - 1].link);
+      setPaymentGatewayErrors(data);
     }
   };
 
@@ -283,6 +306,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             onSubmitSuccess={data =>
               handleStepSubmitSuccess(CheckoutStep.Review, data)
             }
+            onSubmitFailure={data =>
+              handleStepSubmitFailure(CheckoutStep.Review, data)
+            }
             {...props}
           />
         )}
@@ -296,15 +322,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     token?: string,
     cardData?: ICardData
   ) => {
-    const paymentConfirmStepLink = CHECKOUT_STEPS.find(
-      step => step.step === CheckoutStep.PaymentConfirm
-    )?.link;
-    const { dataError } = await createPayment({
+    // const paymentConfirmStepLink = CHECKOUT_STEPS.find(
+    //   step => step.step === CheckoutStep.PaymentConfirm
+    // )?.link;
+    const payload = await createPayment({
       gateway,
       token,
       creditCard: cardData,
-      returnUrl: `${window.location.origin}${paymentConfirmStepLink}`,
+      returnUrl: `https://localhost:3000/checkout/payment-confirm`,
     });
+
+    const { dataError } = payload;
     const errors = dataError?.error;
     setSubmitInProgress(false);
     if (errors) {
@@ -314,6 +342,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       handleStepSubmitSuccess(CheckoutStep.Payment);
     }
   };
+
   const handleSubmitPayment = async (paymentData?: object) => {
     const response = await completeCheckout({ paymentData });
     return {
@@ -323,6 +352,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       errors: response.dataError?.error,
     };
   };
+
   const handleSubmitPaymentSuccess = (
     order?: CompleteCheckout_checkoutComplete_order
   ) => {
@@ -334,6 +364,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       token: order?.token,
     });
   };
+
   const handlePaymentGatewayError = (errors: IFormError[]) => {
     setSubmitInProgress(false);
     setPaymentGatewayErrors(errors);

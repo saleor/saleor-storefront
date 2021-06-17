@@ -48,6 +48,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
         card: cartNumberElement,
         type: "card",
       });
+      console.log(payload)
       if (payload?.error) {
         const errors = [
           {

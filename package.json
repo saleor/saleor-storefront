@@ -55,6 +55,7 @@
     "react-gtm-module": "^2.0.8",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.9.0",
+    "react-iframe": "^1.8.0",
     "react-image-magnifiers": "^1.4.0",
     "react-intersection-observer": "^8.25.2",
     "react-intl": "^4.6.9",
