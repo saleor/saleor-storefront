@@ -1,0 +1,24 @@
+name: Build'n push container image
+
+on:
+  push:
+    tags:
+      - v2.*
+      - v3.*
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set-up doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Build container image
+        run: docker build -t registry.digitalocean.com/zoe/saleor-storefront:$(echo $GITHUB_REF | cut -d\/ -f3) .
+      - name: Log in to DigitalOcean Container Registry
+        run: doctl registry login --expiry-seconds 1200
+      - name: Push image to DigitalOcean Container Registry
+        run: docker push registry.digitalocean.com/zoe/saleor-storefront:$(echo $GITHUB_REF | cut -d\/ -f3)
