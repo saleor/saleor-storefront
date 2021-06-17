@@ -17,7 +17,10 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Build container image
-        run: docker build --build-arg API_URI=${{ secrets.API_URI }} -t registry.digitalocean.com/zoe/saleor-storefront:$(echo $GITHUB_REF | cut -d\/ -f3) .
+        env:
+          API_URI=https://saleor-core-gqqct.ondigitalocean.app/graphql/
+          # API_URI=${{ secrets.API_URI }}
+        run: docker build --build-arg API_URI=$API_URI -t registry.digitalocean.com/zoe/saleor-storefront:$(echo $GITHUB_REF | cut -d\/ -f3) .
       - name: Log in to DigitalOcean Container Registry
         run: doctl registry login --expiry-seconds 1200
       - name: Push image to DigitalOcean Container Registry
