@@ -101,6 +101,12 @@ To compile the app and run it in production mode with next server run:
 $ npm run build:start
 ```
 
+In order to enable Apollo Devtools in the production version, set the environmental variable
+
+```
+NEXT_PUBLIC_ENABLE_APOLLO_DEVTOOLS=true
+```
+
 ## Cypress tests
 
 If you want to run [Cypress](https://www.cypress.io/) tests, make sure that all dependencies (including `Cypress`) are installed by running the install command.
