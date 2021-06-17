@@ -221,7 +221,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       return;
     }
     stripe?.retrievePaymentIntent(paymentCISecret).then(async result => {
-      console.log(result)
+      console.log(result);
       if (result.error) {
         changeSubmitProgress(false);
         const error = [
