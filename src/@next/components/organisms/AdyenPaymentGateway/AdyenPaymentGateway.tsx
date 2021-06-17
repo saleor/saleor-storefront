@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { defineMessages, IntlShape, useIntl } from "react-intl";
 
 import { ErrorMessage } from "@components/atoms";
+import { paymentStatusMessages } from "@temp/intl";
 import { IFormError, IPaymentGatewayConfig } from "@types";
 
 export const adyenNotNegativeConfirmationStatusCodes = [
@@ -23,21 +24,6 @@ export const adyenErrorMessages = defineMessages({
   },
   invalidPaymentSubmission: {
     defaultMessage: "Invalid payment submission.",
-    description: messageDescription,
-  },
-  cannotHandlePaymentConfirmation: {
-    defaultMessage:
-      "Payment gateway did not provide payment confirmation handler.",
-    description: messageDescription,
-  },
-  paymentMalformedConfirmationData: {
-    defaultMessage:
-      "Payment needs confirmation but data required for confirmation received from the server is malformed.",
-    description: messageDescription,
-  },
-  paymentNoConfirmationData: {
-    defaultMessage:
-      "Payment needs confirmation but data required for confirmation not received from the server.",
     description: messageDescription,
   },
 });
@@ -119,10 +105,7 @@ export interface IProps {
   /**
    * Method to call on gateway payment submission.
    */
-  submitPayment: (data: {
-    confirmationData: any;
-    confirmationNeeded: boolean;
-  }) => Promise<any>;
+  submitPayment: (data: object) => Promise<any>;
   /**
    * Method called after succesful gateway payment submission. This is the case when no confirmation is needed.
    */
@@ -222,14 +205,14 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         onError([
           new Error(
             intl.formatMessage(
-              adyenErrorMessages.cannotHandlePaymentConfirmation
+              paymentStatusMessages.cannotHandlePaymentConfirmation
             )
           ),
         ]);
       } else if (!payment?.confirmationData) {
         onError([
           new Error(
-            intl.formatMessage(adyenErrorMessages.paymentNoConfirmationData)
+            intl.formatMessage(paymentStatusMessages.paymentNoConfirmationData)
           ),
         ]);
       } else {
@@ -240,10 +223,11 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
           onError([
             new Error(
               intl.formatMessage(
-                adyenErrorMessages.paymentMalformedConfirmationData
+                paymentStatusMessages.paymentMalformedConfirmationData
               )
             ),
           ]);
+          return;
         }
         try {
           dropin.handleAction(paymentAction);

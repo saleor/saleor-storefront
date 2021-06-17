@@ -39,10 +39,7 @@ export interface IProps {
     token?: string,
     cardData?: ICardData
   ) => void;
-  submitPayment: (data: {
-    confirmationData: any;
-    confirmationNeeded: boolean;
-  }) => Promise<any>;
+  submitPayment: (data?: object) => Promise<any>;
   submitPaymentSuccess: (
     order?: CompleteCheckout_checkoutComplete_order
   ) => void;

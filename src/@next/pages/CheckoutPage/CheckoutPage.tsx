@@ -16,6 +16,7 @@ import {
 import { Checkout } from "@components/templates";
 import { useRedirectToCorrectCheckoutStep } from "@hooks";
 import { paths } from "@paths";
+import { paymentGatewayNames } from "@temp/constants";
 import { ICardData, IFormError } from "@types";
 
 import {
@@ -124,6 +125,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     token?: string,
     cardData?: ICardData
   ) => {
+    console.log("handleProcessPayment", gateway, token, cardData);
     const paymentConfirmStepLink = CHECKOUT_STEPS.find(
       step => step.step === CheckoutStep.PaymentConfirm
     )?.link;
@@ -144,6 +146,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
   };
 
   const handleSubmitPayment = async (paymentData?: object) => {
+    console.log("handleSubmitPayment", paymentData);
     const response = await completeCheckout({ paymentData });
     return {
       confirmationData: response.data?.confirmationData,
@@ -156,6 +159,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
   const handleSubmitPaymentSuccess = (
     order?: CompleteCheckout_checkoutComplete_order
   ) => {
+    console.log("handleSubmitPaymentSuccess", order);
     setSubmitInProgress(false);
     setPaymentGatewayErrors([]);
     handleStepSubmitSuccess(CheckoutStep.Review, {
@@ -196,13 +200,21 @@ const CheckoutPage: React.FC<NextPage> = () => {
     /**
      * Prevent proceeding in confirmation flow in case of gateways that don't support it to prevent unknown bugs.
      */
-    if (payment?.gateway !== "mirumee.payments.adyen") {
+    if (
+      payment?.gateway !== paymentGatewayNames.adyen &&
+      payment?.gateway !== paymentGatewayNames.stripe
+    ) {
       const paymentStepLink = steps.find(
         step => step.step === CheckoutStep.Payment
       )?.link;
       if (paymentStepLink) {
         push(paymentStepLink);
       }
+    }
+
+    if (payment?.gateway === paymentGatewayNames.stripe) {
+      console.log("handlePaymentConfirm");
+      return;
     }
 
     setSubmitInProgress(true);
