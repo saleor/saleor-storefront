@@ -66,4 +66,4 @@ export const Info3D = styled.span`
 export const IframeContainer = styled.div`
   width: 100%;
   display: flex;
-`
+`;

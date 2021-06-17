@@ -218,7 +218,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     // Check the PaymentIntent
     // console.log(paymentCISecret);
     if (!paymentCISecret) {
-      
       return;
     }
     stripe?.retrievePaymentIntent(paymentCISecret).then(async result => {

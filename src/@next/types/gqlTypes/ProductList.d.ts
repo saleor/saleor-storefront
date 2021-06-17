@@ -1,4 +1,4 @@
-import { ProductOrder, ProductFilterInput } from "./../../gqlTypes/globalTypes";
+import { ProductOrder, ProductFilterInput } from "../../gqlTypes/globalTypes";
 
 export interface Collection_collection_backgroundImage {
   __typename: "Image";

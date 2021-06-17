@@ -13,7 +13,7 @@ import { HomePage } from "../../views/Home";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 import { AfterPayRedirect } from "../../views/AfterPayRedirect";
-import { CollectionPartnerPage } from "../../views/CollectionPartner"
+import { CollectionPartnerPage } from "../../views/CollectionPartner";
 import * as paths from "./paths";
 
 export const Routes: React.FC = () => (
@@ -39,7 +39,6 @@ export const Routes: React.FC = () => (
     <Route component={NotFound} />
   </Switch>
 );
-
 
 export const RoutesPartner: React.FC = () => (
   <Switch>
