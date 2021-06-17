@@ -17,7 +17,7 @@ import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
 import { defaultTheme, GlobalStyle } from "@styles";
 import { NextQueryParamProvider } from "@temp/components";
-import { getShopConfig, ShopConfig } from "@utils/ssr";
+import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
 import { version } from "../../package.json";
 import { App as StorefrontApp } from "../app";
@@ -36,8 +36,19 @@ import {
   ssrMode,
 } from "../constants";
 
+declare global {
+  interface Window {
+    __APOLLO_CLIENT__: any;
+  }
+}
+const attachClient = async () => {
+  const { apolloClient } = await getSaleorApi();
+  window.__APOLLO_CLIENT__ = apolloClient;
+};
+
 if (!ssrMode) {
   window.version = version;
+  if (process.env.NEXT_PUBLIC_ENABLE_APOLLO_DEVTOOLS === "true") attachClient();
 }
 
 if (process.env.GTM_ID) {
