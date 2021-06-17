@@ -206,7 +206,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       const error = [
         {
           message:
-            "Ops! Il pagamento non è andato a buon fine, ti abbiamo riportato allo step di pagamento. Contattaci a !TOBEREPLACED, saremo felici di aiutarti!",
+            "ERR1: Ops! Il pagamento non è andato a buon fine, ti abbiamo riportato allo step di pagamento. Contattaci a !TOBEREPLACED, saremo felici di aiutarti!",
         },
       ];
       setErrors(error);
@@ -226,7 +226,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         const error = [
           {
             message:
-              "Ops! Il pagamento non è andato a buon fine, ti abbiamo riportato allo step di pagamento. Contattaci a !TOBEREPLACED, saremo felici di aiutarti!",
+              "ERR2: Ops! Il pagamento non è andato a buon fine, ti abbiamo riportato allo step di pagamento. Contattaci a !TOBEREPLACED, saremo felici di aiutarti!",
           },
         ];
         setErrors(error);
@@ -280,7 +280,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           const error = [
             {
               message:
-                "Ops! Il pagamento non è andato a buon fine, ti abbiamo riportato allo step di pagamento. Contattaci a !TOBEREPLACED, saremo felici di aiutarti!",
+                "ERR3: Ops! Il pagamento non è andato a buon fine, ti abbiamo riportato allo step di pagamento. Contattaci a !TOBEREPLACED, saremo felici di aiutarti!",
             },
           ];
           setErrors(error);
