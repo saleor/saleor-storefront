@@ -1,24 +1,41 @@
-import {
-  CardElement,
-  CardNumberElement,
-  Elements,
-} from "@stripe/react-stripe-js";
+import { CardNumberElement, Elements } from "@stripe/react-stripe-js";
 import {
   loadStripe,
-  PaymentIntent,
   PaymentMethod,
   Stripe,
-  StripeCardElement,
   StripeElements,
 } from "@stripe/stripe-js";
 import React, { useEffect, useMemo, useState } from "react";
-import { useIntl } from "react-intl";
+import { defineMessages, useIntl } from "react-intl";
 
 import { paymentStatusMessages } from "@temp/intl";
 import { IFormError } from "@types";
 
 import { StripeCreditCardForm } from "../StripeCreditCardForm";
 import { IProps } from "./types";
+
+const messageDescription = "Stripe payment gateway error";
+
+export const stripeErrorMessages = defineMessages({
+  gatewayMisconfigured: {
+    defaultMessage: "Stripe gateway misconfigured. Api key not provided.",
+    description: messageDescription,
+  },
+  paymentSubmissionError: {
+    defaultMessage:
+      "Payment submission error. Stripe gateway returned no payment method in payload.",
+    description: messageDescription,
+  },
+  geytwayDisplayError: {
+    defaultMessage:
+      "Stripe payment gateway couldn't be displayed. Stripe elements were not provided.",
+    description: messageDescription,
+  },
+  paymentMethodNotCreated: {
+    defaultMessage: "Payment method has not been created.",
+    description: messageDescription,
+  },
+});
 
 interface StripeConfirmationData {
   client_secret: string;
@@ -43,8 +60,6 @@ const StripePaymentGateway: React.FC<IProps> = ({
   const [submitErrors, setSubmitErrors] = useState<IFormError[]>([]);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>();
 
-  console.log("stripe GLOBAL paymentMethod", paymentMethod);
-
   const apiKey = config.find(({ field }) => field === "api_key")?.value;
 
   const stripePromise = useMemo(() => {
@@ -52,9 +67,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
       return loadStripe(apiKey);
     }
     const stripeApiKeyErrors = [
-      {
-        message: "Stripe gateway misconfigured. Api key not provided.",
-      },
+      new Error(intl.formatMessage(stripeErrorMessages.gatewayMisconfigured)),
     ];
     setSubmitErrors(stripeApiKeyErrors);
     onError(stripeApiKeyErrors);
@@ -65,8 +78,6 @@ const StripePaymentGateway: React.FC<IProps> = ({
     stripe: Stripe | null,
     elements: StripeElements | null
   ) => {
-    console.log("stripe handleFormSubmit");
-
     const cartNumberElement = elements?.getElement(CardNumberElement);
 
     if (cartNumberElement) {
@@ -93,25 +104,20 @@ const StripePaymentGateway: React.FC<IProps> = ({
             firstDigits: null,
             lastDigits: card?.last4,
           });
-          console.log("stripe setPaymentMethod", payload.paymentMethod);
           setPaymentMethod(payload.paymentMethod);
         }
       } else {
         const stripePayloadErrors = [
-          {
-            message:
-              "Payment submission error. Stripe gateway returned no payment method in payload.",
-          },
+          new Error(
+            intl.formatMessage(stripeErrorMessages.paymentSubmissionError)
+          ),
         ];
         setSubmitErrors(stripePayloadErrors);
         onError(stripePayloadErrors);
       }
     } else {
       const stripeElementsErrors = [
-        {
-          message:
-            "Stripe gateway improperly rendered. Stripe elements were not provided.",
-        },
+        new Error(intl.formatMessage(stripeErrorMessages.geytwayDisplayError)),
       ];
       setSubmitErrors(stripeElementsErrors);
       onError(stripeElementsErrors);
@@ -119,13 +125,9 @@ const StripePaymentGateway: React.FC<IProps> = ({
   };
 
   const handleFormCompleteSubmit = async () => {
-    console.log("stripe handleFormCompleteSubmit 1");
-
     const stripe = await stripePromise;
 
     const payment = await submitPayment();
-
-    console.log("stripe handleFormCompleteSubmit 2", payment);
 
     if (payment.errors?.length) {
       onError(payment.errors);
@@ -161,12 +163,14 @@ const StripePaymentGateway: React.FC<IProps> = ({
         ]);
         return;
       }
-      console.log("stripe paymentMethod", paymentMethod);
       if (!paymentMethod?.id) {
-        console.log("stripe handleFormCompleteSubmit no card", paymentAction);
+        onError([
+          new Error(
+            intl.formatMessage(stripeErrorMessages.paymentMethodNotCreated)
+          ),
+        ]);
         return;
       }
-      console.log("stripe handleFormCompleteSubmit 3", paymentAction);
       let confirmation;
       try {
         confirmation = await stripe.confirmCardPayment(
