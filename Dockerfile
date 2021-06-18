@@ -1,17 +1,4 @@
-# FROM node:12 as builder
-# WORKDIR /app
-# COPY package*.json ./
-# RUN npm install
-# COPY . .
-# ARG API_URI
-# ARG SENTRY_DSN
-# ARG SENTRY_APM
-# ARG DEMO_MODE
-# ARG GTM_ID
-# ENV API_URI ${API_URI:-http://localhost:8000/graphql/}
-# ENV PORT ${PORT:-3000}
-# RUN API_URI=${API_URI} npm run build:start
-
+# Dependency step only gets rebuilt if needed
 FROM node:14 AS deps
 # RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -45,11 +32,4 @@ ENV PORT ${PORT:-3000}
 
 EXPOSE $PORT
 
-CMD ["npm", "run", "start:heroku"]
-
-
-# FROM nginx:stable
-# WORKDIR /app
-# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-# COPY --from=builder /app/ /app/
-# CMD ["npm", "run", "start:heroku"]
+CMD ["npm", "run", "start:digitalocean"]
