@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { defineMessages, IntlShape, useIntl } from "react-intl";
 
 import { ErrorMessage } from "@components/atoms";
-import { paymentStatusMessages } from "@temp/intl";
+import { paymentErrorMessages } from "@temp/intl";
 import { IFormError, IPaymentGatewayConfig } from "@types";
 
 export const adyenNotNegativeConfirmationStatusCodes = [
@@ -205,14 +205,14 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         onError([
           new Error(
             intl.formatMessage(
-              paymentStatusMessages.cannotHandlePaymentConfirmation
+              paymentErrorMessages.cannotHandlePaymentConfirmation
             )
           ),
         ]);
       } else if (!payment?.confirmationData) {
         onError([
           new Error(
-            intl.formatMessage(paymentStatusMessages.paymentNoConfirmationData)
+            intl.formatMessage(paymentErrorMessages.paymentNoConfirmationData)
           ),
         ]);
       } else {
@@ -223,7 +223,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
           onError([
             new Error(
               intl.formatMessage(
-                paymentStatusMessages.paymentMalformedConfirmationData
+                paymentErrorMessages.paymentMalformedConfirmationData
               )
             ),
           ]);

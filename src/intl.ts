@@ -220,6 +220,9 @@ export const paymentStatusMessages = defineMessages({
   fullyRefunded: {
     defaultMessage: "Fully refunded",
   },
+});
+
+export const paymentErrorMessages = defineMessages({
   paymentNoConfirmationData: {
     defaultMessage:
       "Payment needs confirmation but data required for confirmation not received from the server.",

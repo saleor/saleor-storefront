@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
-import { paymentStatusMessages } from "@temp/intl";
+import { paymentErrorMessages } from "@temp/intl";
 import { IFormError } from "@types";
 
 import { StripeCreditCardForm } from "../StripeCreditCardForm";
@@ -137,14 +137,14 @@ const StripePaymentGateway: React.FC<IProps> = ({
       onError([
         new Error(
           intl.formatMessage(
-            paymentStatusMessages.cannotHandlePaymentConfirmation
+            paymentErrorMessages.cannotHandlePaymentConfirmation
           )
         ),
       ]);
     } else if (!payment?.confirmationData) {
       onError([
         new Error(
-          intl.formatMessage(paymentStatusMessages.paymentNoConfirmationData)
+          intl.formatMessage(paymentErrorMessages.paymentNoConfirmationData)
         ),
       ]);
     } else {
@@ -157,7 +157,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
         onError([
           new Error(
             intl.formatMessage(
-              paymentStatusMessages.paymentMalformedConfirmationData
+              paymentErrorMessages.paymentMalformedConfirmationData
             )
           ),
         ]);
