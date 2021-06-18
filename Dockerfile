@@ -24,6 +24,7 @@ COPY --from=builder /app/config/ ./config
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
+ENV NEXT_PUBLIC_API_URI ${API_URI}
 ENV PORT ${PORT:-3000}
 
 EXPOSE $PORT
