@@ -12,23 +12,23 @@
 # ENV PORT ${PORT:-3000}
 # RUN API_URI=${API_URI} npm run build:start
 
-FROM node:14-alpine AS deps
+FROM node:14 AS deps
 # RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-FROM node:14-alpine AS builder
+FROM node:14 AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN npm run build
 
-FROM node:14-alpine AS runner
+FROM node:14 AS runner
 WORKDIR /app
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 --gid 1001 nextjs
 
 # COPY --from=builder /app/ .
 # RUN chown nextjs:nodejs /app/.next
