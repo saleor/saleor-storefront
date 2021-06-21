@@ -23,7 +23,7 @@ function MainProductList({ listProduct, title }: IProps) {
           {listProduct.map(item => {
             return (
               <S.Item key={item.id}>
-                <S.ImgBox>
+                <S.ImgBox onClick={() => handleClick(item.id, item.name)}>
                   <S.Img src={item.imgUrl} />
                 </S.ImgBox>
                 <S.NameProduct onClick={() => handleClick(item.id, item.name)}>
