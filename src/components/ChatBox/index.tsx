@@ -7,8 +7,7 @@ function ChatBox(props) {
   const handleChange = e => {};
 
   const handleSubmit = e => {};
-
-  const [stt, setStt] = React.useState(false);
+  const [stt, setStt] = React.useState(true);
   return (
     <S.Container>
       <S.Wrapper stt={stt}>

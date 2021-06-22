@@ -54,14 +54,32 @@ export const Circle = styled.div`
 `;
 
 export const Wrapper = styled.div<{ stt: boolean }>`
-  width: 400px;
   background: #fff;
-  min-height: 500px;
   border-radius: 1rem;
   overflow: hidden;
   display: ${props => props.stt && "none"};
   box-shadow: -1px 0px 24px -7px #00000050;
   z-index: 200;
+  @media (max-width: 519px) {
+    min-height: 200px;
+    width: 267px;
+  }
+  @media (min-width: 520px) {
+    min-height: 250px;
+    width: 300px;
+  }
+  @media (min-width: 720px) {
+    min-height: 250px;
+    width: 300px;
+  }
+  @media (min-width: 992px) {
+    min-height: 400px;
+    width: 350px;
+  }
+  @media (min-width: 1280px) {
+    min-height: 500px;
+    width: 350px;
+  }
 `;
 
 // detail
@@ -149,13 +167,27 @@ export const OptionItem = styled.img`
 export const Content = styled.div`
   width: 100%;
   background: #e6f3f6;
-  min-height: 450px;
   padding: 0.5rem 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow: scroll;
   overflow-x: hidden;
+  @media (max-width: 519px) {
+    min-height: 200px;
+  }
+  @media (min-width: 520px) {
+    min-height: 200px;
+  }
+  @media (min-width: 720px) {
+    min-height: 200px;
+  }
+  @media (min-width: 992px) {
+    min-height: 250px;
+  }
+  @media (min-width: 1280px) {
+    min-height: 300px;
+  }
 `;
 
 export const InComing = styled.p`
