@@ -41,7 +41,11 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
     const newQuantity = parseInt(evt.target.value, 10);
 
     if (quantity !== newQuantity) {
-      onQuantityChange(newQuantity);
+      if (newQuantity >= 1) {
+        onQuantityChange(newQuantity);
+      } else {
+        onQuantityChange(0);
+      }
     }
     setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
   };
