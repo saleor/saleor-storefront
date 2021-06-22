@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
   background: $white;
   padding: 2.5rem;
   text-align: center;
-  max-height: 30rem;
   transition: 0.3s;
 
   :hover {
@@ -45,7 +44,7 @@ export const Image = styled.div`
   height: auto;
   max-width: 100%;
 
-  > img {
+  > span img {
     width: auto;
     height: auto;
     max-width: 100%;

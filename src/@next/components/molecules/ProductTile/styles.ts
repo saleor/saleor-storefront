@@ -50,7 +50,7 @@ export const Image = styled.div`
   height: auto;
   max-width: 100%;
 
-  > img {
+  > span img {
     width: auto;
     height: auto;
     max-width: 100%;

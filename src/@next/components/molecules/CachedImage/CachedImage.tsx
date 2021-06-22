@@ -1,6 +1,8 @@
 import React from "react";
 
 import { PlaceholderImage } from "@components/atoms";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { useNetworkStatus } from "@hooks";
 import NoPhoto from "images/no-photo.svg";
 
@@ -46,11 +48,13 @@ export const CachedImage: React.FC<IImage> = ({
   }
 
   return (
-    <img
+    <LazyLoadImage
       {...props}
       src={url}
       srcSet={url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`}
       alt={alt}
+      effect="blur"
+      threshold={100}
       // navigator.onLine is not always accurate
       onError={() => setUnavailable(true)}
     />

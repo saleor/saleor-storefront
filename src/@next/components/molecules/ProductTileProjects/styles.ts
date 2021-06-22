@@ -17,7 +17,6 @@ export const Wrapper = styled.div`
   background: #f6f6f6;
   padding: 0rem;
   text-align: center;
-  max-height: 30rem;
   transition: 0.3s;
 
   ${media.largeScreen`
@@ -61,10 +60,14 @@ export const Image = styled.div`
     color: black;
   }
 
-  > img {
+  > span {
+    grid-column-end: span 2;
+    display: inline-grid !important;
+  }
+
+  > span img {
     height: auto;
     max-width: 100%;
-    grid-column-end: span 2;
   }
   > div {
     h3 {

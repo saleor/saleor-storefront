@@ -17,7 +17,6 @@ export const Wrapper = styled.div`
   background: #f6f6f6;
   padding: 0rem;
   text-align: center;
-  max-height: 30rem;
   transition: 0.3s;
 
   ${media.largeScreen`
@@ -61,19 +60,26 @@ export const Image = styled.div`
     color: black;
   }
 
-  padding: 20px;
+  padding: 10px;
 
-  > img {
-    height: auto;
-    max-width: 100%;
+  > span {
     grid-column-end: span 4;
+    display: inline-grid !important;
     ${media.mediumScreen`
       grid-column-end: span 4;
+      display: inline-grid !important;
     `}
     ${media.smallScreen`
       grid-column-end: span 4;
+      display: inline-grid !important;
     `}
   }
+
+  > span img {
+    height: auto;
+    max-width: 100%;
+  }
+
   > div {
     h3 {
       margin-bottom: 10px;
