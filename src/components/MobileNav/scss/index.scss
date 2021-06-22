@@ -4,6 +4,8 @@
   $item-height: 3.7rem;
   max-width: calc(100vw - 5rem);
   width: 30rem;
+  overflow: scroll;
+  height: calc(100vh - 61px);
 
   &__menu-item {
     border-bottom: 1px solid $gray-light;

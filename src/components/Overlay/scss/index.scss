@@ -24,9 +24,9 @@
 
   &__left {
     position: fixed;
-    min-height: 100%;
     background-color: $white;
     animation: sidenavLeftOpen 0.3s;
+    height: 100%;
   }
 
   &__right {
