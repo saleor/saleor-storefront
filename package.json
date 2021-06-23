@@ -191,7 +191,7 @@
   "scripts": {
     "test": "cross-env LANGUAGE_LOCALE=en-US jest --runInBand --config .jest/config.json",
     "start": "next dev -p 3000",
-    "start:heroku": "next start -p $PORT",
+    "start:digitalocean": "next start -p $PORT",
     "start:optimize": "cross-env OPTIMIZE=true next dev -p $PORT",
     "start:worker": "cross-env SERVICE_WORKER=true npm run start",
     "build": "next build",
