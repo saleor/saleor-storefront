@@ -49,7 +49,7 @@ function ChatBox(props) {
         <S.ChatBox>
           <S.InputWrap onSubmit={handleSubmit}>
             <S.Input
-              type="text"
+              // type="text"
               // value={tempMess.message}
               onChange={handleChange}
             />

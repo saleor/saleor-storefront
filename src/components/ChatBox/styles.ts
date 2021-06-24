@@ -226,11 +226,25 @@ export const InputWrap = styled.form`
   box-sizing: border-box;
 `;
 
-export const Input = styled.input`
+export const Input = styled.textarea`
+  padding-top: 5px;
+  height: 24px;
   width: 100%;
   outline: none;
   border: none;
   background: #f0f2f5;
+  resize: none;
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: white;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d5d5d5;
+    border-radius: 20px;
+  }
 `;
 
 export const Sendbtn = styled.img`
