@@ -232,18 +232,21 @@ export const Input = styled.textarea`
   width: 100%;
   outline: none;
   border: none;
-  background: #f0f2f5;
+  background: #edf0f5;
   resize: none;
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    border-radius: 20px;
-    background: white;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #d5d5d5;
-    border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #edf0f5;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 `;
 
