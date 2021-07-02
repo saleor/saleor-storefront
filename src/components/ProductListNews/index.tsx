@@ -1,10 +1,10 @@
-import isEqual from "lodash/isEqual";
+// import isEqual from "lodash/isEqual";
 import * as React from "react";
 import ReactSVG from "react-svg";
 
 import { Thumbnail } from "@components/molecules";
 
-import { TaxedMoney } from "../../@next/components/containers";
+// import { TaxedMoney } from "../../@next/components/containers";
 import message from "../../images/messageHeader.svg";
 import { FeaturedProducts_collection_products_edges_node } from "../ProductsFeatured/gqlTypes/FeaturedProducts";
 
@@ -15,24 +15,24 @@ interface ProductListItemProps {
 }
 
 const ProductListNews: React.FC<ProductListItemProps> = ({ product }) => {
-  const { category } = product;
-  const price = product.pricing?.priceRange?.start;
-  const priceUndiscounted = product.pricing?.priceRangeUndiscounted?.start;
+  // const { category } = product;
+  // const price = product.pricing?.priceRange?.start;
+  // const priceUndiscounted = product.pricing?.priceRangeUndiscounted?.start;
 
-  const getProductPrice = () => {
-    if (isEqual(price, priceUndiscounted)) {
-      return <TaxedMoney taxedMoney={price} />;
-    }
-    return (
-      <>
-        <span className="product-list-item__undiscounted_price">
-          <TaxedMoney taxedMoney={priceUndiscounted} />
-        </span>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <TaxedMoney taxedMoney={price} />
-      </>
-    );
-  };
+  // const getProductPrice = () => {
+  //   if (isEqual(price, priceUndiscounted)) {
+  //     return <TaxedMoney taxedMoney={price} />;
+  //   }
+  //   return (
+  //     <>
+  //       <span className="product-list-item__undiscounted_price">
+  //         <TaxedMoney taxedMoney={priceUndiscounted} />
+  //       </span>
+  //       &nbsp;&nbsp;&nbsp;&nbsp;
+  //       <TaxedMoney taxedMoney={price} />
+  //     </>
+  //   );
+  // };
   return (
     <div className="product-list-item-news">
       <div className="product-list-item-news__info">

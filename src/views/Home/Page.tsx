@@ -7,7 +7,7 @@ import ProductsNews from "@temp/components/ProductsNews";
 import { Button, Loader, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import { generateCategoryUrl } from "../../core/utils";
-import noPhotoImg from "../../images/no-photo.svg";
+// import noPhotoImg from "../../images/no-photo.svg";
 import {
   ProductsList_categories,
   ProductsList_collection_backgroundImage,
