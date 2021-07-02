@@ -1,9 +1,11 @@
 import isEqual from "lodash/isEqual";
 import * as React from "react";
+import ReactSVG from "react-svg";
 
 import { Thumbnail } from "@components/molecules";
 
 import { TaxedMoney } from "../../@next/components/containers";
+import message from "../../images/messageHeader.svg";
 import { FeaturedProducts_collection_products_edges_node } from "../ProductsFeatured/gqlTypes/FeaturedProducts";
 
 import "./scss/index.scss";
@@ -12,7 +14,7 @@ interface ProductListItemProps {
   product: FeaturedProducts_collection_products_edges_node;
 }
 
-const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
+const ProductListNews: React.FC<ProductListItemProps> = ({ product }) => {
   const { category } = product;
   const price = product.pricing?.priceRange?.start;
   const priceUndiscounted = product.pricing?.priceRangeUndiscounted?.start;
@@ -32,15 +34,27 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
     );
   };
   return (
-    <div className="product-list-item">
-      <div className="product-list-item__image">
+    <div className="product-list-item-news">
+      <div className="product-list-item-news__info">
+        <div className="product-list-item-news__icon-seller" />
+        <span className="product-list-item-news__seller">Người bán</span>
+      </div>
+      <div className="product-list-item-news__image">
         <Thumbnail source={product} />
       </div>
-      <h4 className="product-list-item__title">{product.name}</h4>
+      <h4 className="product-list-item-news__title-news">{product.name}</h4>
       {/* <p className="product-list-item__category">{category?.name}</p> */}
-      <p className="product-list-item__price">{getProductPrice()}</p>
+      <p className="product-list-item-news__description">
+        namnamnamnamnamnamnam namnamnamnamnamnam namnamnamnamnamnam
+        namnamnamnamnam
+      </p>
+      <div className="product-list-item-news__button">
+        {/* <img src={message} alt="" /> */}
+        <ReactSVG path={message} />
+        <span>Liên hệ người bán</span>
+      </div>
     </div>
   );
 };
 
-export default ProductListItem;
+export default ProductListNews;

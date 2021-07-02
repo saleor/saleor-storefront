@@ -1,7 +1,8 @@
-import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
+import ProductsNews from "@temp/components/ProductsNews";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
@@ -76,12 +77,12 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      {categoriesExist() && (
+      {/* {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            {/* <h3>
+            <h3>
               <FormattedMessage defaultMessage="Shop by category" />
-            </h3> */}
+            </h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div
@@ -116,9 +117,12 @@ const Page: React.FC<{
             </div>
           </div>
         </div>
-      )}
+      )} */}
       <ProductsFeatured
         title={intl.formatMessage({ defaultMessage: "Featured" })}
+      />
+      <ProductsNews
+        title={intl.formatMessage({ defaultMessage: "Bảng tin" })}
       />
     </>
   );

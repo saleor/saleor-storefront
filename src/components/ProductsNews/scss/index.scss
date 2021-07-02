@@ -1,6 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.products-featured {
+.products-news {
   padding: 20px 0;
   // background-color: $white;
   &__container {
@@ -10,7 +10,7 @@
   }
 
   h3 {
-    margin-left: 10px;
+    margin-left: 1rem;
     font-weight: $bold-font-weight;
     margin-bottom: $spacer;
     display: flex;
@@ -28,16 +28,23 @@
     //   margin-left: 15px;
     // }
   }
-  .list__product {
+  .list__product-news {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 3px;
+    // &:hover {
+    //   box-shadow: ;
+    // }
     a {
       color: $base-font-color;
       text-decoration: none;
+      transition: all 0.2s;
+      &:hover {
+        box-shadow: 0px 0px 8px #00000050;
+      }
     }
     @media (min-width: $small-screen) {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       > a {
         &:nth-child(n + 5) {
           display: none;
