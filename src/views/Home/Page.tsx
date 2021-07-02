@@ -23,9 +23,9 @@ const Page: React.FC<{
   backgroundImage: ProductsList_collection_backgroundImage;
   shop: ProductsList_shop;
 }> = ({ loading, categories, backgroundImage, shop }) => {
-  const categoriesExist = () => {
-    return categories && categories.edges && categories.edges.length > 0;
-  };
+  // const categoriesExist = () => {
+  //   return categories && categories.edges && categories.edges.length > 0;
+  // };
   const intl = useIntl();
 
   return (
