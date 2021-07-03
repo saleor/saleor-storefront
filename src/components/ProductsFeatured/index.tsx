@@ -5,6 +5,7 @@ import { channelSlug } from "@temp/constants";
 
 import { generateProductUrl } from "../../core/utils";
 import { ProductListItem } from "..";
+import ProductListItemSale from "../ProductListItemSale";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
@@ -24,23 +25,59 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
 
         if (products.length) {
           return (
-            <div className="products-featured">
-              <div className="container">
-                <h3>{title}</h3>
-                <div className="list__product">
-                  {products.map(({ node: product }) => (
-                    <Link
-                      href={generateProductUrl(product.id, product.name)}
-                      key={product.id}
-                    >
-                      <a>
-                        <ProductListItem product={product} />
-                      </a>
-                    </Link>
-                  ))}
+            <>
+              <div className="products-featured">
+                <div className="products-featured__container">
+                  <h3>Sản Phẩm Mới</h3>
+                  <div className="list__product">
+                    {products.map(({ node: product }) => (
+                      <Link
+                        href={generateProductUrl(product.id, product.name)}
+                        key={product.id}
+                      >
+                        <a>
+                          <ProductListItem product={product} />
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="products-featured">
+                <div className="products-featured__container">
+                  <h3>Sản Phẩm Hot</h3>
+                  <div className="list__product">
+                    {products.map(({ node: product }) => (
+                      <Link
+                        href={generateProductUrl(product.id, product.name)}
+                        key={product.id}
+                      >
+                        <a>
+                          <ProductListItem product={product} />
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="products-featured">
+                <div className="products-featured__container">
+                  <h3>Sản Phẩm Giảm Giá</h3>
+                  <div className="list__product">
+                    {products.map(({ node: product }) => (
+                      <Link
+                        href={generateProductUrl(product.id, product.name)}
+                        key={product.id}
+                      >
+                        <a>
+                          <ProductListItemSale product={product} />
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
           );
         }
         return null;
