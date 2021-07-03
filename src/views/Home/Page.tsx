@@ -118,10 +118,53 @@ const Page: React.FC<{
           )}
         </div> */}
       </div>
-      {}
+      {/* {categoriesExist() && (
+        <div className="home-page__categories">
+          <div className="container">
+            <h3>
+              <FormattedMessage defaultMessage="Shop by category" />
+            </h3>
+            <div className="home-page__categories__list">
+              {categories.edges.map(({ node: category }) => (
+                <div
+                  key={category.id}
+                  className="home-page__categories__list__item"
+                >
+                  <Link
+                    href={generateCategoryUrl(category.id, category.name)}
+                    key={category.id}
+                  >
+                    <a>
+                      <h3>{category.name}</h3>
+                      <div
+                        className={classNames(
+                          "home-page__categories__list__image",
+                          {
+                            "home-page__categories__list__image--no-photo": !category.backgroundImage,
+                          }
+                        )}
+                        style={{
+                          backgroundImage: `url(${
+                            category.backgroundImage
+                              ? category.backgroundImage.url
+                              : noPhotoImg
+                          })`,
+                        }}
+                      />
+                    </a>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )} */}
       <ProductsFeatured
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
+      {/* <ProductsNews
+        title={intl.formatMessage({ defaultMessage: "Bảng tin" })}
+      /> */}
     </>
   );
 };

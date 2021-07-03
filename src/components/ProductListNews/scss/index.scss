@@ -1,6 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.product-list-item {
+.product-list-item-news {
   text-align: center;
   background: $white;
   padding: 0 1.5 * $spacer;
@@ -8,11 +8,28 @@
   // border: 1px solid #ebecf0;
   height: 100%;
 
-  &__title {
+  &__info {
+    display: flex;
+    align-items: center;
+    margin: $spacer 0;
+  }
+
+  &__icon-seller {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid $black;
+  }
+
+  &__seller {
+    margin-left: 7px;
+  }
+
+  &__title-news {
     text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
     margin-top: $spacer;
-    text-align: center;
+    text-align: left;
   }
 
   &__undiscounted_price {
@@ -27,17 +44,40 @@
     text-align: center;
   }
 
-  &__price {
+  &__description {
     // font-weight: $product-item-price-font-weight;
     margin: $product-item-price-margin;
     text-align: center;
     margin-top: 0.5 * $spacer;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  &__button {
+    width: 180px;
+    height: 35px;
+    background-color: #188c72;
+    border-radius: 5px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    svg {
+      margin-top: 5px;
+    }
+    span {
+      margin-left: 5px;
+      text-align: center;
+      color: $white;
+      font-weight: 100;
+    }
   }
 
   &__image {
     background-color: $turquoise-light;
     display: flex;
-    height: 250px;
+    height: 320px;
     justify-content: center;
 
     img {

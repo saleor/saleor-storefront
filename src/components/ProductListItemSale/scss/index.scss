@@ -7,6 +7,10 @@
   border-radius: 3px;
   // border: 1px solid #ebecf0;
   height: 100%;
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: -0.3px 0 15px #00000029;
+  }
 
   &__title {
     text-transform: $product-item-title-text-transform;
@@ -33,12 +37,16 @@
     text-align: center;
     margin-top: 0.5 * $spacer;
   }
+  &__price-sale {
+    text-decoration: line-through;
+  }
 
   &__image {
     background-color: $turquoise-light;
     display: flex;
     height: 250px;
     justify-content: center;
+    position: relative;
 
     img {
       object-fit: contain;
@@ -47,6 +55,37 @@
 
     @media (max-width: $small-screen) {
       height: 210px;
+    }
+  }
+  &__sale {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 45px;
+    background-color: #d22020;
+    padding: 4px 0;
+    &::after {
+      content: "";
+      top: 100%;
+      right: 0;
+      position: absolute;
+      border-width: 0 20px 7px;
+      border-style: solid;
+      border-color: transparent #d22020 transparent #d22020;
+    }
+    &__persent {
+      color: $white;
+      font-size: 14px;
+      display: inline-block;
+      font-weight: 100;
+    }
+    &__title {
+      display: inline-block;
+      color: $white;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 100;
     }
   }
 }

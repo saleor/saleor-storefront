@@ -12,7 +12,7 @@ interface ProductListItemProps {
   product: FeaturedProducts_collection_products_edges_node;
 }
 
-const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
+const ProductListItemSale: React.FC<ProductListItemProps> = ({ product }) => {
   // const { category } = product;
   const price = product.pricing?.priceRange?.start;
   const priceUndiscounted = product.pricing?.priceRangeUndiscounted?.start;
@@ -34,13 +34,17 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
+        <div className="product-list-item__sale">
+          <span className="product-list-item__sale__persent">25%</span>
+          <span className="product-list-item__sale__title">Giảm</span>
+        </div>
         <Thumbnail source={product} />
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
-      {/* <p className="product-list-item__category">{category?.name}</p> */}
+      <p className="product-list-item__price-sale">{getProductPrice()}</p>
       <p className="product-list-item__price">{getProductPrice()}</p>
     </div>
   );
 };
 
-export default ProductListItem;
+export default ProductListItemSale;
