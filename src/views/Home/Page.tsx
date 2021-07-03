@@ -3,6 +3,8 @@ import Carousel from "nuka-carousel";
 import * as React from "react";
 import { /* FormattedMessage, */ useIntl } from "react-intl";
 
+import ProductsNews from "@temp/components/ProductsNews";
+
 import { /* Button, Loader, */ ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 // import { generateCategoryUrl } from "../../core/utils";
@@ -162,9 +164,9 @@ const Page: React.FC<{
       <ProductsFeatured
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
-      {/* <ProductsNews
+      <ProductsNews
         title={intl.formatMessage({ defaultMessage: "Bảng tin" })}
-      /> */}
+      />
     </>
   );
 };
