@@ -1,8 +1,9 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .footer {
-  background-color: $darkBlue;
-  color: $white;
+  background-color: $white;
+  color: black;
+  padding: 0 50px;
   &-email {
     margin: 3rem 0 1rem;
     .formEmail {
@@ -10,9 +11,9 @@
       justify-content: center;
       align-items: baseline;
       .input__field {
-        background: #313d51;
-        border: 1px solid #c4c6cf;
-        color: #fff;
+        background: #f0f0f0;
+        border: 1px solid $white;
+        color: $black;
         box-shadow: none;
         &:hover {
           box-shadow: none;
@@ -25,10 +26,11 @@
         .button {
           transform: none;
           margin-left: 5px;
-          background: 0 0;
+          background: #188c72;
           border: 1px solid #c6cad1;
           box-shadow: none;
           padding: 12px 20px;
+          color: $white;
           span {
             font-size: 16px;
             transform: none;
@@ -40,7 +42,8 @@
     }
   }
   &-siteMap {
-    border-bottom: 1px solid #313d52;
+    // padding: 0 50px;
+    border-bottom: 1px solid #7b7b7b;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 0.5rem;
@@ -54,17 +57,19 @@
       margin: 0 0 20px 20px;
     }
     dt {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 14px;
       padding: 10px 0;
       margin-bottom: 5px;
+      color: #7b7b7b;
     }
     dd {
       padding: 5px 0;
       line-height: 12px;
       margin: 0;
       a {
-        font-size: 12px;
+        font-size: 16px;
+        color: #acacac;
         &:hover {
           text-decoration: underline;
         }
@@ -72,10 +77,12 @@
     }
   }
   &__favicons {
+    // padding: 0 50px;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1rem;
     margin: 1rem 0;
+    color: #7b7b7b;
     @media (min-width: $small-screen) {
       grid-template-columns: 1fr 1fr;
     }
@@ -128,6 +135,7 @@
     }
   }
   &__copyright {
+    color: #7b7b7b;
     margin: 0 0 2rem;
   }
 
