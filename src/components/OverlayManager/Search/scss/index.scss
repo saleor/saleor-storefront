@@ -19,10 +19,42 @@ $drawer-width: 25rem;
 
   &__input {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    // grid-template-columns: 4fr 1fr;
     align-items: center;
+    position: relative;
+    .search-dropdown {
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      width: 7%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        background: #e1e1e1;
+        border: 0, 5px solid #cbcbcb;
+        height: 30px;
+        border-radius: 5px 0 0 5px;
+        opacity: 1;
+        &__title {
+          margin-left: 3px;
+          font-size: 0.8rem;
+          color: $black;
+          font-weight: normal;
+        }
+      }
+      svg {
+        display: flex;
+        width: 1rem;
+      }
+    }
     .input {
-      position: relative;
+      // position: relative;
+      width: 100%;
       margin-bottom: 0;
     }
 
@@ -41,12 +73,14 @@ $drawer-width: 25rem;
     .input__field {
       background-color: $turquoise-light;
       box-shadow: none;
-      padding: 1rem;
+      padding: 0.8rem;
       width: 100%;
-      height: 52px;
-      border: 1px solid $orange;
+      height: 30px;
+      border: none;
       border-right: none;
-      border-radius: 20px 0 0 20px;
+      border-radius: 5px;
+      padding-left: 8%;
+      padding-right: 12%;
 
       &:focus {
         box-shadow: none;
@@ -58,25 +92,35 @@ $drawer-width: 25rem;
         color: $black;
       }
     }
+    .search-button {
+      position: absolute;
+      right: 0;
+      width: 11%;
+      .btn-search {
+        width: 100%;
+        display: flex;
+        background-color: #fdbb58;
+        // padding: 0 1.5rem;
+        height: 30px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        color: $white;
+        // padding-top: 2px;
+        svg * {
+          fill: $black;
+        }
+        svg {
+          padding-top: 3px;
+        }
 
-    .btn-search {
-      display: inline-flex;
-      background-color: $orange;
-      padding: 0 1.5rem;
-      height: 52px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0 20px 20px 0;
-      color: $white;
-
-      svg * {
-        fill: $white;
-      }
-
-      &--title {
-        font-size: 1rem;
-        margin-left: 12px;
-        padding-top: 3px;
+        &__title {
+          font-size: 0.8rem;
+          color: $black;
+          font-weight: normal;
+          // margin-left: 12px;
+          // padding-top: 3px;
+        }
       }
     }
   }

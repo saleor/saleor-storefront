@@ -5,7 +5,7 @@
 }
 
 .main-menu {
-  background-color: $white;
+  background-color: $mainColorHeader;
   border-bottom: 1px solid $gray-light;
   position: relative;
   display: grid;
@@ -14,24 +14,54 @@
   padding: 1rem 0;
   justify-items: center;
   @media (min-width: $small-screen) {
-    grid-template-columns: 1fr 4fr 0.5fr;
+    grid-template-columns: 2.4fr 5.8fr 1.8fr;
     height: auto;
     padding: 0.5rem 0;
     justify-items: normal;
   }
+  &__user {
+    padding-right: 0px !important;
+    svg {
+      .a,
+      .c {
+        fill: none;
+      }
+    }
+  }
 
   &__left {
-
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     ul {
       display: flex;
       align-items: center;
       height: 100%;
     }
     svg {
-      width: 200px;
-      height: 70px;
+      width: 141px;
+      height: 46px;
+      cursor: pointer;
       path {
         fill: #ff6a00;
+      }
+    }
+    &__logo {
+      width: 65px;
+    }
+    &__showGroupItem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      img {
+        width: 22px;
+      }
+      &__title {
+        width: 60px;
+        margin-left: 10px;
+        font-size: 0.8rem;
+        color: $white;
       }
     }
   }
@@ -39,7 +69,7 @@
   &__right {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     ul {
       display: flex;
       justify-content: flex-end;
@@ -52,7 +82,7 @@
     position: relative;
 
     svg {
-      width: 2rem;
+      width: 1.5rem;
     }
   }
 
