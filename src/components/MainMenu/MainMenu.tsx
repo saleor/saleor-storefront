@@ -1,7 +1,7 @@
-import { /* useAuth, */ useCart } from "@saleor/sdk";
+import { useAuth, useCart } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
@@ -10,8 +10,8 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { paths } from "@paths";
 import Search from "@temp/components/OverlayManager/Search";
+import { commonMessages } from "@temp/intl";
 
-// import { commonMessages } from "@temp/intl";
 // import cartImg from "../../images/cart.svg";
 import groupImg from "../../images/groupHeader.svg";
 import logoImg from "../../images/logo-thachsanh-real.png";
@@ -19,9 +19,9 @@ import messageHeaderImg from "../../images/messageHeader.svg";
 import trolleyImg from "../../images/trolley.svg";
 import userImg from "../../images/userHeader.svg";
 import {
-  // MenuDropdown,
+  MenuDropdown,
   Offline,
-  // Online,
+  Online,
   OverlayContext,
   OverlayTheme,
   OverlayType,
@@ -30,7 +30,7 @@ import {
 import "./scss/index.scss";
 import {
   mediumScreen,
-  // smallScreen,
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
 
 interface MainMenuProps {
@@ -40,14 +40,14 @@ interface MainMenuProps {
 const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
   const overlayContext = useContext(OverlayContext);
 
-  // const { user, signOut } = useAuth();
-  // const { push } = useRouter();
+  const { user, signOut } = useAuth();
+  const { push } = useRouter();
 
   const { items } = useCart();
 
-  // const handleSignOut = () => {
-  //   signOut();
-  // };
+  const handleSignOut = () => {
+    signOut();
+  };
 
   const cartItemsQuantity =
     (items &&
@@ -252,6 +252,20 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
               <li
                 data-test="menuCartOverlayLink"
                 className="main-menu__icon main-menu__message"
+                // onClick={() => {
+                //   overlayContext.show(OverlayType.cart, OverlayTheme.right);
+                // }}
+              >
+                <ReactSVG path={messageHeaderImg} />
+                {cartItemsQuantity > 0 ? (
+                  <span className="main-menu__cart__quantity">
+                    {cartItemsQuantity}
+                  </span>
+                ) : null}
+              </li>
+              {/* <li
+                data-test="menuCartOverlayLink"
+                className="main-menu__icon main-menu__message"
                 onClick={() => {
                   overlayContext.show(OverlayType.cart, OverlayTheme.right);
                 }}
@@ -276,8 +290,8 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                     {cartItemsQuantity}
                   </span>
                 ) : null}
-              </li>
-              {/* <Online>
+              </li> */}
+              <Online>
                 <Media
                   query={{ minWidth: smallScreen }}
                   render={() => (
@@ -339,7 +353,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                     </>
                   )}
                 />
-              </Online> */}
+              </Online>
               <Offline>
                 <li className="main-menu__offline">
                   <Media
