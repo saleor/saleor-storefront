@@ -6,36 +6,14 @@ import {
   StripeElements,
 } from "@stripe/stripe-js";
 import React, { useEffect, useMemo, useState } from "react";
-import { defineMessages, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import { paymentErrorMessages } from "@temp/intl";
 import { IFormError } from "@types";
 
 import { StripeCreditCardForm } from "../StripeCreditCardForm";
+import { stripeErrorMessages } from "./intl";
 import { IProps } from "./types";
-
-const messageDescription = "Stripe payment gateway error";
-
-export const stripeErrorMessages = defineMessages({
-  gatewayMisconfigured: {
-    defaultMessage: "Stripe gateway misconfigured. Api key not provided.",
-    description: messageDescription,
-  },
-  paymentSubmissionError: {
-    defaultMessage:
-      "Payment submission error. Stripe gateway returned no payment method in payload.",
-    description: messageDescription,
-  },
-  geytwayDisplayError: {
-    defaultMessage:
-      "Stripe payment gateway couldn't be displayed. Stripe elements were not provided.",
-    description: messageDescription,
-  },
-  paymentMethodNotCreated: {
-    defaultMessage: "Payment method has not been created.",
-    description: messageDescription,
-  },
-});
 
 interface StripeConfirmationData {
   client_secret: string;

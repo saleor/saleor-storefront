@@ -17,7 +17,7 @@ import { Checkout } from "@components/templates";
 import { useRedirectToCorrectCheckoutStep } from "@hooks";
 import { paths } from "@paths";
 import { paymentGatewayNames } from "@temp/constants";
-import { ICardData, IFormError } from "@types";
+import { ICardData, IFormError, IPaymentSubmitResult } from "@types";
 
 import {
   CheckoutAddressSubpage,
@@ -151,11 +151,11 @@ const CheckoutPage: React.FC<NextPage> = () => {
       confirmationNeeded: response.data?.confirmationNeeded,
       order: response.data?.order,
       errors: response.dataError?.error,
-    };
+    } as IPaymentSubmitResult;
   };
 
   const handleSubmitPaymentSuccess = (
-    order?: CompleteCheckout_checkoutComplete_order
+    order?: CompleteCheckout_checkoutComplete_order | null
   ) => {
     setSubmitInProgress(false);
     setPaymentGatewayErrors([]);

@@ -6,7 +6,7 @@ import { PaymentGatewaysList } from ".";
 import { paymentGateways } from "./fixtures";
 
 const processPayment = action("processPayment");
-const submitPayment = async () => action("submitPayment");
+const submitPayment = async () => Promise.resolve({});
 const submitPaymentSuccess = action("submitPaymentSuccess");
 const selectPaymentGateway = action("selectPaymentGateway");
 const onError = action("onError");
