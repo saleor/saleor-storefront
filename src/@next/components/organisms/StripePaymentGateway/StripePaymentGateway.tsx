@@ -14,11 +14,10 @@ import { IFormError } from "@types";
 import { StripeCreditCardForm } from "../StripeCreditCardForm";
 import { stripeErrorMessages } from "./intl";
 import { IProps } from "./types";
-
-interface StripeConfirmationData {
-  client_secret: string;
-  id: string;
-}
+import {
+  handleConfirmCardPayment,
+  parsePaymentConfirmationData,
+} from "./utils";
 
 /**
  * Stripe payment gateway.
@@ -58,47 +57,53 @@ const StripePaymentGateway: React.FC<IProps> = ({
   ) => {
     const cartNumberElement = elements?.getElement(CardNumberElement);
 
-    if (cartNumberElement) {
-      const payload = await stripe?.createPaymentMethod({
-        card: cartNumberElement,
-        type: "card",
-      });
-      if (payload?.error) {
-        const errors = [
-          {
-            ...payload.error,
-            message: payload.error.message || "",
-          },
-        ];
-        setSubmitErrors(errors);
-        onError(errors);
-      } else if (payload?.paymentMethod) {
-        const { card, id } = payload.paymentMethod;
-        if (card?.brand && card?.last4) {
-          processPayment(id, {
-            brand: card?.brand,
-            expMonth: card?.exp_month || null,
-            expYear: card?.exp_year || null,
-            firstDigits: null,
-            lastDigits: card?.last4,
-          });
-          setPaymentMethod(payload.paymentMethod);
-        }
-      } else {
-        const stripePayloadErrors = [
-          new Error(
-            intl.formatMessage(stripeErrorMessages.paymentSubmissionError)
-          ),
-        ];
-        setSubmitErrors(stripePayloadErrors);
-        onError(stripePayloadErrors);
-      }
-    } else {
+    if (!cartNumberElement) {
       const stripeElementsErrors = [
         new Error(intl.formatMessage(stripeErrorMessages.geytwayDisplayError)),
       ];
       setSubmitErrors(stripeElementsErrors);
       onError(stripeElementsErrors);
+      return;
+    }
+
+    const payload = await stripe?.createPaymentMethod({
+      card: cartNumberElement,
+      type: "card",
+    });
+
+    if (payload?.error) {
+      const errors = [
+        {
+          ...payload.error,
+          message: payload.error.message || "",
+        },
+      ];
+      setSubmitErrors(errors);
+      onError(errors);
+      return;
+    }
+
+    if (!payload?.paymentMethod) {
+      const stripePayloadErrors = [
+        new Error(
+          intl.formatMessage(stripeErrorMessages.paymentSubmissionError)
+        ),
+      ];
+      setSubmitErrors(stripePayloadErrors);
+      onError(stripePayloadErrors);
+      return;
+    }
+
+    const { card, id } = payload.paymentMethod;
+    if (card?.brand && card?.last4) {
+      processPayment(id, {
+        brand: card?.brand,
+        expMonth: card?.exp_month || null,
+        expYear: card?.exp_year || null,
+        firstDigits: null,
+        lastDigits: card?.last4,
+      });
+      setPaymentMethod(payload.paymentMethod);
     }
   };
 
@@ -109,9 +114,15 @@ const StripePaymentGateway: React.FC<IProps> = ({
 
     if (payment.errors?.length) {
       onError(payment.errors);
-    } else if (!payment?.confirmationNeeded) {
+      return;
+    }
+
+    if (!payment?.confirmationNeeded) {
       submitPaymentSuccess(payment?.order);
-    } else if (!stripe?.confirmCardPayment) {
+      return;
+    }
+
+    if (!stripe?.confirmCardPayment) {
       onError([
         new Error(
           intl.formatMessage(
@@ -119,54 +130,59 @@ const StripePaymentGateway: React.FC<IProps> = ({
           )
         ),
       ]);
-    } else if (!payment?.confirmationData) {
+      return;
+    }
+
+    if (!payment?.confirmationData) {
       onError([
         new Error(
           intl.formatMessage(paymentErrorMessages.paymentNoConfirmationData)
         ),
       ]);
-    } else {
-      let paymentAction;
-      try {
-        paymentAction = JSON.parse(
-          payment.confirmationData
-        ) as StripeConfirmationData;
-      } catch (parseError) {
-        onError([
-          new Error(
-            intl.formatMessage(
-              paymentErrorMessages.paymentMalformedConfirmationData
-            )
-          ),
-        ]);
-        return;
-      }
-      if (!paymentMethod?.id) {
-        onError([
-          new Error(
-            intl.formatMessage(stripeErrorMessages.paymentMethodNotCreated)
-          ),
-        ]);
-        return;
-      }
-      let confirmation;
-      try {
-        confirmation = await stripe.confirmCardPayment(
-          paymentAction.client_secret,
-          {
-            payment_method: paymentMethod.id,
-          }
-        );
-      } catch (error) {
-        onError([new Error(error)]);
-        return;
-      }
-      if (confirmation.error) {
-        onError([new Error(confirmation.error.message)]);
-      } else {
-        handleFormCompleteSubmit();
-      }
+      return;
     }
+
+    const { parseError, paymentAction } = parsePaymentConfirmationData(
+      payment.confirmationData
+    );
+
+    if (parseError || !paymentAction) {
+      onError([
+        new Error(
+          intl.formatMessage(
+            paymentErrorMessages.paymentMalformedConfirmationData
+          )
+        ),
+      ]);
+      return;
+    }
+
+    if (!paymentMethod?.id) {
+      onError([
+        new Error(
+          intl.formatMessage(stripeErrorMessages.paymentMethodNotCreated)
+        ),
+      ]);
+      return;
+    }
+
+    const { confirmation, confirmationError } = await handleConfirmCardPayment(
+      stripe,
+      paymentAction,
+      paymentMethod
+    );
+
+    if (confirmationError) {
+      onError([new Error(confirmationError)]);
+      return;
+    }
+
+    if (confirmation?.error) {
+      onError([new Error(confirmation.error.message)]);
+      return;
+    }
+
+    handleFormCompleteSubmit();
   };
 
   useEffect(() => {
