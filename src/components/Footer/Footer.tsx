@@ -15,7 +15,7 @@ const Footer: React.FC = () => (
       <Email />
       <SiteMap />
       <div className="footer__favicons">
-        <div className="favicons-col">
+        <div className="favicons-col-left favicons-col">
           <div className="social-main">
             <span className="sociality-text">Download:</span>
             <a href="#" className="app-store">
@@ -26,7 +26,7 @@ const Footer: React.FC = () => (
             </a>
           </div>
         </div>
-        <div className="favicons-col">
+        <div className="favicons-col-right favicons-col">
           <div className="favicons-col-main">
             <span className="sociality-text">Follow Us:</span>
             {SOCIAL_MEDIA.map(medium => (

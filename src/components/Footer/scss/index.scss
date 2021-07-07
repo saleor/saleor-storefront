@@ -86,6 +86,14 @@
     @media (min-width: $small-screen) {
       grid-template-columns: 1fr 1fr;
     }
+    .favicons-col-left.favicons-col {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .favicons-col-right.favicons-col {
+      display: flex;
+      justify-content: flex-end;
+    }
     .favicons-col {
       margin: 10px 0;
       width: 95%;
