@@ -256,11 +256,6 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                 // }}
               >
                 <ReactSVG path={messageHeaderImg} />
-                {cartItemsQuantity > 0 ? (
-                  <span className="main-menu__cart__quantity">
-                    {cartItemsQuantity}
-                  </span>
-                ) : null}
               </li>
               {/* <li
                 data-test="menuCartOverlayLink"
