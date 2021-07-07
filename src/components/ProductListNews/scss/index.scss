@@ -3,20 +3,22 @@
 .product-list-item-news {
   text-align: center;
   background: $white;
-  padding: 0 1.5 * $spacer;
+  padding: 0 13px;
   border-radius: 3px;
-  // border: 1px solid #ebecf0;
   height: 100%;
+  position: relative;
+  // border: 1px solid #ebecf0;
 
   &__info {
     display: flex;
     align-items: center;
-    margin: $spacer 0;
+    padding-top: 10px;
+    padding-bottom: 13px;
   }
 
   &__icon-seller {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: 1px solid $black;
   }
@@ -28,7 +30,8 @@
   &__title-news {
     text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
-    margin-top: $spacer;
+    font: normal normal bold 20px/28px Arial;
+    margin: 14px 0 5px 0;
     text-align: left;
   }
 
@@ -46,16 +49,18 @@
 
   &__description {
     // font-weight: $product-item-price-font-weight;
-    margin: $product-item-price-margin;
+    // margin: $product-item-price-margin;
     text-align: center;
-    margin-top: 0.5 * $spacer;
+    // margin-top: 0.5 * $spacer;
     text-align: left;
     margin-bottom: 10px;
   }
 
   &__button {
-    width: 180px;
-    height: 35px;
+    position: absolute;
+    bottom: 10px;
+    width: 215px;
+    height: 45px;
     background-color: #188c72;
     border-radius: 5px;
     text-align: left;
@@ -67,7 +72,7 @@
       margin-top: 5px;
     }
     span {
-      margin-left: 5px;
+      margin-left: 20px;
       text-align: center;
       color: $white;
       font-weight: 100;
@@ -77,7 +82,8 @@
   &__image {
     background-color: $turquoise-light;
     display: flex;
-    height: 320px;
+    height: 264px;
+    width: 352px;
     justify-content: center;
 
     img {

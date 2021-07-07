@@ -1,7 +1,7 @@
 import { useAuth, useCart } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
@@ -41,7 +41,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
   const overlayContext = useContext(OverlayContext);
 
   const { user, signOut } = useAuth();
-  const { push } = useRouter();
+  // const { push } = useRouter();
 
   const { items } = useCart();
 
@@ -229,11 +229,10 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
             </Link>
           </div>
 
-          <div className="main-menu__center">
-            <Search />
-          </div>
-
           <div className="main-menu__right">
+            <div className="main-menu__center">
+              <Search />
+            </div>
             <ul>
               <li
                 data-test="menuCartOverlayLink"
@@ -343,9 +342,14 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                         />
                       ) : (
                         <li
-                          data-test="desktopMenuLoginOverlayLink"
+                          data-test="mobileMenuLoginLink"
                           className="main-menu__icon"
-                          onClick={() => push(paths.login)}
+                          onClick={() =>
+                            overlayContext.show(
+                              OverlayType.login,
+                              OverlayTheme.left
+                            )
+                          }
                         >
                           <ReactSVG path={userImg} />
                         </li>

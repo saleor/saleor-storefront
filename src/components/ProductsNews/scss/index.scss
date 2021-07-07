@@ -1,16 +1,19 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .products-news {
-  padding: 20px 0;
+  // height: 584px;
+  // padding: 20px 0;
+  margin-bottom: 44px;
   // background-color: $white;
   &__container {
-    margin: 0 2rem 0 1rem;
+    // margin: 0 2rem 0 1rem;
+    height: 584px;
     background-color: $white;
     box-shadow: 0px 0px 10px #00000029;
   }
 
   h3 {
-    margin-left: 1rem;
+    margin: 23px 0 0 45px;
     font-weight: $bold-font-weight;
     margin-bottom: $spacer;
     display: flex;
@@ -29,9 +32,10 @@
     // }
   }
   .list__product-news {
+    height: 584px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 3px;
+    grid-gap: 28px;
     // &:hover {
     //   box-shadow: ;
     // }
