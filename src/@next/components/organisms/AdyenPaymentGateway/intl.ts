@@ -1,35 +1,35 @@
 import { defineMessages, IntlShape } from "react-intl";
 
-const messageDescription = "Adyen payment gateway error";
+const description = "Adyen payment gateway error";
 
 export const adyenErrorMessages = defineMessages({
   unknownPayment: {
     defaultMessage: "Unknown payment submission error occured.",
-    description: messageDescription,
+    description,
   },
   invalidPaymentSubmission: {
     defaultMessage: "Invalid payment submission.",
-    description: messageDescription,
+    description,
   },
 });
 
 export const adyenConfirmationErrorMessages = defineMessages({
   error: {
     defaultMessage: "Error processing payment occured.",
-    description: messageDescription,
+    description,
   },
   refused: {
     defaultMessage:
       "The payment was refused. Try the payment again using a different payment method or card.",
-    description: messageDescription,
+    description,
   },
   cancelled: {
     defaultMessage: "Payment was cancelled.",
-    description: messageDescription,
+    description,
   },
   general: {
     defaultMessage: "Payment confirmation went wrong.",
-    description: messageDescription,
+    description,
   },
 });
 
