@@ -6,7 +6,7 @@ import { channelSlug } from "@temp/constants";
 import { generateProductUrl } from "../../core/utils";
 import ProductListItem from "../ProductListItem";
 import ProductListItemSale from "../ProductListItemSale";
-import ProductListNews from "../ProductListNews";
+// import ProductListNews from "../ProductListNews";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
