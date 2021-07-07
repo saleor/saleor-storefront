@@ -1,25 +1,36 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.home {
+  background-color: $base-body;
+}
 .home-page {
   background-color: $base-body;
-  padding: 0 3%;
+  padding: 0 20px;
   overflow: hidden;
-  margin-top: 30px;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding-top: 16px;
   .slider-control-bottomcenter button {
     background: #ffffff !important;
     border-radius: 50%;
     width: 12px !important;
     height: 12px !important;
   }
-
   .slider-control-bottomcenter svg {
     display: none !important;
   }
   .slider-control-bottomcenter li {
     margin-right: 5px;
   }
+  .slider-list {
+    height: 100% !important;
+    .slider-slide.slide-visible.slide-current {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
   &__hero {
-    height: 400px;
+    height: 315px;
     background-color: $blue-overlay;
     background-blend-mode: multiply;
     background-size: cover;

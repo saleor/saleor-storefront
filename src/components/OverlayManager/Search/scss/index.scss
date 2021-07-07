@@ -4,6 +4,7 @@ $drawer-width: 25rem;
 
 .search {
   width: 100vw;
+  height: 100%;
 
   @media (min-width: $medium-screen) {
     width: $drawer-width;
@@ -26,7 +27,7 @@ $drawer-width: 25rem;
       position: absolute;
       left: 0;
       z-index: 1;
-      width: 7%;
+      width: 58px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,7 +38,7 @@ $drawer-width: 25rem;
         text-align: center;
         background: #e1e1e1;
         border: 0, 5px solid #cbcbcb;
-        height: 30px;
+        height: 40px;
         border-radius: 5px 0 0 5px;
         opacity: 1;
         &__title {
@@ -75,7 +76,7 @@ $drawer-width: 25rem;
       box-shadow: none;
       padding: 0.8rem;
       width: 100%;
-      height: 30px;
+      height: 40px;
       border: none;
       border-right: none;
       border-radius: 5px;
@@ -95,13 +96,13 @@ $drawer-width: 25rem;
     .search-button {
       position: absolute;
       right: 0;
-      width: 11%;
+      width: 114px;
       .btn-search {
         width: 100%;
         display: flex;
         background-color: #fdbb58;
         // padding: 0 1.5rem;
-        height: 30px;
+        height: 40px;
         justify-content: center;
         align-items: center;
         border-radius: 5px;
@@ -115,7 +116,7 @@ $drawer-width: 25rem;
         }
 
         &__title {
-          font-size: 0.8rem;
+          font-size: 1rem;
           color: $black;
           font-weight: normal;
           // margin-left: 12px;

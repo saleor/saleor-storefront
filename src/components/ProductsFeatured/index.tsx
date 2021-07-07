@@ -4,8 +4,9 @@ import * as React from "react";
 import { channelSlug } from "@temp/constants";
 
 import { generateProductUrl } from "../../core/utils";
-import { ProductListItem } from "..";
+import ProductListItem from "../ProductListItem";
 import ProductListItemSale from "../ProductListItemSale";
+// import ProductListNews from "../ProductListNews";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
@@ -27,8 +28,8 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
           return (
             <>
               <div className="products-featured">
+                <h3>Sản Phẩm Mới</h3>
                 <div className="products-featured__container">
-                  <h3>Sản Phẩm Mới</h3>
                   <div className="list__product">
                     {products.map(({ node: product }) => (
                       <Link
@@ -60,7 +61,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                   </div>
                 </div>
               </div>
-              <div className="products-featured">
+              <div className="products-featured products-featured-sale">
                 <div className="products-featured__container">
                   <h3>Sản Phẩm Giảm Giá</h3>
                   <div className="list__product">

@@ -3,7 +3,7 @@
 .product-list-item {
   text-align: center;
   background: $white;
-  padding: 0 1.5 * $spacer;
+  padding: 0 12.5px !important;
   border-radius: 3px;
   // border: 1px solid #ebecf0;
   height: 100%;
@@ -11,7 +11,8 @@
   &__title {
     text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
-    margin-top: $spacer;
+    margin-top: 10px !important;
+    font: normal normal bold 16px/23px Arial;
     text-align: center;
   }
 
@@ -29,15 +30,18 @@
 
   &__price {
     // font-weight: $product-item-price-font-weight;
-    margin: $product-item-price-margin;
+    // margin: $product-item-price-margin;
     text-align: center;
-    margin-top: 0.5 * $spacer;
+    // margin-top: 0.5 * $spacer;
+    margin: 7px 0 15px 0 !important;
+    font: normal normal normal 16px/23px Arial;
   }
 
   &__image {
     background-color: $turquoise-light;
     display: flex;
-    height: 250px;
+    height: 210px !important;
+    width: 210px;
     justify-content: center;
 
     img {
