@@ -5,7 +5,7 @@ import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
-import { grayMedium } from "@styles/constants";
+// import { grayMedium } from "@styles/constants";
 import { DebouncedTextField } from "@temp/components/Debounce";
 import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
@@ -156,9 +156,13 @@ function Search(props: SearchProps) {
                           style={{
                             position: "absolute",
                             width: "100%",
-                            background: grayMedium,
+                            top: "100%",
+                            paddingRight: "114px",
+                            paddingLeft: "58px",
                             borderRadius: 4,
                             zIndex: 9999,
+                            marginTop: "3px",
+                            padding: "0 114px 0 58px",
                             display: showResult ? "block" : "none",
                           }}
                         >
