@@ -28,7 +28,7 @@ export const adyenConfirmationErrorMessages = defineMessages({
     description,
   },
   general: {
-    defaultMessage: "Payment confirmation went wrong.",
+    defaultMessage: "Payment could not be confirmed.",
     description,
   },
 });
