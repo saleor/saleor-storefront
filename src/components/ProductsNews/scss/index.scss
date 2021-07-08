@@ -5,11 +5,19 @@
   // padding: 20px 0;
   margin-bottom: 44px;
   // background-color: $white;
+  position: relative;
   &__container {
     // margin: 0 2rem 0 1rem;
-    height: 584px;
+    height: 582px;
     background-color: $white;
     box-shadow: 0px 0px 10px #00000029;
+  }
+  .icon-nextButton {
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    transform: translateY(-50%);
+    cursor: pointer;
   }
 
   h3 {
@@ -32,14 +40,16 @@
     // }
   }
   .list__product-news {
-    height: 584px;
+    padding: 0 21px;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 28px;
+    // grid-gap: 28px;
     // &:hover {
     //   box-shadow: ;
     // }
     a {
+      width: 380px;
       color: $base-font-color;
       text-decoration: none;
       transition: all 0.2s;

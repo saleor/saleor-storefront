@@ -4,6 +4,7 @@ import * as React from "react";
 import { channelSlug } from "@temp/constants";
 
 import { generateProductUrl } from "../../core/utils";
+import nextButton from "../../images/nextCarouselHomePage.svg";
 import ProductListItem from "../ProductListItem";
 import ProductListItemSale from "../ProductListItemSale";
 // import ProductListNews from "../ProductListNews";
@@ -43,6 +44,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                     ))}
                   </div>
                 </div>
+                <img className="icon-nextButton" src={nextButton} alt="" />
               </div>
               <div className="products-featured">
                 <div className="products-featured__container">
@@ -60,11 +62,12 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                     ))}
                   </div>
                 </div>
+                <img className="icon-nextButton" src={nextButton} alt="" />
               </div>
               <div className="products-featured products-featured-sale">
                 <div className="products-featured__container">
                   <h3>Sản Phẩm Giảm Giá</h3>
-                  <div className="list__product">
+                  <div className="list__product list__product-sale">
                     {products.map(({ node: product }) => (
                       <Link
                         href={generateProductUrl(product.id, product.name)}
@@ -77,6 +80,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                     ))}
                   </div>
                 </div>
+                <img className="icon-nextButton" src={nextButton} alt="" />
               </div>
             </>
           );

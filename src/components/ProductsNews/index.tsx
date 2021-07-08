@@ -4,6 +4,7 @@ import * as React from "react";
 import { channelSlug } from "@temp/constants";
 
 import { generateProductUrl } from "../../core/utils";
+import nextButton from "../../images/nextCarouselHomePage.svg";
 // import { ProductListItem } from "..";
 import ProductListNews from "../ProductListNews";
 import { TypedFeaturedProductsQuery } from "./queries";
@@ -41,6 +42,7 @@ const ProductsNews: React.FC<ProductsFeaturedProps> = ({ title }) => {
                   ))}
                 </div>
               </div>
+              <img className="icon-nextButton" src={nextButton} alt="" />
             </div>
           );
         }
