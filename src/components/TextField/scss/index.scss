@@ -128,8 +128,9 @@
   &__icon-right {
     position: absolute;
     z-index: 100;
-    right: $spacer;
-    transform: translate(0, 100%);
+    right: 120px;
+    top: 60%;
+    transform: translate(0, -50%);
     cursor: pointer;
   }
 }
