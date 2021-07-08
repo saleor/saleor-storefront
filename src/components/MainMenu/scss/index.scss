@@ -4,6 +4,10 @@
   z-index: 3;
 }
 .container-wrapper {
+  position: fixed;
+  z-index: 20000;
+  margin: 0 auto;
+  width: 100%;
   background-color: $mainColorHeader;
   // border: 5px solid $mainColorHeader;
   .container-main-menu {
@@ -75,7 +79,11 @@
         width: 22px;
       }
       &__title {
-        // width: fit-content;
+        width: fit-content;
+        font: normal normal normal 16px/22px Arial;
+        letter-spacing: 0px;
+        color: $white;
+        opacity: 1;
         margin-left: 15px;
         font-size: 1rem;
         color: $white;
