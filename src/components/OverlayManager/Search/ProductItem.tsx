@@ -15,7 +15,7 @@ const ProductItem: React.FC<SearchResults_products_edges> = ({
         <Thumbnail source={product} />
         <span>
           <h4>{product.name}</h4>
-          <p>{product.category?.name || "-"}</p>
+          {/* <p>{product.category?.name || "-"}</p> */}
         </span>
       </a>
     </Link>
