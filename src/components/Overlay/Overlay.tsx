@@ -28,7 +28,11 @@ const Overlay: React.FC<OverlayProps> = ({
     data-test={testingContext}
     onClick={hide}
   >
-    <div className={`overlay__${theme}`} onClick={e => e.stopPropagation()}>
+    <div
+      className={`overlay__${theme}`}
+      onClick={e => e.stopPropagation()}
+      style={{ width: "100%" }}
+    >
       {children}
     </div>
   </div>

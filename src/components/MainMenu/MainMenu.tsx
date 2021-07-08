@@ -253,7 +253,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                   <li
                     data-test="menuCartOverlayLink"
                     className="main-menu__icon main-menu__message"
-                    // onClick={() => {
+                    // onClick={() =>
                     //   overlayContext.show(OverlayType.cart, OverlayTheme.right);
                     // }}
                   >

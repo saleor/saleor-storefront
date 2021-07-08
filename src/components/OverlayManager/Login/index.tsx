@@ -56,7 +56,7 @@ class Login extends React.Component<
                 className="overlay__header__close-icon"
               />
             </div>
-            <div className="login__tabs">
+            {/* <div className="login__tabs">
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
@@ -71,7 +71,7 @@ class Login extends React.Component<
               >
                 <FormattedMessage defaultMessage="Register new account" />
               </span>
-            </div>
+            </div> */}
             <div className="login__content">
               {this.state.active === "login" ? (
                 <>
