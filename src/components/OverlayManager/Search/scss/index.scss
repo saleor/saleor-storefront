@@ -132,6 +132,9 @@ $drawer-width: 25rem;
         }
       }
     }
+    &__wrapper-allProduct {
+      display: block !important;
+    }
   }
 
   &__products {

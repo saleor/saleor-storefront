@@ -167,7 +167,10 @@ function Search(props: SearchProps) {
                           }}
                         >
                           {showResult && (
-                            <ul onClick={handleHideResult}>
+                            <ul
+                              className="search__input__wrapper-allProduct"
+                              onClick={handleHideResult}
+                            >
                               {data.products.edges.map(product => (
                                 <ProductItem
                                   {...product}
