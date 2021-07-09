@@ -3,17 +3,26 @@
 .product-list-item-news {
   text-align: center;
   background: $white;
-  padding: 0 13px;
+  // padding-left: 34px;
   border-radius: 3px;
   height: 100%;
   position: relative;
   // border: 1px solid #ebecf0;
+  &-wrapper {
+    width: 380px;
+    padding: 0 14px;
+  }
 
   &__info {
     display: flex;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 13px;
+  }
+  &__image {
+    img {
+      object-fit: cover !important;
+    }
   }
 
   &__icon-seller {
@@ -25,12 +34,20 @@
 
   &__seller {
     margin-left: 7px;
+    font: normal normal normal 16px/24px Arial;
+    letter-spacing: 0.32px;
+    color: $black;
+    opacity: 1;
   }
 
   &__title-news {
-    text-transform: $product-item-title-text-transform;
+    // text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
     font: normal normal bold 20px/28px Arial;
+    letter-spacing: 0.4px;
+    color: $black;
+    text-transform: capitalize;
+    opacity: 1;
     margin: 14px 0 5px 0;
     text-align: left;
   }
@@ -50,10 +67,14 @@
   &__description {
     // font-weight: $product-item-price-font-weight;
     // margin: $product-item-price-margin;
-    text-align: center;
     // margin-top: 0.5 * $spacer;
+    font: normal normal normal 16px/25px Arial;
+    letter-spacing: 0.32px;
+    color: $black;
+    opacity: 1;
     text-align: left;
     margin-bottom: 10px;
+    max-height: 146px;
   }
 
   &__button {
