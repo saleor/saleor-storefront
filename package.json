@@ -8,7 +8,7 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@lhci/cli": "^0.7.0",
-    "@saleor/sdk": "^0.3.0-9",
+    "@saleor/sdk": "github:mirumee/saleor-sdk#466cefa",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
     "@stripe/react-stripe-js": "^1.1.2",
