@@ -285,6 +285,7 @@ export interface AttributeInput {
   slug: string;
   values?: (string | null)[] | null;
   valuesRange?: IntRangeInput | null;
+  boolean?: boolean | null;
 }
 
 export interface IntRangeInput {
@@ -294,7 +295,6 @@ export interface IntRangeInput {
 
 export interface ProductOrder {
   direction: OrderDirection;
-  channel?: string | null;
   attributeId?: string | null;
   field?: ProductOrderField | null;
 }

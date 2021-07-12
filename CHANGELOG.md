@@ -17,6 +17,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Enable incremental server-side regeneration for store pages - #988 by @pitorgrundas
 - Update account mutations with channel slug - #1039 by @orzechdev
 - Update register mutation with channel slug - #1045 by @orzechdev
+- Update queries with new channel API - #1072 by @orzechdev
 
 ## 2.11.0
 
