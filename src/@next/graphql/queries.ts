@@ -52,8 +52,8 @@ export const shopAttributesQuery = gql`
     $categoryId: ID
   ) {
     attributes(
+      channel: $channel
       filter: {
-        channel: $channel
         inCollection: $collectionId
         inCategory: $categoryId
         filterableInStorefront: true
