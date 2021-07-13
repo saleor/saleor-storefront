@@ -23,7 +23,7 @@ export const UndiscountedPrice = styled.span`
 
 export const VariantPicker = styled.div`
   display: grid;
-  margin-top: 20px;
+  // margin-top: 20px;
 
   .react-select-wrapper,
   .input {
@@ -33,7 +33,7 @@ export const VariantPicker = styled.div`
 `;
 
 export const QuantityInput = styled.div`
-  padding-top: 20px;
+  // padding-top: 20px;
 `;
 
 export const ErrorMessage = styled.p`

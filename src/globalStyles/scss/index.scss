@@ -53,6 +53,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #f2f3f7;
 
     & > div:first-of-type {
       flex: 1;

@@ -1,0 +1,34 @@
+.ChangeCountWrapper {
+  p {
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.13px;
+    color: #000000;
+    opacity: 1;
+  }
+  display: flex;
+  width: 88px;
+  height: 26px;
+  border: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+  border-radius: 2px;
+  opacity: 1;
+  position: absolute;
+  left: 112px;
+  top: -112px;
+  .ChangeCount {
+    padding: 0;
+    height: 26px;
+    width: 26px;
+    border-radius: 2px;
+    opacity: 1;
+    cursor: pointer;
+  }
+  .CountProduct {
+    height: 26px;
+    width: 36px;
+    border-left: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+    border-right: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+    border-radius: 2px;
+    opacity: 1;
+  }
+}

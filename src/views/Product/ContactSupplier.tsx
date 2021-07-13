@@ -54,9 +54,9 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
 
   return (
     <S.Wrapper>
-      <S.TileWrapper>
+      {/* <S.TileWrapper>
         <p style={{ marginLeft: "1rem" }}>Message Supplier</p>
-      </S.TileWrapper>
+      </S.TileWrapper> */}
       <S.Content>
         <TypedSendMessageMutation
           onError={err =>
@@ -100,6 +100,7 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
                           <TextField
                             name="message"
                             label={intl.formatMessage(commonMessages.message)}
+                            placeholder="Nội dung"
                             type="textarea"
                             value={values.message}
                             onBlur={handleBlur}
@@ -123,7 +124,8 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
                             name="quantityNumber"
                             label={intl.formatMessage(commonMessages.quantity)}
                             type="text"
-                            value={values.quantityNumber}
+                            placeholder="(Ví dụ: 100kg)"
+                            // value={values.quantityNumber}
                             onBlur={handleBlur}
                             onChange={e => {
                               const isNum = /^\d+$/.test(e.target.value);
@@ -134,7 +136,7 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
                           />
                         </S.ContentExtendInput>
                       </S.ContentEditOneLine>
-                      <S.ContentEditOneLine>
+                      {/* <S.ContentEditOneLine>
                         <S.ContentExtendInput
                           style={{ marginBottom: "1.875rem" }}
                         >
@@ -160,7 +162,7 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
                             autoComplete="value"
                           />
                         </S.ContentExtendInput>
-                      </S.ContentEditOneLine>
+                      </S.ContentEditOneLine> */}
 
                       <Checkbox
                         name="recommend"
@@ -169,10 +171,10 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
                           setFieldValue("recommend", !values.recommend)
                         }
                       >
-                        <FormattedMessage defaultMessage="Recommend matching suppliers if this supplier doesn’t contact me on Message Center within 24 hours. Request for Quotation" />
+                        <FormattedMessage defaultMessage="Gửi danh thiếp của tôi cho người bán" />
                       </Checkbox>
 
-                      <Checkbox
+                      {/* <Checkbox
                         name="isAnonymous"
                         checked={values.isAnonymous}
                         onChange={() =>
@@ -180,7 +182,7 @@ export const ContactSupplier = ({ productID, storeID }: any) => {
                         }
                       >
                         <FormattedMessage defaultMessage="I agree to share my Business Card to the supplier." />
-                      </Checkbox>
+                      </Checkbox> */}
 
                       <S.FormButtons>
                         <Button

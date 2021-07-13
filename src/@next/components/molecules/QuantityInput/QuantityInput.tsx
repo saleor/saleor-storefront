@@ -4,6 +4,8 @@ import { useIntl } from "react-intl";
 import { TextField } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
+import "./scss/index.scss";
+
 export interface IQuantityInput {
   quantity: number;
   maxQuantity: number;
@@ -37,8 +39,33 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
     setIsTooMuch(!isNaN(quantity) && quantity > maxQuantity);
   }, [quantity, maxQuantity]);
 
-  const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
-    const newQuantity = parseInt(evt.target.value, 10);
+  // const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
+  //   const newQuantity = parseInt(evt.target.value, 10);
+
+  //   if (quantity !== newQuantity) {
+  //     if (newQuantity >= 1) {
+  //       onQuantityChange(newQuantity);
+  //     } else {
+  //       onQuantityChange(0);
+  //     }
+  //   }
+  //   setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
+  // };
+
+  const handleQuantityChangeDown = (evt: React.ChangeEvent<any>) => {
+    const newQuantity = quantity - 1;
+
+    if (quantity !== newQuantity) {
+      if (newQuantity >= 1) {
+        onQuantityChange(newQuantity);
+      } else {
+        onQuantityChange(0);
+      }
+    }
+  };
+
+  const handleQuantityChangeUp = (evt: React.ChangeEvent<any>) => {
+    const newQuantity = quantity + 1;
 
     if (quantity !== newQuantity) {
       if (newQuantity >= 1) {
@@ -62,18 +89,30 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
       : undefined;
 
   return (
-    <TextField
-      name="quantity"
-      type="number"
-      label={intl.formatMessage(commonMessages.quantity)}
-      min="1"
-      value={quantity.toString()}
-      disabled={disabled}
-      onChange={handleQuantityChange}
-      errors={quantityErrors}
-      data-test={testingContext}
-      data-testId={testingContextId}
-    />
+    <div className="ChangeCountWrapper">
+      <div className="ChangeCount" onClick={handleQuantityChangeDown}>
+        <p>-</p>
+      </div>
+      {/* <TextField
+        className="CountProduct"
+        name="quantity"
+        type="number"
+        // label={intl.formatMessage(commonMessages.quantity)}
+        min="1"
+        value={quantity.toString()}
+        disabled={disabled}
+        // onChange={handleQuantityChange}
+        errors={quantityErrors}
+        data-test={testingContext}
+        data-testId={testingContextId}
+      /> */}
+      <div className="CountProduct">
+        <p>{quantity}</p>
+      </div>
+      <div className="ChangeCount" onClick={handleQuantityChangeUp}>
+        <p>+</p>
+      </div>
+    </div>
   );
 };
 QuantityInput.displayName = "QuantityInput";
