@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React /* useState */ from "react";
 import StarRatings from "react-star-ratings";
 
 // import ReactSVG from "react-svg";

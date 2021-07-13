@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
-import { TextField } from "@components/molecules";
+// import { TextField } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import "./scss/index.scss";
@@ -108,6 +108,7 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
       /> */}
       <div className="CountProduct">
         <p>{quantity}</p>
+        <p>{quantity > maxQuantity ? quantityErrors : ""}</p>
       </div>
       <div className="ChangeCount" onClick={handleQuantityChangeUp}>
         <p>+</p>

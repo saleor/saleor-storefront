@@ -6,17 +6,17 @@ import {
   withGoogleMap,
   withScriptjs,
 } from "react-google-maps";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import StarRatings from "react-star-ratings";
 import ReactSVG from "react-svg";
-import styled from "styled-components";
 
+// import styled from "styled-components";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import ProductDetail from "@components/organisms/ProductDetail";
-import { orange, white } from "@styles/constants";
+// import { orange, white } from "@styles/constants";
 import ChatBox from "@temp/components/ChatBox";
 
 import {
@@ -29,25 +29,25 @@ import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import locationIcon from "../../images/ios-location.svg";
 import telephoneIcon from "../../images/telephone-fill.svg";
-import { ContactSupplier } from "./ContactSupplier";
+// import { ContactSupplier } from "./ContactSupplier";
 import GalleryCarousel from "./GalleryCarousel";
 import SlideCarousel from "./SlideCarousel";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
-const StyledButton = styled.div`
-  cursor: pointer;
-  // border-radius: 30px;
-  background: ${orange};
-  padding: 0.75rem;
-  color: ${white};
-  text-align: center;
-  // margin-right: 2rem;
-  position: absolute;
-  top: 0;
-  right: 1rem;
-`;
+// const StyledButton = styled.div`
+//   cursor: pointer;
+//   // border-radius: 30px;
+//   background: ${orange};
+//   padding: 0.75rem;
+//   color: ${white};
+//   text-align: center;
+//   // margin-right: 2rem;
+//   position: absolute;
+//   top: 0;
+//   right: 1rem;
+// `;
 
 const populateBreadcrumbs = product => [
   {
@@ -84,9 +84,9 @@ const Page: React.FC<
     return product.images;
   };
 
-  const contactSupplierRef = React.useRef(null);
+  // const contactSupplierRef = React.useRef(null);
 
-  const executeScroll = () => contactSupplierRef.current.scrollIntoView();
+  // const executeScroll = () => contactSupplierRef.current.scrollIntoView();
 
   const handleAddToCart = (variantId, quantity) => {
     add(variantId, quantity);

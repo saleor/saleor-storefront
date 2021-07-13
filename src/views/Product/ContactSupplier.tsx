@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button, Checkbox } from "@components/atoms";
-import { InputSelect } from "@components/molecules/InputSelect";
+// import { InputSelect } from "@components/molecules/InputSelect";
 import { TextField } from "@components/molecules/TextField";
 import { commonMessages } from "@temp/intl";
 
@@ -19,13 +19,13 @@ type FormType = {
   isAnonymous?: boolean;
 };
 
-const QUANTITY_TYPE_OPTIONS: { text: string; value: string }[] = [
-  {
-    text: "test 1",
-    value: "test1",
-  },
-  { text: "test 2", value: "test2" },
-];
+// const QUANTITY_TYPE_OPTIONS: { text: string; value: string }[] = [
+//   {
+//     text: "test 1",
+//     value: "test1",
+//   },
+//   { text: "test 2", value: "test2" },
+// ];
 
 export const ContactSupplier = ({ productID, storeID }: any) => {
   const alert = useAlert();
