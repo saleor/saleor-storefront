@@ -33,7 +33,7 @@ const PROPS = {
   ],
 };
 const processPayment = action("processPayment");
-const submitPayment = async () => action("submitPayment");
+const submitPayment = async () => Promise.resolve({});
 const submitPaymentSuccess = action("submitPaymentSuccess");
 const onError = action("onError");
 

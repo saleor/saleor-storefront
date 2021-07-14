@@ -222,6 +222,24 @@ export const paymentStatusMessages = defineMessages({
   },
 });
 
+export const paymentErrorMessages = defineMessages({
+  paymentNoConfirmationData: {
+    defaultMessage:
+      "Payment needs confirmation but data required for confirmation not received from the server.",
+    description: "payment gateway error",
+  },
+  paymentMalformedConfirmationData: {
+    defaultMessage:
+      "Payment needs confirmation but data required for confirmation received from the server is malformed.",
+    description: "payment gateway error",
+  },
+  cannotHandlePaymentConfirmation: {
+    defaultMessage:
+      "Payment gateway did not provide payment confirmation handler.",
+    description: "payment gateway error",
+  },
+});
+
 export const orderStatusMessages = defineMessages({
   draft: {
     defaultMessage: "Draft",

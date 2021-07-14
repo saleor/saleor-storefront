@@ -19,6 +19,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Update register mutation with channel slug - #1045 by @orzechdev
 - Update queries with new channel API - #1072 by @orzechdev
 - Change order number format - #1073 by @kamilpastuszka
+- Use new Stripe payment gateway - #1057 by @orzechdev
 
 ## 2.11.0
 
