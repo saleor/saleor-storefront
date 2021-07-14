@@ -5,27 +5,30 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width: 381px;
+  height: 448px;
 `;
 
 export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
-  width: 76px;
+  width: 73px;
+  height: 73px;
   display: flex;
-  border-width: 4px;
+  border-width: 1px;
   border-style: solid;
   border-color: ${props =>
     props.activeThumbnail === true
       ? props.theme.colors.thumbnailBorder
       : "transparent"};
   justify-content: center;
-  height: 100px;
+  // height: 100px;
   overflow: hidden;
   img {
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  // margin-top: 20px;
+  // margin-bottom: 20px;
 `;
 
 export const Button = styled.div`
@@ -58,11 +61,12 @@ export const ThumbnailsContainer = styled.div`
 
 export const ThumbnailList = styled.div`
   position: relative;
-  height: 140px;
-  overflow-x: scroll;
+  height: 73px;
+  width: 73px;
+  // overflow-x: scroll;
   overflow-y: hidden;
   scrollbar-width: none;
-  margin: 0 4rem;
+  // margin: 0 4rem;
   ::-webkit-scrollbar {
     width: 0px;
   }
@@ -80,12 +84,13 @@ export const Preview = styled.div`
   justify-content: center;
   grid-area: preview;
   width: auto;
-  max-height: 560px;
+  max-height: 371px;
+  max-width: 371px
   overflow: hidden;
   img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
   order: 1;
 `;

@@ -1,0 +1,23 @@
+@import "../../../../../globalStyles/scss/variables.scss";
+.buttonAddProductActive {
+  span {
+    text-transform: none;
+    font: normal normal normal 20px/14px Arial;
+    letter-spacing: 0.4px;
+    color: $white;
+  }
+  background-color: $mainColorHeader;
+  border-radius: 5px;
+  height: 55px;
+}
+.buttonAddProductUnActive {
+  span {
+    text-transform: none;
+    font: normal normal normal 20px/14px Arial;
+    letter-spacing: 0.4px;
+    color: $white;
+  }
+  border-radius: 5px;
+  background-color: $gray-dark;
+  height: 55px;
+}

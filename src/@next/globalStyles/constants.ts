@@ -28,6 +28,7 @@ export const secondaryGrey = "#EBF1F6";
 export const secondaryGreyDark = "#9D9FB1";
 export const secondaryBlue = "#036DFF";
 export const orange = "#ff6a00";
+export const mainColorPage = "#188C72";
 
 // theme colors
 export const theme = {
@@ -51,7 +52,7 @@ export const theme = {
   listAttributeName: baseFontColorSemiTransparent,
   listBullet: darkGreen,
   overlay: overlayColor,
-  primary: turquoise,
+  primary: mainColorPage,
   primaryDark: turquoiseDark,
   primaryLight: turquoiseLight,
   primaryTransparent: turquoiseTransparent,

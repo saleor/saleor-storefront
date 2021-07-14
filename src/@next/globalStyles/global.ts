@@ -102,10 +102,13 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
  
   .customize-zoomimg{
+    position: absolute;
+    top: 0;
+    left: 0;
     div{
       width:fit-content;
       // z-index:1000;
-      min-width:450px;
+      width:371px;
       img{
         width:100%;
         height:auto;
@@ -117,7 +120,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
   .wrapper{
     overflow:visible !important;
-    min-height: 400px;
+    min-height: 371px;
   }
 
   .product-page__product__info{

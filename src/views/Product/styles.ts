@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  border: 1px solid #cccccc;
+  // border: 1px solid #cccccc;
 `;
 
 export const TileWrapper = styled.div`
@@ -51,8 +51,12 @@ export const FormButtons = styled.div`
   padding-top: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   button {
-    margin-left: 2rem;
+    border-radius: 5px;
+    span {
+      text-transform: capitalize;
+    }
+    // margin-left: 2rem;
   }
 `;
