@@ -1,6 +1,9 @@
 import Link from "next/link";
+import Carousel from "nuka-carousel";
 import * as React from "react";
+
 import { channelSlug } from "@temp/constants";
+
 import { generateProductUrl } from "../../core/utils";
 // import nextButton from "../../images/nextCarouselHomePage.svg";
 import nextCarouselImg from "../../images/nextCarouselHomePage.svg";
@@ -10,7 +13,7 @@ import ProductListItem from "../ProductListItem";
 import ProductListItemSale from "../ProductListItemSale";
 // import ProductListNews from "../ProductListNews";
 import { TypedFeaturedProductsQuery } from "./queries";
-import Carousel from "nuka-carousel";
+
 import "./scss/index.scss";
 
 interface ProductsFeaturedProps {
@@ -34,12 +37,15 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <div className="products-featured__container">
                   <div className="list__product" style={{ display: "unset" }}>
                     <Carousel
-                      wrapAround={true}
+                      wrapAround
                       slidesToScroll={5}
                       slidesToShow={5}
                       speed={1000}
                       // withoutControls={true}
-                      renderCenterLeftControls={({ previousSlide, currentSlide }) => (
+                      renderCenterLeftControls={({
+                        previousSlide,
+                        currentSlide,
+                      }) => (
                         <button
                           style={{
                             transform: "translate(-22px, -32px)",
@@ -49,12 +55,17 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                         >
                           <img src={preCarouselImg} alt="" />
                         </button>
-                      )
-                      }
-                      renderCenterRightControls={({ nextSlide, currentSlide, slideCount, slidesToShow }) => (
+                      )}
+                      renderCenterRightControls={({
+                        nextSlide,
+                        currentSlide,
+                        slideCount,
+                        slidesToShow,
+                      }) => (
                         <button
-                          style={{ transform: "translate(22px, -32px)", 
-                            // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}` 
+                          style={{
+                            transform: "translate(22px, -32px)",
+                            // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}`
                           }}
                           onClick={nextSlide}
                         >
@@ -73,7 +84,6 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                         </Link>
                       ))}
                     </Carousel>
-
                   </div>
                 </div>
                 {/* <img className="icon-nextButton" src={nextButton} alt="" /> */}
@@ -83,12 +93,15 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <div className="products-featured__container">
                   <div className="list__product" style={{ display: "unset" }}>
                     <Carousel
-                      wrapAround={true}
+                      wrapAround
                       slidesToScroll={5}
                       slidesToShow={5}
                       speed={1000}
                       // withoutControls={true}
-                      renderCenterLeftControls={({ previousSlide, currentSlide }) => (
+                      renderCenterLeftControls={({
+                        previousSlide,
+                        currentSlide,
+                      }) => (
                         <button
                           style={{
                             transform: "translate(-22px, -32px)",
@@ -98,12 +111,17 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                         >
                           <img src={preCarouselImg} alt="" />
                         </button>
-                      )
-                      }
-                      renderCenterRightControls={({ nextSlide, currentSlide, slideCount, slidesToShow }) => (
+                      )}
+                      renderCenterRightControls={({
+                        nextSlide,
+                        currentSlide,
+                        slideCount,
+                        slidesToShow,
+                      }) => (
                         <button
-                          style={{ transform: "translate(22px, -32px)", 
-                            // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}` 
+                          style={{
+                            transform: "translate(22px, -32px)",
+                            // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}`
                           }}
                           onClick={nextSlide}
                         >
@@ -122,7 +140,6 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                         </Link>
                       ))}
                     </Carousel>
-
                   </div>
                 </div>
                 {/* <img className="icon-nextButton" src={nextButton} alt="" /> */}
@@ -131,14 +148,20 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
               <div className="products-featured products-featured-sale">
                 <div className="products-featured__container">
                   <h3>Sản Phẩm Giảm Giá</h3>
-                  <div className="list__product list__product-sale" style={{ display: "unset" }}>
+                  <div
+                    className="list__product list__product-sale"
+                    style={{ display: "unset" }}
+                  >
                     <Carousel
                       // withoutControls={true}
-                      wrapAround={true}
+                      wrapAround
                       slidesToScroll={5}
                       slidesToShow={5}
                       speed={1000}
-                      renderCenterLeftControls={({ previousSlide, currentSlide }) => (
+                      renderCenterLeftControls={({
+                        previousSlide,
+                        currentSlide,
+                      }) => (
                         <button
                           style={{
                             transform: "translate(-22px, -32px)",
@@ -148,12 +171,17 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                         >
                           <img src={preCarouselImg} alt="" />
                         </button>
-                      )
-                      }
-                      renderCenterRightControls={({ nextSlide, currentSlide, slideCount, slidesToShow }) => (
+                      )}
+                      renderCenterRightControls={({
+                        nextSlide,
+                        currentSlide,
+                        slideCount,
+                        slidesToShow,
+                      }) => (
                         <button
-                          style={{ transform: "translate(22px, -32px)", 
-                            // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}` 
+                          style={{
+                            transform: "translate(22px, -32px)",
+                            // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}`
                           }}
                           onClick={nextSlide}
                         >
