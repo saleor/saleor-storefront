@@ -4,8 +4,8 @@
   text-align: center;
   background: $white;
   // padding: 0 1.5 * $spacer;
-  margin-left: 26px;
-  border-radius: 3px;
+  // margin-left: 26px;
+  // border-radius: 3px;
   // border: 1px solid #ebecf0;
   height: 100%;
   transition: all 0.2s;
@@ -60,6 +60,8 @@
     img {
       object-fit: cover;
       max-width: 100%;
+      width: 100%;
+      height: 100%;
     }
 
     @media (max-width: $small-screen) {

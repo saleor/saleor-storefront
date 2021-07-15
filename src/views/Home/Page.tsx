@@ -44,18 +44,26 @@ const Page: React.FC<{
         // }
       >
         <Carousel
+          // withoutControls={true}
+          wrapAround={true}
+          slidesToShow={1}
           speed={1000}
-          renderCenterLeftControls={({ previousSlide }) => (
+          renderCenterLeftControls={({ previousSlide,currentSlide}) => (
             <button
-              style={{ transform: "translateX(-22px)" }}
+                style={{ transform: "translateX(-22px)",
+                  // display:`${currentSlide===0?"none":"unset"}`
+                }}
               onClick={previousSlide}
             >
               <img src={preCarouselImg} alt="" />
             </button>
-          )}
-          renderCenterRightControls={({ nextSlide }) => (
+          )
+        }
+          renderCenterRightControls={({ nextSlide,currentSlide,slideCount,slidesToShow }) => (
             <button
-              style={{ transform: "translateX(22px)" }}
+              style={{ transform: "translateX(22px)", 
+                // display:`${currentSlide===(slideCount-slidesToShow)?"none":"unset"}` 
+              }}
               onClick={nextSlide}
             >
               <img src={nextCarouselImg} alt="" />

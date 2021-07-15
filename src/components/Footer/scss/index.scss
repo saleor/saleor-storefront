@@ -3,7 +3,7 @@
 .footer {
   background-color: $white;
   color: black;
-  padding: 0 85px;
+  padding: 0 19px;
   width: 1280px;
   margin: 0 auto;
   &-email {
@@ -54,9 +54,11 @@
     // padding: 0 50px;
     padding-top: 28px;
     border-bottom: 1px solid #7b7b7b;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 0.5rem;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    // grid-gap: 0.5rem;
+    display: flex;
+    justify-content: space-between;
     @media (min-width: $small-screen) and (max-width: $medium-screen) {
       grid-template-columns: 1fr 1fr;
     }
@@ -95,9 +97,9 @@
         }
       }
     }
-    .siteMap-col {
-      margin: 0 auto;
-    }
+    // .siteMap-col {
+    //   margin: 0 auto;
+    // }
   }
   &__favicons {
     // padding: 0 50px;
