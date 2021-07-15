@@ -1,8 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
-
 import { channelSlug } from "@temp/constants";
-
 import { generateProductUrl } from "../../core/utils";
 // import nextButton from "../../images/nextCarouselHomePage.svg";
 import nextCarouselImg from "../../images/nextCarouselHomePage.svg";
@@ -12,9 +10,7 @@ import ProductListItem from "../ProductListItem";
 import ProductListItemSale from "../ProductListItemSale";
 // import ProductListNews from "../ProductListNews";
 import { TypedFeaturedProductsQuery } from "./queries";
-
 import Carousel from "nuka-carousel";
-
 import "./scss/index.scss";
 
 interface ProductsFeaturedProps {
