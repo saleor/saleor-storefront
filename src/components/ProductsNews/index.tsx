@@ -1,19 +1,16 @@
 import Link from "next/link";
+import Carousel from "nuka-carousel";
 import * as React from "react";
 
 import { channelSlug } from "@temp/constants";
 
 import { generateProductUrl } from "../../core/utils";
+import nextCarouselImg from "../../images/nextCarouselHomePage.svg";
+import preCarouselImg from "../../images/preCarouselHomePage.svg";
 // import nextButton from "../../images/nextCarouselHomePage.svg";
 // import { ProductListItem } from "..";
 import ProductListNews from "../ProductListNews";
 import { TypedFeaturedProductsQuery } from "./queries";
-
-import nextCarouselImg from "../../images/nextCarouselHomePage.svg";
-
-import preCarouselImg from "../../images/preCarouselHomePage.svg";
-
-import Carousel from "nuka-carousel";
 
 import "./scss/index.scss";
 
@@ -34,15 +31,20 @@ const ProductsNews: React.FC<ProductsFeaturedProps> = ({ title }) => {
             <div className="products-news">
               <h3>{title}</h3>
               <div className="products-news__container">
-                <div className="list__product-news" style={{ display: "unset" }}>
-
+                <div
+                  className="list__product-news"
+                  style={{ display: "unset" }}
+                >
                   <Carousel
                     // withoutControls={true}
-                    wrapAround={true}
+                    wrapAround
                     slidesToScroll={3}
                     slidesToShow={3}
                     speed={1000}
-                    renderCenterLeftControls={({ previousSlide, currentSlide }) => (
+                    renderCenterLeftControls={({
+                      previousSlide,
+                      currentSlide,
+                    }) => (
                       <button
                         style={{
                           transform: "translate(-22px, -32px)",
@@ -52,26 +54,30 @@ const ProductsNews: React.FC<ProductsFeaturedProps> = ({ title }) => {
                       >
                         <img src={preCarouselImg} alt="" />
                       </button>
-                    )
-                    }
-                    renderCenterRightControls={({ nextSlide, currentSlide, slideCount, slidesToShow }) => (
+                    )}
+                    renderCenterRightControls={({
+                      nextSlide,
+                      currentSlide,
+                      slideCount,
+                      slidesToShow,
+                    }) => (
                       <button
                         style={{
                           transform: "translate(22px, -32px)",
-                          // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}` 
+                          // display: `${currentSlide === (slideCount - slidesToShow) ? "none" : "unset"}`
                         }}
                         onClick={nextSlide}
                       >
                         <img src={nextCarouselImg} alt="" />
                       </button>
                     )}
-                    renderBottomCenterControls={({  }) => (
+                    renderBottomCenterControls={({}) => (
                       <button
                         style={{
-                          display: "none"  
+                          display: "none",
                         }}
-                        
                       >
+                        text
                       </button>
                     )}
                   >
