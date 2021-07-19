@@ -27,7 +27,7 @@
     opacity: 1;
     background-color: $white;
     font: normal normal bold 20px/15px Arial;
-    padding-left: 27px !important;
+    padding-left: 15px !important;
     padding-top: 12px;
     font-weight: $bold-font-weight;
     padding-bottom: $spacer;
@@ -62,11 +62,11 @@
     }
     @media (min-width: $small-screen) {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      > a {
-        &:nth-child(n + 5) {
-          display: none;
-        }
-      }
+      // > a {
+      //   &:nth-child(n + 8) {
+      //     display: none;
+      //   }
+      // }
     }
   }
 }

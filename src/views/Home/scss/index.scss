@@ -2,6 +2,7 @@
 
 .home {
   background-color: $base-body;
+  width: 100vw;
 }
 .home-page {
   background-color: $base-body;
@@ -24,10 +25,10 @@
   }
   .slider-list {
     height: 100% !important;
-    .slider-slide.slide-visible.slide-current {
-      width: 100% !important;
-      height: 100% !important;
-    }
+    // .slider-slide.slide-visible.slide-current {
+    //   width: 100% !important;
+    //   height: 100% !important;
+    // }
   }
   &__hero {
     height: 315px;
