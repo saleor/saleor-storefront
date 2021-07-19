@@ -3,16 +3,20 @@
 .product-list-item {
   text-align: center;
   background: $white;
-  padding: 12px;
+  // padding: 0 12.5px !important;
   border-radius: 3px;
-  border: 1px solid #ebecf0;
+  // border: 1px solid #ebecf0;
   height: 100%;
 
   &__title {
-    text-transform: $product-item-title-text-transform;
+    // text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
-    margin-top: $spacer;
-    text-align: left;
+    margin-top: 10px !important;
+    font: normal normal bold 16px/23px Arial;
+    letter-spacing: 0.32px;
+    color: $black;
+    opacity: 1;
+    text-align: center;
   }
 
   &__undiscounted_price {
@@ -24,23 +28,31 @@
 
   &__category {
     color: $product-item-category-color;
-    text-align: left;
+    text-align: center;
   }
 
   &__price {
-    font-weight: $product-item-price-font-weight;
-    margin: $product-item-price-margin;
-    text-align: left;
+    // font-weight: $product-item-price-font-weight;
+    // margin: $product-item-price-margin;
+    text-align: center;
+    // margin-top: 0.5 * $spacer;
+    // margin: 7px 0 15px 0 !important;
+    font: normal normal normal 16px/23px Arial;
+    letter-spacing: 0.32px;
+    color: $black;
+    opacity: 1;
   }
 
   &__image {
     background-color: $turquoise-light;
     display: flex;
-    height: 350px;
+    height: 217px !important;
+    width: 217px;
     justify-content: center;
+    margin: 0 auto;
 
     img {
-      object-fit: contain;
+      object-fit: cover;
       max-width: 100%;
     }
 

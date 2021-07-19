@@ -1,9 +1,12 @@
-import React from "react";
+import React /* useState */ from "react";
+import StarRatings from "react-star-ratings";
 
-import { gray } from "@styles/constants";
+// import ReactSVG from "react-svg";
+// import { gray } from "@styles/constants";
 import { ProductDetails_product } from "@temp/views/Product/gqlTypes/ProductDetails";
 
-import { Logo } from "./icon";
+// import addProductDetail from "../../../../images/productDetailTrolley.svg";
+// import { Logo } from "./icon";
 import * as S from "./styles";
 
 import "./style.css";
@@ -19,10 +22,19 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
         <S.InfoDetail>
           <S.ProductName>{product.name}</S.ProductName>
           <S.Text>
-            FOB <S.StrongerText>reference </S.StrongerText> Price:
-            <S.Link>Get Latest Price</S.Link>
+            <S.ProductReview>
+              <S.RateNumber>5.0</S.RateNumber>
+              <StarRatings
+                rating={5}
+                starRatedColor="#188C72"
+                numberOfStars={5}
+                starDimension="14px"
+                starSpacing="1px"
+              />
+              <S.RateComment>(5 Đánh giá)</S.RateComment>
+            </S.ProductReview>
+            <S.PriceProduct>260.000đ - 1.000.000đ</S.PriceProduct>
           </S.Text>
-
           {/* <S.PriceContainer>
             <S.PriceBox>
               <S.Text>1000-9999 Kilogram</S.Text>
@@ -37,14 +49,14 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
               <S.Price>$ 1.00</S.Price>
             </S.PriceBox>
           </S.PriceContainer> */}
-          <S.Text style={{ marginBottom: 10 }}>Product Price: </S.Text>
+
+          {/* <S.Text style={{ marginBottom: 10 }}>Product Price: </S.Text>
           <S.FlexWraper>
             <S.Table>
               <S.Tr>
-                <S.Td>Variants</S.Td>
-                {product.variants?.map(item => {
+              {product.variants?.map(item => {
                   return <S.Td key={item?.id}>{item?.name}</S.Td>;
-                })}
+                })}}
               </S.Tr>
               <S.Tr>
                 <S.Td>Quantity Available</S.Td>
@@ -130,12 +142,12 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
               })}
             </S.FlexWraper>
           </S.FlexWraper>
-          <S.FlexWraper>
+           <S.FlexWraper>
             <S.Text style={{ marginRight: "10px" }}>
               Alibaba.com Logistics
             </S.Text>
             <S.Text>Inspection Solution</S.Text>
-          </S.FlexWraper>
+          </S.FlexWraper> */}
         </S.InfoDetail>
       </S.Wraper>
     </div>

@@ -1,42 +1,75 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .products-featured {
-  padding: 2rem 0;
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px #00000029;
+  height: 335px;
+  position: relative;
+  // background-color: $white;
+  &__container {
+    background-color: $white;
+    height: 100%;
+  }
+  .icon-nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -23px;
+    cursor: pointer;
+  }
 
   h3 {
+    letter-spacing: 0.4px;
+    text-transform: capitalize;
+    opacity: 1;
+    background-color: $white;
+    font: normal normal bold 20px/15px Arial;
+    padding-left: 27px !important;
+    padding-top: 12px;
     font-weight: $bold-font-weight;
-    margin-bottom: $spacer * 2;
-    text-transform: uppercase;
+    padding-bottom: $spacer;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    &:after {
-      content: "";
-      background: #dcdee3;
-      border-radius: 3px;
-      height: 3px;
-      overflow: hidden;
-      flex: 1 1;
-      margin-left: 15px;
-    }
+    // font-size: 22px;
+    color: #188c72;
+    // &:after {
+    //   content: "";
+    //   background: #dcdee3;
+    //   border-radius: 3px;
+    //   height: 3px;
+    //   overflow: hidden;
+    //   flex: 1 1;
+    //   margin-left: 15px;
+    // }
+  }
+  .list__product-sale {
+    height: 309px !important;
   }
   .list__product {
     display: grid;
+    height: 292px;
+    // height: 100%;
     grid-template-columns: 1fr;
-    grid-gap: 1rem;
+    // grid-gap: 3px;
+    // margin-top: 17px;
     a {
       color: $base-font-color;
       text-decoration: none;
     }
     @media (min-width: $small-screen) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       > a {
-
         &:nth-child(n + 5) {
           display: none;
         }
       }
     }
-
   }
+}
+.products-featured.products-featured-sale {
+  height: 351px;
 }

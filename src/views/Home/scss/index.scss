@@ -1,14 +1,42 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.home {
+  background-color: $base-body;
+}
 .home-page {
   background-color: $base-body;
+  padding: 0 19px;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding-top: 86px;
+  .slider-control-bottomcenter button {
+    background: #ffffff !important;
+    border-radius: 50%;
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .slider-control-bottomcenter svg {
+    display: none !important;
+  }
+  .slider-control-bottomcenter li {
+    margin-right: 5px;
+  }
+  .slider-list {
+    height: 100% !important;
+    .slider-slide.slide-visible.slide-current {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
   &__hero {
+    height: 315px;
     background-color: $blue-overlay;
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
     text-align: center;
-    padding: 12rem 0;
+    // padding: 12rem 0;
 
     &-text {
       overflow: hidden;
@@ -83,7 +111,6 @@
         grid-template-columns: 1fr 1fr 1fr;
 
         > div {
-
           &:nth-child(n + 4) {
             display: none;
           }

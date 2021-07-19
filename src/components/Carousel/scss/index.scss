@@ -2,21 +2,18 @@
 
 .carousel {
   &__control {
-
     &:hover {
       cursor: pointer;
     }
 
-
     &--right {
-      margin-right: -1.3rem;
+      // margin-right: -2.4rem;
 
       @media (max-width: $container-width) {
         margin-right: 0;
       }
 
       svg {
-        
         margin-top: 0.5rem;
       }
     }

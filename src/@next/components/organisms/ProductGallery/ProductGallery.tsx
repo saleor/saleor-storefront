@@ -65,8 +65,8 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
   };
 
   const propsImg = {
-    width: 450,
-    height: 450,
+    width: 371,
+    height: 371,
     zoomWidth: 100,
     img: images[imageIndex].url,
     scale: 1.5,

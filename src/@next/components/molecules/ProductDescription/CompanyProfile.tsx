@@ -81,12 +81,12 @@ export const CompanyProfile: React.FC<IProps> = ({ store }: IProps) => {
         </S.CompanyWrapInfo>
 
         {isShowMap && (
-          <div style={{ margin: "1rem 0" }}>
+          <div>
             <WrappedMap
               name="latlong"
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe38lpcvEH7pLWIbgNUPNHsPnyIYwkc60&v=3.exp&libraries=geometry,drawing,places"
               loadingElement={<div style={{ width: `100%` }} />}
-              containerElement={<div style={{ height: `400px` }} />}
+              containerElement={<div style={{ height: `200px` }} />}
               mapElement={<div style={{ height: `100%` }} />}
             />
           </div>

@@ -1,10 +1,9 @@
 import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
-import ReactSVG from "react-svg";
 
-import arrowImg from "../../images/next.svg";
-
+// import ReactSVG from "react-svg";
+// import nextButton from "../../images/nextCarouselHomePage.svg";
 import "./scss/index.scss";
 import {
   mediumScreen,
@@ -26,7 +25,7 @@ const Carousel: React.FC<CarouselType> = ({ isSlide, children, ...rest }) => {
           onClick={previousSlide}
           className="carousel__control carousel__control--left"
         >
-          <ReactSVG path={arrowImg} />
+          {/* <img src={nextButton} alt="" /> */}
         </div>
       ) : null,
     renderCenterRightControls: ({
@@ -36,11 +35,12 @@ const Carousel: React.FC<CarouselType> = ({ isSlide, children, ...rest }) => {
       slidesToShow,
     }) =>
       slideCount - slidesToShow !== currentSlide ? (
-        <div
-          onClick={nextSlide}
-          className="carousel__control carousel__control--right"
-        >
-          <ReactSVG path={arrowImg} />
+        <div>
+          <div
+            onClick={nextSlide}
+            className="carousel__control carousel__control--right"
+          />
+          {/* <img src={nextButton} alt="" /> */}
         </div>
       ) : null,
     ...rest,

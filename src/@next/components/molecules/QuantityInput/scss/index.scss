@@ -1,0 +1,55 @@
+@import "../../../../../globalStyles/scss/variables.scss";
+.Wrapper {
+  display: flex;
+  margin-bottom: 25px;
+  .LabelOption {
+    font: normal normal normal 16px/18px Arial;
+    letter-spacing: 0.18px;
+    color: $black;
+    opacity: 1;
+    line-height: 27px;
+    margin-right: 40px;
+  }
+  .ChangeCountWrapper {
+    p {
+      font-size: 12px;
+      text-align: center;
+      letter-spacing: 0.13px;
+      color: #000000;
+      opacity: 1;
+    }
+    overflow: hidden;
+    display: flex;
+    width: 88px;
+    height: 26px;
+    border-top: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+    border-bottom: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+    border-radius: 2px;
+    opacity: 1;
+    .ChangeCount {
+      border-right: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+      border-left: 0.30000001192092896px solid rgba(112, 112, 112, 0.4);
+      padding: 0;
+      height: 26px;
+      width: 26px;
+      opacity: 1;
+      cursor: pointer;
+    }
+    .InputCountProduct {
+      width: 36px;
+      border: none;
+      text-align: center;
+      height: 100%;
+      outline: none;
+    }
+  }
+  .ProductInventory {
+    display: flex;
+    align-items: center;
+    padding-left: 23px;
+    font: normal normal normal 15px/17px Arial;
+    letter-spacing: 0.17px;
+    color: #909090;
+    opacity: 1;
+  }
+}

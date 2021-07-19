@@ -29,6 +29,7 @@ export const tokenLink = setContext((_, context) => {
     headers: {
       ...context.headers,
       Authorization: authToken ? `JWT ${authToken}` : null,
+      STORE: "store_front",
     },
   };
 });

@@ -1,18 +1,24 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .footer {
-  background-color: $darkBlue;
-  color: $white;
+  background-color: $white;
+  color: black;
+  padding: 0 85px;
+  width: 1280px;
+  margin: 0 auto;
   &-email {
-    margin: 3rem 0 1rem;
+    margin-left: 33px;
     .formEmail {
+      margin-top: 33px;
       display: flex;
       justify-content: center;
       align-items: baseline;
       .input__field {
-        background: #313d51;
-        border: 1px solid #c4c6cf;
-        color: #fff;
+        width: 341px;
+        height: 50px;
+        background: #f0f0f0;
+        border: 1px solid $white;
+        color: $black;
         box-shadow: none;
         &:hover {
           box-shadow: none;
@@ -24,13 +30,18 @@
       .email-form__button {
         .button {
           transform: none;
-          margin-left: 5px;
-          background: 0 0;
+          margin-left: 31px;
+          background: #188c72;
           border: 1px solid #c6cad1;
           box-shadow: none;
           padding: 12px 20px;
+          color: $white;
           span {
-            font-size: 16px;
+            font: normal normal normal 18px/22px Arial;
+            letter-spacing: 0.36px;
+            color: $white;
+            opacity: 1;
+            // font-size: 16px;
             transform: none;
             text-transform: capitalize;
             font-weight: normal;
@@ -40,7 +51,9 @@
     }
   }
   &-siteMap {
-    border-bottom: 1px solid #313d52;
+    // padding: 0 50px;
+    padding-top: 28px;
+    border-bottom: 1px solid #7b7b7b;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 0.5rem;
@@ -51,33 +64,58 @@
       grid-template-columns: 1fr;
     }
     dl {
-      margin: 0 0 20px 20px;
+      margin: 0 0 30px 0;
     }
     dt {
-      font-size: 18px;
+      font: normal normal bold 16px/19px Arial;
+      letter-spacing: 0.06px;
+      color: #7a7a7a;
+      text-transform: capitalize;
+      opacity: 1;
+      // font-size: 20px;
       line-height: 14px;
       padding: 10px 0;
-      margin-bottom: 5px;
+      // margin-bottom: 6px;
+      // color: #7b7b7b;
     }
     dd {
-      padding: 5px 0;
+      font: normal normal normal 13px/19px Arial;
+      letter-spacing: 0.05px;
+      color: #979797;
+      text-transform: capitalize;
+      opacity: 1;
+      padding: 6px 0;
       line-height: 12px;
       margin: 0;
       a {
-        font-size: 12px;
+        font-size: 16px;
+        color: #acacac;
         &:hover {
           text-decoration: underline;
         }
       }
     }
+    .siteMap-col {
+      margin: 0 auto;
+    }
   }
   &__favicons {
+    // padding: 0 50px;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1rem;
-    margin: 1rem 0;
+    margin: 44px 0 22px 0;
+    color: #7b7b7b;
     @media (min-width: $small-screen) {
       grid-template-columns: 1fr 1fr;
+    }
+    .favicons-col-left.favicons-col {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .favicons-col-right.favicons-col {
+      display: flex;
+      justify-content: flex-end;
     }
     .favicons-col {
       margin: 10px 0;
@@ -91,6 +129,11 @@
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
+        & a:last-child {
+          .social-icon {
+            padding-right: 0px;
+          }
+        }
         .social-icon {
           padding: 0 0.3rem;
           svg {
@@ -103,6 +146,13 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        .sociality-text {
+          font: normal normal normal 18px/19px Arial;
+          letter-spacing: 0.07px;
+          color: #7b7b7b;
+          text-transform: capitalize;
+          opacity: 1;
+        }
         a {
           text-indent: -9999px;
         }
@@ -110,24 +160,25 @@
     }
     .app-store {
       background: url(../images/vers0.5x.png) no-repeat;
-      background-position: 0 -100px;
+      background-position: 0 -96px;
       margin-top: -1px;
       width: 130px;
-      height: 30px;
+      height: 34px;
       margin-right: 7px;
       margin-left: 10px;
     }
     .android {
       background: url(../images/vers0.5x.png) no-repeat;
-      background-position: 0 -150px;
+      background-position: 0 -146px;
       margin-top: -1px;
       width: 130px;
-      height: 30px;
+      height: 34px;
       margin-right: 7px;
-      margin-left: 10px;
+      margin-left: 2px;
     }
   }
   &__copyright {
+    color: #7b7b7b;
     margin: 0 0 2rem;
   }
 

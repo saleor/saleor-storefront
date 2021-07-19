@@ -226,11 +226,28 @@ export const InputWrap = styled.form`
   box-sizing: border-box;
 `;
 
-export const Input = styled.input`
+export const Input = styled.textarea`
+  padding-top: 5px;
+  height: 24px;
   width: 100%;
   outline: none;
   border: none;
-  background: #f0f2f5;
+  background: #edf0f5;
+  resize: none;
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #edf0f5;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const Sendbtn = styled.img`

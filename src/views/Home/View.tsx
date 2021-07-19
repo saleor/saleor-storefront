@@ -28,35 +28,37 @@ const View: React.FC<NextPage> = () => {
   }, []);
 
   return (
-    <div className="home-page">
-      {shouldRedirect ? (
-        <Loader fullScreen />
-      ) : (
-        <TypedHomePageQuery
-          alwaysRender
-          displayLoader={false}
-          variables={{ channel: channelSlug }}
-          errorPolicy="all"
-        >
-          {({ data, loading }) => {
-            return (
-              <MetaWrapper
-                meta={{
-                  description: data.shop ? data.shop.description : "",
-                  title: data.shop ? data.shop.name : "",
-                }}
-              >
-                <Page
-                  loading={loading}
-                  backgroundImage={data.collection?.backgroundImage}
-                  categories={data.categories}
-                  shop={data.shop}
-                />
-              </MetaWrapper>
-            );
-          }}
-        </TypedHomePageQuery>
-      )}
+    <div className="home">
+      <div className="home-page">
+        {shouldRedirect ? (
+          <Loader fullScreen />
+        ) : (
+          <TypedHomePageQuery
+            alwaysRender
+            displayLoader={false}
+            variables={{ channel: channelSlug }}
+            errorPolicy="all"
+          >
+            {({ data, loading }) => {
+              return (
+                <MetaWrapper
+                  meta={{
+                    description: data.shop ? data.shop.description : "",
+                    title: data.shop ? data.shop.name : "",
+                  }}
+                >
+                  <Page
+                    loading={loading}
+                    backgroundImage={data.collection?.backgroundImage}
+                    categories={data.categories}
+                    shop={data.shop}
+                  />
+                </MetaWrapper>
+              );
+            }}
+          </TypedHomePageQuery>
+        )}
+      </div>
     </div>
   );
 };

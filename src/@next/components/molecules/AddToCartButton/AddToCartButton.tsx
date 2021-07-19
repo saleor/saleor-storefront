@@ -3,9 +3,11 @@ import { FormattedMessage } from "react-intl";
 
 import { Button } from "@components/atoms";
 
+import "./scss/index.scss";
+
 export interface IAddToCartButton {
   disabled: boolean;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({
@@ -14,13 +16,15 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
 }) => {
   return (
     <Button
+      className={
+        disabled ? "buttonAddProductUnActive" : "buttonAddProductActive"
+      }
       fullWidth
       testingContext="addProductToCartButton"
       onClick={onSubmit}
-      color="primary"
       disabled={disabled}
     >
-      <FormattedMessage defaultMessage="Add to Cart" />
+      <FormattedMessage defaultMessage="Mua ngay" />
     </Button>
   );
 };

@@ -5,13 +5,14 @@ import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
-import { grayMedium } from "@styles/constants";
+// import { grayMedium } from "@styles/constants";
 import { DebouncedTextField } from "@temp/components/Debounce";
 import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";
-import searchImg from "../../../images/search.svg";
+import dropDownImg from "../../../images/icon-dropdown.svg";
+import searchImg from "../../../images/searchHeader.svg";
 import closeImg from "../../../images/x.svg";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
@@ -81,6 +82,18 @@ function Search(props: SearchProps) {
   return (
     <div ref={wrapperRef}>
       <div className="search__input">
+        <div
+          className="search-dropdown"
+          onClick={() => {
+            // handleClickShowAll();
+            // setShowResult(false);
+          }}
+        >
+          <div className="search-dropdown__btn">
+            <span className="search-dropdown__btn__title">Tất cả</span>
+            <ReactSVG path={dropDownImg} />
+          </div>
+        </div>
         <DebouncedTextField
           onChange={e => {
             setSearchTerms((e.target.value as string).toLowerCase());
@@ -118,7 +131,7 @@ function Search(props: SearchProps) {
             }}
           >
             <ReactSVG path={searchImg} />
-            <span className="btn-search--title">Search</span>
+            <span className="btn-search__title">Tìm kiếm</span>
           </button>
         </div>
       </div>
@@ -143,14 +156,21 @@ function Search(props: SearchProps) {
                           style={{
                             position: "absolute",
                             width: "100%",
-                            background: grayMedium,
+                            top: "100%",
+                            paddingRight: "114px",
+                            paddingLeft: "58px",
                             borderRadius: 4,
                             zIndex: 9999,
+                            marginTop: "3px",
+                            padding: "0 114px 0 58px",
                             display: showResult ? "block" : "none",
                           }}
                         >
                           {showResult && (
-                            <ul onClick={handleHideResult}>
+                            <ul
+                              className="search__input__wrapper-allProduct"
+                              onClick={handleHideResult}
+                            >
                               {data.products.edges.map(product => (
                                 <ProductItem
                                   {...product}
@@ -189,5 +209,4 @@ function Search(props: SearchProps) {
     </div>
   );
 }
-
 export default injectIntl(withRouter(Search));

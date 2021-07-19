@@ -1,0 +1,100 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.product-list-item {
+  text-align: center;
+  background: $white;
+  // padding: 0 1.5 * $spacer;
+  margin-left: 26px;
+  border-radius: 3px;
+  // border: 1px solid #ebecf0;
+  height: 100%;
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: -0.3px 0 15px #00000029;
+  }
+
+  &__title {
+    // text-transform: $product-item-title-text-transform;
+    font-weight: $product-item-title-font-weight;
+    margin-top: $spacer;
+    text-align: center;
+  }
+
+  &__undiscounted_price {
+    text-decoration: line-through;
+    color: $gray;
+    font-size: $small-font-size;
+    font-weight: regular;
+  }
+
+  &__category {
+    color: $product-item-category-color;
+    text-align: center;
+  }
+
+  &__price {
+    // font-weight: $product-item-price-font-weight;
+    // margin: $product-item-price-margin;
+    text-align: center;
+    // margin-top: 0.5 * $spacer;
+    font: normal normal normal 16px/23px Arial;
+    letter-spacing: 0.32px;
+    color: $black;
+    opacity: 1;
+  }
+  &__price-sale {
+    text-decoration: line-through;
+    font: normal normal normal 12px/24px Arial;
+    letter-spacing: 0.24px;
+    color: #7a7a7a;
+    opacity: 1;
+  }
+
+  &__image {
+    background-color: $turquoise-light;
+    display: flex;
+    height: 250px;
+    justify-content: center;
+    position: relative;
+
+    img {
+      object-fit: cover;
+      max-width: 100%;
+    }
+
+    @media (max-width: $small-screen) {
+      height: 210px;
+    }
+  }
+  &__sale {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 45px;
+    background-color: #d22020;
+    padding: 4px 0;
+    &::after {
+      content: "";
+      top: 100%;
+      right: 0;
+      position: absolute;
+      border-width: 0 20px 7px;
+      border-style: solid;
+      border-color: transparent #d22020 transparent #d22020;
+    }
+    &__persent {
+      color: $white;
+      font-size: 14px;
+      display: inline-block;
+      font-weight: 100;
+    }
+    &__title {
+      display: inline-block;
+      color: $white;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 100;
+    }
+  }
+}

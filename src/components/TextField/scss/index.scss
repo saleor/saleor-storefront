@@ -13,7 +13,6 @@
   &__content {
     position: relative;
   }
-
   &__field {
     display: block;
     width: 100%;
@@ -21,7 +20,7 @@
     padding: 0.8rem 1rem;
     font-size: $base-font-size;
     color: $base-font-color;
-    border: 1px solid $blue;
+    border: 1px solid $white;
     outline: none;
     box-shadow: 0 0 0 1px $white;
     background-color: transparent;
@@ -128,8 +127,9 @@
   &__icon-right {
     position: absolute;
     z-index: 100;
-    right: $spacer;
-    transform: translate(0, 100%);
+    right: 120px;
+    top: 60%;
+    transform: translate(0, -50%);
     cursor: pointer;
   }
 }
