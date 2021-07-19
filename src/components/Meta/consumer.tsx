@@ -5,10 +5,10 @@ import { Consumer as MetaConsumer } from "./context";
 
 const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   <MetaConsumer>
-    {({ title, description, image, type, url, custom }) => (
+    {({ title = "Thach Sanh", description, image, type, url, custom }) => (
       <>
         <Helmet
-          title={title}
+          title={title === "Saleor e-commerce" ? "Trang Chu" : title}
           meta={[
             { name: "description", content: description },
             { property: "og:url", content: url },
