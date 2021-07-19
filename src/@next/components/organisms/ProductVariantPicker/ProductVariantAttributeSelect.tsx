@@ -1,16 +1,16 @@
 import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect } from "react";
-import { useIntl } from "react-intl";
 
-import { Icon, Input } from "@components/atoms";
-import { InputSelect } from "@components/molecules";
+// import { useIntl } from "react-intl";
+// import { Icon, Input } from "@components/atoms";
+// import { InputSelect } from "@components/molecules";
 import { useSelectableProductVariantsAttributeValues } from "@hooks";
 import {
   IProductVariantsAttribute,
   IProductVariantsAttributesSelectedValues,
 } from "@types";
 
-import { SelectSidebar } from "../SelectSidebar";
+// import { SelectSidebar } from "../SelectSidebar";
 import * as S from "./styles";
 
 export const ProductVariantAttributeSelect: React.FC<{
@@ -34,24 +34,24 @@ export const ProductVariantAttributeSelect: React.FC<{
   onClearSelection,
   defaultValue,
 }) => {
-  const [showSelectSidebar, setShowSelectSidebar] = React.useState(false);
+  // const [showSelectSidebar, setShowSelectSidebar] = React.useState(false);
   const selectableProductVariantsAttributeValues = useSelectableProductVariantsAttributeValues(
     productVariantsAttributeId,
     productVariants,
     productVariantsAttributesSelectedValues
   );
-  const intl = useIntl();
+  // const intl = useIntl();
 
-  const selectedAttribute =
-    productVariantsAttributesSelectedValues &&
-    productVariantsAttributesSelectedValues[productVariantsAttributeId];
+  // const selectedAttribute =
+  //   productVariantsAttributesSelectedValues &&
+  //   productVariantsAttributesSelectedValues[productVariantsAttributeId];
 
-  const selectedValue = selectedAttribute && {
-    disabled: false,
-    id: selectedAttribute.id,
-    label: selectedAttribute.name!,
-    value: selectedAttribute.value!,
-  };
+  // const selectedValue = selectedAttribute && {
+  //   disabled: false,
+  //   id: selectedAttribute.id,
+  //   label: selectedAttribute.name!,
+  //   value: selectedAttribute.value!,
+  // };
 
   const attributeOptions = productVariantsAttribute.values
     .filter(value => value)
@@ -69,9 +69,9 @@ export const ProductVariantAttributeSelect: React.FC<{
       };
     });
 
-  const selectLabel = productVariantsAttribute.attribute.name || "";
+  // const selectLabel = productVariantsAttribute.attribute.name || "";
 
-  const selectedValuesList = selectedValue ? [selectedValue.value] : [];
+  // const selectedValuesList = selectedValue ? [selectedValue.value] : [];
 
   const disabledValuesList = attributeOptions
     .filter(optionValue => optionValue.disabled)
@@ -88,23 +88,23 @@ export const ProductVariantAttributeSelect: React.FC<{
     }
   };
 
-  const handleSelectValueInSidebar = (optionValue: string) =>
-    onSelectValueHandler(optionValue, () => setShowSelectSidebar(false));
+  // const handleSelectValueInSidebar = (optionValue: string) =>
+  //   onSelectValueHandler(optionValue, () => setShowSelectSidebar(false));
 
-  const getRightInputContent = (isInputFilled: boolean) => {
-    if (isInputFilled) {
-      return (
-        <S.SelectIndicator onClick={onClearSelection}>
-          <Icon name="select_x" size={10} />
-        </S.SelectIndicator>
-      );
-    }
-    return (
-      <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
-        <Icon name="subcategories" size={10} />
-      </S.SelectIndicator>
-    );
-  };
+  // const getRightInputContent = (isInputFilled: boolean) => {
+  //   if (isInputFilled) {
+  //     return (
+  //       <S.SelectIndicator onClick={onClearSelection}>
+  //         <Icon name="select_x" size={10} />
+  //       </S.SelectIndicator>
+  //     );
+  //   }
+  //   return (
+  //     <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
+  //       <Icon name="subcategories" size={10} />
+  //     </S.SelectIndicator>
+  //   );
+  // };
 
   useEffect(() => {
     if (defaultValue) {
@@ -112,56 +112,68 @@ export const ProductVariantAttributeSelect: React.FC<{
     }
   }, [defaultValue]);
 
-  if (selectSidebar) {
-    return (
-      <>
-        <Input
-          onFocus={() => setShowSelectSidebar(true)}
-          label={selectLabel}
-          value={selectedValue ? selectedValue.value : ""}
-          onChange={() => null}
-          contentRight={getRightInputContent(!!selectedValue)}
-          readOnly
-          name={
-            productVariantsAttribute.attribute.slug
-              ? productVariantsAttribute.attribute.slug
-              : ""
-          }
-          data-test="variantPicker"
-        />
-        <SelectSidebar
-          options={attributeOptions}
-          selectedOptions={selectedValuesList}
-          disabledOptions={disabledValuesList}
-          title={intl.formatMessage(
-            {
-              defaultMessage: "Please select {selectLabel}",
-            },
-            { selectLabel }
-          )}
-          show={showSelectSidebar}
-          hide={() => setShowSelectSidebar(false)}
-          onSelect={handleSelectValueInSidebar}
-          target={selectSidebarTarget}
-          testingContextId={
-            productVariantsAttribute.attribute.slug
-              ? productVariantsAttribute.attribute.slug
-              : ""
-          }
-        />
-      </>
-    );
-  }
+  // if (selectSidebar) {
+  //   return (
+  //     <>
+  //       <Input
+  //         onFocus={() => setShowSelectSidebar(true)}
+  //         label={selectLabel}
+  //         value={selectedValue ? selectedValue.value : ""}
+  //         onChange={() => null}
+  //         contentRight={getRightInputContent(!!selectedValue)}
+  //         readOnly
+  //         name={
+  //           productVariantsAttribute.attribute.slug
+  //             ? productVariantsAttribute.attribute.slug
+  //             : ""
+  //         }
+  //         data-test="variantPicker"
+  //       />
+  //       <SelectSidebar
+  //         options={attributeOptions}
+  //         selectedOptions={selectedValuesList}
+  //         disabledOptions={disabledValuesList}
+  //         title={intl.formatMessage(
+  //           {
+  //             defaultMessage: "Please select {selectLabel}",
+  //           },
+  //           { selectLabel }
+  //         )}
+  //         show={showSelectSidebar}
+  //         hide={() => setShowSelectSidebar(false)}
+  //         onSelect={handleSelectValueInSidebar}
+  //         target={selectSidebarTarget}
+  //         testingContextId={
+  //           productVariantsAttribute.attribute.slug
+  //             ? productVariantsAttribute.attribute.slug
+  //             : ""
+  //         }
+  //       />
+  //     </>
+  //   );
+  // }
   return (
-    <InputSelect
-      name={productVariantsAttribute.attribute.id}
-      label={selectLabel}
-      value={selectedValue}
-      options={attributeOptions}
-      isOptionDisabled={optionValue => optionValue.disabled}
-      onChange={optionValue => onChangeSelection(optionValue?.value)}
-      clearable
-      clearValue={onClearSelection}
-    />
+    // <InputSelect
+    //   name={productVariantsAttribute.attribute.id}
+    //   label={selectLabel}
+    //   value={selectedValue}
+    //   options={attributeOptions}
+    //   isOptionDisabled={optionValue => optionValue.disabled}
+    //   onChange={optionValue => onChangeSelection(optionValue?.value)}
+    //   clearable
+    //   clearValue={onClearSelection}
+    // />
+    // <S.WrapperTypeProduct>
+    <S.ListOptions>
+      <S.LabelOption>Loại:</S.LabelOption>
+      <S.WrapperList>
+        {attributeOptions.length < 0
+          ? ""
+          : attributeOptions.map(option => (
+              <S.OptionItem>{option.value}</S.OptionItem>
+            ))}
+      </S.WrapperList>
+    </S.ListOptions>
+    // </S.WrapperTypeProduct>
   );
 };

@@ -3,9 +3,17 @@
 .breadcrumbs {
   display: inline-flex;
   flex-wrap: wrap;
-  margin: $spacer 0;
+  margin: 20px 0;
 
   li {
+    &:first-child {
+      a {
+        color: $mainColorHeader;
+      }
+    }
+    &:last-child {
+      pointer-events: none;
+    }
     &:not(:last-of-type) {
       &:after {
         content: url("../../../images/breadcrumbs-arrow.svg");
@@ -15,14 +23,19 @@
     }
 
     a {
-      color: $gray-dark;
+      color: $black;
       text-decoration: none;
       vertical-align: middle;
       transition: 0.3s;
+      font: normal normal normal 16px/25px Arial;
+      letter-spacing: 0.28px;
 
-      &:hover,
+      &:hover {
+        text-decoration: underline;
+      }
       &:focus {
-        color: $orange;
+        text-decoration: underline;
+        // color: $orange;
       }
     }
   }
@@ -32,9 +45,9 @@
       color: $base-font-color;
       font-weight: $bold-font-weight;
 
-      &:hover {
-        color: $base-font-color;
-      }
+      // &:hover {
+      //   color: $base-font-color;
+      // }
     }
   }
 }
