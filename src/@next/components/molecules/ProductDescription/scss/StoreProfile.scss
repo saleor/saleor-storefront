@@ -1,0 +1,183 @@
+@import "../../../../../globalStyles/scss/variables.scss";
+
+.product-page {
+  background-color: $base-body;
+  width: 1242px;
+  margin: 0 auto;
+  padding-top: 70px;
+
+  &__product {
+    display: flex;
+    background-color: $white;
+    padding: 27px 30px;
+    border: 1px solid #cccccc;
+    max-height: 503px;
+
+    @media (max-width: $small-screen) {
+      display: block;
+      margin-bottom: $spacer * 2;
+    }
+    &__information {
+      width: 425px;
+    }
+
+    &__description {
+      width: 100%;
+      min-height: $spacer * 10;
+      margin-bottom: $spacer;
+      margin-top: $spacer;
+    }
+  }
+  &__address {
+    border: 0.5px solid #595959;
+    margin-left: 38px;
+    width: 100%;
+    height: 394px;
+    border-radius: 5px;
+    .title {
+      font: normal normal normal 16px/18px Arial;
+      letter-spacing: 0.18px;
+      color: $mainColorHeader;
+      opacity: 1;
+    }
+    .description {
+      font: normal normal normal 12px/14px Arial;
+      letter-spacing: 0.05px;
+      color: $black;
+      opacity: 1;
+    }
+    &--fixed {
+      padding: 17px 11px;
+    }
+    &--header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 48px;
+      margin-bottom: 18px;
+      .infor-shop {
+        margin-left: 12px;
+        &__name {
+          font: normal normal bold 14px/15px Arial;
+          letter-spacing: 0.28px;
+          color: $black;
+          text-transform: capitalize;
+          opacity: 1;
+        }
+        &__active {
+          margin-top: -5px;
+          .statusActive {
+            font: normal normal normal 11px/15px Arial;
+            letter-spacing: 0.04px;
+            color: $black;
+            opacity: 1;
+          }
+          .statusFollow {
+            cursor: pointer;
+            margin-left: 21px;
+            text-decoration: underline;
+            font: normal normal normal 11px/15px Arial;
+            letter-spacing: 0.04px;
+            color: $mainColorHeader;
+            opacity: 1;
+          }
+        }
+      }
+      .avatar-shop {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: $mainColorHeader;
+      }
+    }
+    &--productReviews {
+      margin-bottom: 18px;
+      .customer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        &__starNumber {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-right: 27px;
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: #707070;
+            right: -13.5px;
+          }
+        }
+        &__followNumber {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-right: 27px;
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: #707070;
+            right: -13.5px;
+          }
+        }
+        &__percent {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    &--connectShop {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .connectShopOption {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 119px;
+        height: 38px;
+        border: 1px solid $mainColorHeader;
+        border-radius: 5px;
+        opacity: 1;
+        span {
+          font: normal normal normal 13px/14px Arial;
+          letter-spacing: 0.05px;
+          color: $mainColorHeader;
+          opacity: 1;
+        }
+      }
+    }
+    &--place {
+      .addressShop {
+        margin-top: 17px;
+        display: flex;
+        align-items: flex-start;
+        span {
+          margin-left: 7px;
+          font: normal normal normal 13px/14px Arial;
+          letter-spacing: 0.05px;
+          color: $black;
+          opacity: 1;
+        }
+        img {
+          margin-right: 1px;
+        }
+      }
+    }
+    &--map {
+      margin-top: 12px;
+      height: 111px;
+    }
+  }
+}

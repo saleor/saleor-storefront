@@ -11,7 +11,7 @@ import { IProps } from "./types";
 enum TABS {
   DESCRIPTION = "DESCRIPION",
   ATTRIBUTES = "ATTRIBUTES",
-  PRICE = "PRICE",
+  REVIEW = "REVIEW",
 }
 
 export const ProductDescription: React.FC<IProps> = ({
@@ -43,10 +43,10 @@ export const ProductDescription: React.FC<IProps> = ({
           <FormattedMessage defaultMessage="Đánh giá sản phẩm" />
         </S.TabTitle>
         <S.TabTitle
-          active={activeTab === TABS.PRICE}
+          active={activeTab === TABS.REVIEW}
           onClick={evt => {
             evt.stopPropagation();
-            setActiveTab(TABS.PRICE);
+            setActiveTab(TABS.REVIEW);
           }}
         >
           <FormattedMessage defaultMessage="Nhận báo giá" />
@@ -67,7 +67,7 @@ export const ProductDescription: React.FC<IProps> = ({
         <CompanyProfile store={store} />
         {/* </S.AttributeList> */}
       </S.WrapperContent>
-      <S.WrapperContent hidden={activeTab !== TABS.PRICE}>
+      <S.WrapperContent hidden={activeTab !== TABS.REVIEW}>
         <ContactSupplier description={description} />
       </S.WrapperContent>
     </S.Wrapper>

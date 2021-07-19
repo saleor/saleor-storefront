@@ -6,10 +6,12 @@ import {
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
+import { Link } from "react-scroll";
 
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
+import addProductDetail from "../../../../images/productDetailTrolley.svg";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
@@ -167,10 +169,23 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           testingContext="addToCartQuantity"
         />
       </S.QuantityInput>
-      <AddToCartButton
-        onSubmit={() => onAddToCart(variantId, quantity)}
-        disabled={disableButton}
-      />
+      <S.WrapperOptionBuy>
+        <S.BoxAddTrolley onClick={() => onAddToCart(variantId, quantity)}>
+          <img
+            style={{ marginRight: "11.5px" }}
+            src={addProductDetail}
+            alt=""
+          />
+          <span>Thêm vào giỏ hàng</span>
+        </S.BoxAddTrolley>
+        <S.BoxQuote>
+          <Link to="price" spy smooth>
+            <span>Nhận báo giá </span>
+          </Link>
+        </S.BoxQuote>
+      </S.WrapperOptionBuy>
+
+      <AddToCartButton disabled={disableButton} />
     </S.AddToCartSelection>
   );
 };

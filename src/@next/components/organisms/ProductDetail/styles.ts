@@ -46,6 +46,11 @@ export const ProductName = styled.h3`
   opacity: 1;
 `;
 
+export const ProductReview = styled.div`
+  display: flex;
+  align-item: flex-start;
+`;
+
 export const Text = styled.p`
   font-size: 1rem;
   display: inline-block;
@@ -63,6 +68,8 @@ export const RateNumber = styled.span`
 `;
 
 export const RateComment = styled.span`
+  display: flex;
+  align-items: center;
   font: normal normal normal 15px/17px Arial;
   letter-spacing: 0.17px;
   color: #909090;

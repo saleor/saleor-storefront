@@ -17,6 +17,9 @@
       display: block;
       margin-bottom: $spacer * 2;
     }
+    &__information {
+      width: 425px;
+    }
 
     &__description {
       width: 100%;
@@ -25,7 +28,7 @@
       margin-top: $spacer;
     }
 
-    &__info {
+    &__buy {
       // flex-grow: 1;
       // width: 30%;
       width: 425px !important;
@@ -190,6 +193,7 @@
           margin-top: 17px;
           display: flex;
           justify-content: flex-start;
+          align-items: flex-start;
           span {
             margin-left: 7px;
             font: normal normal normal 13px/14px Arial;

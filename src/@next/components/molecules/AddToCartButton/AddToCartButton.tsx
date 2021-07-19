@@ -24,7 +24,7 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       onClick={onSubmit}
       disabled={disabled}
     >
-      <FormattedMessage defaultMessage="Add to Cart" />
+      <FormattedMessage defaultMessage="Mua ngay" />
     </Button>
   );
 };
