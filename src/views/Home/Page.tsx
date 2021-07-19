@@ -45,24 +45,30 @@ const Page: React.FC<{
       >
         <Carousel
           // withoutControls={true}
-          wrapAround={true}
+          wrapAround
           slidesToShow={1}
           speed={1000}
-          renderCenterLeftControls={({ previousSlide,currentSlide}) => (
+          renderCenterLeftControls={({ previousSlide, currentSlide }) => (
             <button
-                style={{ transform: "translateX(-22px)",
-                  // display:`${currentSlide===0?"none":"unset"}`
-                }}
+              style={{
+                transform: "translateX(-22px)",
+                // display:`${currentSlide===0?"none":"unset"}`
+              }}
               onClick={previousSlide}
             >
               <img src={preCarouselImg} alt="" />
             </button>
-          )
-        }
-          renderCenterRightControls={({ nextSlide,currentSlide,slideCount,slidesToShow }) => (
+          )}
+          renderCenterRightControls={({
+            nextSlide,
+            currentSlide,
+            slideCount,
+            slidesToShow,
+          }) => (
             <button
-              style={{ transform: "translateX(22px)", 
-                // display:`${currentSlide===(slideCount-slidesToShow)?"none":"unset"}` 
+              style={{
+                transform: "translateX(22px)",
+                // display:`${currentSlide===(slideCount-slidesToShow)?"none":"unset"}`
               }}
               onClick={nextSlide}
             >

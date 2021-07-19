@@ -41,6 +41,9 @@ const ProductsNews: React.FC<ProductsFeaturedProps> = ({ title }) => {
                     slidesToScroll={3}
                     slidesToShow={3}
                     speed={1000}
+                    defaultControlsConfig={{
+                      pagingDotsStyle: { display: "none" },
+                    }}
                     renderCenterLeftControls={({
                       previousSlide,
                       currentSlide,
@@ -71,15 +74,15 @@ const ProductsNews: React.FC<ProductsFeaturedProps> = ({ title }) => {
                         <img src={nextCarouselImg} alt="" />
                       </button>
                     )}
-                    renderBottomCenterControls={({}) => (
-                      <button
-                        style={{
-                          display: "none",
-                        }}
-                      >
-                        text
-                      </button>
-                    )}
+                    // renderBottomCenterControls={({}) => (
+                    //   <button
+                    //     style={{
+                    //       display: "none",
+                    //     }}
+                    //   >
+                    //     text
+                    //   </button>
+                    // )}
                   >
                     {products.map(({ node: product }) => (
                       <Link
