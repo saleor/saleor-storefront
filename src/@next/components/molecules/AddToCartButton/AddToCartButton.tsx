@@ -7,7 +7,7 @@ import "./scss/index.scss";
 
 export interface IAddToCartButton {
   disabled: boolean;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({
@@ -24,7 +24,7 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
       onClick={onSubmit}
       disabled={disabled}
     >
-      <FormattedMessage defaultMessage="Add to Cart" />
+      <FormattedMessage defaultMessage="Mua ngay" />
     </Button>
   );
 };

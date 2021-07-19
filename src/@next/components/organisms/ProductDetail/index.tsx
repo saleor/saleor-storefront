@@ -5,7 +5,7 @@ import StarRatings from "react-star-ratings";
 // import { gray } from "@styles/constants";
 import { ProductDetails_product } from "@temp/views/Product/gqlTypes/ProductDetails";
 
-import addProductDetail from "../../../../images/productDetailTrolley.svg";
+// import addProductDetail from "../../../../images/productDetailTrolley.svg";
 // import { Logo } from "./icon";
 import * as S from "./styles";
 
@@ -22,50 +22,19 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
         <S.InfoDetail>
           <S.ProductName>{product.name}</S.ProductName>
           <S.Text>
-            <S.RateNumber>5.0</S.RateNumber>
-            <StarRatings
-              rating={5}
-              starRatedColor="#188C72"
-              numberOfStars={5}
-              starDimension="12px"
-              starSpacing="1px"
-            />
-            <S.RateComment>(5 Đánh giá)</S.RateComment>
+            <S.ProductReview>
+              <S.RateNumber>5.0</S.RateNumber>
+              <StarRatings
+                rating={5}
+                starRatedColor="#188C72"
+                numberOfStars={5}
+                starDimension="14px"
+                starSpacing="1px"
+              />
+              <S.RateComment>(5 Đánh giá)</S.RateComment>
+            </S.ProductReview>
             <S.PriceProduct>260.000đ - 1.000.000đ</S.PriceProduct>
           </S.Text>
-          <S.WrapperTypeProduct>
-            <S.LabelOption>Loại:</S.LabelOption>
-            <S.WrapperOption>
-              <S.BoxOptionWeight>
-                <S.TextOptionWeight>1kg</S.TextOptionWeight>
-              </S.BoxOptionWeight>
-              <S.BoxOptionWeight>
-                <S.TextOptionWeight>2kg</S.TextOptionWeight>
-              </S.BoxOptionWeight>
-              <S.BoxOptionWeight>
-                <S.TextOptionWeight>5kg</S.TextOptionWeight>
-              </S.BoxOptionWeight>
-            </S.WrapperOption>
-          </S.WrapperTypeProduct>
-          <S.WrapperCountProduct>
-            <S.LabelOption>Số lượng:</S.LabelOption>
-            <S.RateComment style={{ marginLeft: "151px", marginTop: "6px" }}>
-              Còn 1500 sản phẩm
-            </S.RateComment>
-          </S.WrapperCountProduct>
-          <S.WrapperOptionBuy>
-            <S.BoxAddTrolley>
-              <img
-                style={{ marginRight: "11.5px" }}
-                src={addProductDetail}
-                alt=""
-              />
-              <span>Thêm vào giỏ hàng</span>
-            </S.BoxAddTrolley>
-            <S.BoxQuote>
-              <span>Nhận báo giá </span>
-            </S.BoxQuote>
-          </S.WrapperOptionBuy>
           {/* <S.PriceContainer>
             <S.PriceBox>
               <S.Text>1000-9999 Kilogram</S.Text>
@@ -85,9 +54,6 @@ const ProductDetail: React.FC<Props> = ({ product }) => {
           <S.FlexWraper>
             <S.Table>
               <S.Tr>
-              <S.Td>+</S.Td>
-              <S.Td>5</S.Td>
-              <S.Td>-</S.Td>
               {product.variants?.map(item => {
                   return <S.Td key={item?.id}>{item?.name}</S.Td>;
                 })}}

@@ -1,4 +1,5 @@
 import { styled } from "@styles";
+import { mainColorPage } from "@styles/constants";
 
 export const AddToCartSelection = styled.div`
   padding: 0 !important;
@@ -38,4 +39,41 @@ export const QuantityInput = styled.div`
 
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.colors.error};
+`;
+
+export const WrapperOptionBuy = styled.div`
+  margin-top: 25px;
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+`;
+
+export const BoxAddTrolley = styled.div`
+  height: 100%;
+  width: 228px;
+  border: 1px solid ${mainColorPage};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: ${mainColorPage};
+  font: normal normal normal 16px/12px Arial;
+  letter-spacing: 0.32px;
+  cursor: pointer;
+`;
+
+export const BoxQuote = styled.div`
+  height: 100%;
+  width: 185px;
+  border: 1px solid ${mainColorPage};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: ${mainColorPage};
+  font: normal normal normal 16px/12px Arial;
+  letter-spacing: 0.32px;
+  cursor: pointer;
 `;

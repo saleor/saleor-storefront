@@ -1,15 +1,15 @@
+// import StarRatings from "react-star-ratings";
+// import ReactSVG from "react-svg";
 import classNames from "classnames";
 import React from "react";
-import {
-  GoogleMap,
-  Marker,
-  withGoogleMap,
-  withScriptjs,
-} from "react-google-maps";
+// import {
+//   GoogleMap,
+//   Marker,
+//   withGoogleMap,
+//   withScriptjs,
+// } from "react-google-maps";
 // import { FormattedMessage } from "react-intl";
 import Media from "react-media";
-import StarRatings from "react-star-ratings";
-import ReactSVG from "react-svg";
 
 // import styled from "styled-components";
 import { ProductDescription } from "@components/molecules";
@@ -19,6 +19,7 @@ import ProductDetail from "@components/organisms/ProductDetail";
 // import { orange, white } from "@styles/constants";
 import ChatBox from "@temp/components/ChatBox";
 
+import { StoreProfile } from "../../@next/components/molecules/ProductDescription/StoreProfile";
 import {
   Breadcrumbs,
   OverlayContext,
@@ -27,8 +28,8 @@ import {
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
-import locationIcon from "../../images/ios-location.svg";
-import telephoneIcon from "../../images/telephone-fill.svg";
+// import locationIcon from "../../images/ios-location.svg";
+// import telephoneIcon from "../../images/telephone-fill.svg";
 // import { ContactSupplier } from "./ContactSupplier";
 import GalleryCarousel from "./GalleryCarousel";
 import SlideCarousel from "./SlideCarousel";
@@ -117,15 +118,15 @@ const Page: React.FC<
   //   lat: -3.745,
   //   lng: -38.523,
   // };
-  const MyMapComponent = withScriptjs(
-    withGoogleMap((props: any) => (
-      <GoogleMap defaultZoom={2} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-        {props.isMarkerShown && (
-          <Marker position={{ lat: -34.397, lng: 150.644 }} />
-        )}
-      </GoogleMap>
-    ))
-  );
+  // const MyMapComponent = withScriptjs(
+  //   withGoogleMap((props: any) => (
+  //     <GoogleMap defaultZoom={2} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
+  //       {props.isMarkerShown && (
+  //         <Marker position={{ lat: -34.397, lng: 150.644 }} />
+  //       )}
+  //     </GoogleMap>
+  //   ))
+  // );
 
   return (
     <div className="product-page">
@@ -140,7 +141,7 @@ const Page: React.FC<
               matches ? (
                 <>
                   <GalleryCarousel images={getImages()} />
-                  <div className="product-page__product__info">
+                  <div className="product-page__product__information">
                     <ProductDetail product={product} />
                     <div
                       style={{
@@ -151,7 +152,7 @@ const Page: React.FC<
                       {/* <StyledButton onClick={() => executeScroll()}>
                         <FormattedMessage defaultMessage="Request Quota" />
                       </StyledButton> */}
-                      <div className="product-page__product__info">
+                      <div className="product-page__product__buy">
                         {addToCartSection}
                       </div>
                     </div>
@@ -165,7 +166,7 @@ const Page: React.FC<
                   >
                     <ProductGallery images={getImages()} />
                   </div>
-                  <div className="product-page__product__info">
+                  <div className="product-page__product__information">
                     <div
                       className={classNames(
                         "product-page__product__info--fixed"
@@ -182,7 +183,7 @@ const Page: React.FC<
                           <FormattedMessage defaultMessage="Request Quota" />
                         </StyledButton> */}
                         <div
-                          className="product-page__product__info"
+                          className="product-page__product__buy"
                           style={{ width: "100% !important" }}
                         >
                           {addToCartSection}
@@ -190,7 +191,8 @@ const Page: React.FC<
                       </div>
                     </div>
                   </div>
-                  <div className="product-page__product__address">
+                  <StoreProfile store={product.store} />
+                  {/* <div className="product-page__product__address">
                     <div className="product-page__product__address--fixed">
                       <div className="product-page__product__address--header">
                         <div className="avatar-shop" />
@@ -274,13 +276,13 @@ const Page: React.FC<
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </>
               )
             }
           </Media>
         </div>
-        <div className="product-page__product__description">
+        <div className="product-page__product__description" id="price">
           <ProductDescription
             description={product.description}
             attributes={product.attributes}

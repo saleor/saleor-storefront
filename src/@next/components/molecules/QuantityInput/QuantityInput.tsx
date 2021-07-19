@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useIntl } from "react-intl";
+// import { CollectionSortField } from "@saleor/sdk";
+import React /* useEffect, useState */ from "react";
 
+// import { Input } from "@components/atoms";
+// import { useIntl } from "react-intl";
 // import { TextField } from "@components/molecules";
-import { commonMessages } from "@temp/intl";
-
+// import { commonMessages } from "@temp/intl";
 import "./scss/index.scss";
 
 export interface IQuantityInput {
@@ -32,25 +33,27 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
   testingContext,
   testingContextId,
 }) => {
-  const [isTooMuch, setIsTooMuch] = useState(false);
-  const intl = useIntl();
+  // const [isTooMuch, setIsTooMuch] = useState(false);
+  // const intl = useIntl();
 
-  useEffect(() => {
-    setIsTooMuch(!isNaN(quantity) && quantity > maxQuantity);
-  }, [quantity, maxQuantity]);
+  // useEffect(() => {
+  //   setIsTooMuch(!isNaN(quantity) && quantity > maxQuantity);
+  // }, [quantity, maxQuantity]);
 
-  // const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
-  //   const newQuantity = parseInt(evt.target.value, 10);
+  const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
+    const newQuantity = parseInt(evt.target.value, 10);
+    if (maxQuantity <= 0 || isNaN(newQuantity)) {
+      onQuantityChange(0);
+    } else if (quantity !== newQuantity) {
+      if (newQuantity < maxQuantity) {
+        onQuantityChange(newQuantity);
+      } else {
+        onQuantityChange(maxQuantity);
+      }
+    }
 
-  //   if (quantity !== newQuantity) {
-  //     if (newQuantity >= 1) {
-  //       onQuantityChange(newQuantity);
-  //     } else {
-  //       onQuantityChange(0);
-  //     }
-  //   }
-  //   setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
-  // };
+    // setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
+  };
 
   const handleQuantityChangeDown = (evt: React.ChangeEvent<any>) => {
     const newQuantity = quantity - 1;
@@ -65,34 +68,32 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
   };
 
   const handleQuantityChangeUp = (evt: React.ChangeEvent<any>) => {
-    const newQuantity = quantity + 1;
-
-    if (quantity !== newQuantity) {
-      if (newQuantity >= 1) {
-        onQuantityChange(newQuantity);
-      } else {
-        onQuantityChange(0);
+    let newQuantity;
+    if (maxQuantity > 0) {
+      newQuantity = quantity + 1;
+      if (newQuantity >= maxQuantity) {
+        newQuantity = maxQuantity;
       }
+    } else {
+      newQuantity = 0;
     }
-    setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
+    onQuantityChange(newQuantity);
+
+    // setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
   };
 
-  const quantityErrors =
-    !hideErrors && isTooMuch
-      ? [
-          {
-            message: intl.formatMessage(commonMessages.maxQtyIs, {
-              maxQuantity,
-            }),
-          },
-        ]
-      : undefined;
-
+  // const quantityErrors =
+  //   !hideErrors && isTooMuch
+  //     ? [
+  //         {
+  //           message: intl.formatMessage(commonMessages.maxQtyIs, {
+  //             maxQuantity,
+  //           }),
+  //         },
+  //       ]
+  //     : undefined;
   return (
-    <div className="ChangeCountWrapper">
-      <div className="ChangeCount" onClick={handleQuantityChangeDown}>
-        <p>-</p>
-      </div>
+    <div className="Wrapper">
       {/* <TextField
         className="CountProduct"
         name="quantity"
@@ -106,15 +107,31 @@ export const QuantityInput: React.FC<IQuantityInput> = ({
         data-test={testingContext}
         data-testId={testingContextId}
       /> */}
-      <div className="CountProduct">
-        <p>{quantity}</p>
-        <p>{quantity > maxQuantity ? quantityErrors : ""}</p>
+      <span className="LabelOption">Số lượng:</span>
+      <div className="ChangeCountWrapper">
+        <div className="ChangeCount" onClick={handleQuantityChangeDown}>
+          <p>-</p>
+        </div>
+        <input
+          name="quantity"
+          onChange={handleQuantityChange}
+          className="InputCountProduct"
+          value={maxQuantity === 0 ? 0 : maxQuantity < 0 ? 0 : quantity}
+        />
+        <div className="ChangeCount" onClick={handleQuantityChangeUp}>
+          <p>+</p>
+        </div>
       </div>
-      <div className="ChangeCount" onClick={handleQuantityChangeUp}>
-        <p>+</p>
-      </div>
+      <span className="ProductInventory">
+        Còn{" "}
+        {maxQuantity <= 0
+          ? maxQuantity < 0
+            ? 0
+            : maxQuantity
+          : maxQuantity - quantity}{" "}
+        sản phẩm
+      </span>
     </div>
   );
 };
-QuantityInput.displayName = "QuantityInput";
 export default QuantityInput;
