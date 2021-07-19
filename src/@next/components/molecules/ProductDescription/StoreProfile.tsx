@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
 import Marker from "react-google-maps/lib/components/Marker";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import StarRatings from "react-star-ratings";
 
 import { paths } from "@paths";

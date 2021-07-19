@@ -5,7 +5,7 @@ import StarRatings from "react-star-ratings";
 // import { gray } from "@styles/constants";
 import { ProductDetails_product } from "@temp/views/Product/gqlTypes/ProductDetails";
 
-import addProductDetail from "../../../../images/productDetailTrolley.svg";
+// import addProductDetail from "../../../../images/productDetailTrolley.svg";
 // import { Logo } from "./icon";
 import * as S from "./styles";
 

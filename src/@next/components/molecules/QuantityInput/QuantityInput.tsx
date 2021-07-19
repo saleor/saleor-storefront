@@ -1,8 +1,7 @@
-import { CollectionSortField } from "@saleor/sdk";
+// import { CollectionSortField } from "@saleor/sdk";
 import React /* useEffect, useState */ from "react";
 
-import { Input } from "@components/atoms";
-
+// import { Input } from "@components/atoms";
 // import { useIntl } from "react-intl";
 // import { TextField } from "@components/molecules";
 // import { commonMessages } from "@temp/intl";

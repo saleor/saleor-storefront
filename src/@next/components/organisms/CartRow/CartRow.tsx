@@ -43,20 +43,6 @@ export const CartRow: React.FC<IProps> = ({
   id,
   type = "responsive",
 }: IProps) => {
-  console.log("log", {
-    index,
-    totalPrice,
-    unitPrice,
-    name,
-    sku,
-    quantity,
-    maxQuantity,
-    onQuantityChange,
-    thumbnail,
-    attributes,
-    onRemove,
-    id,
-  });
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
   const intl = useIntl();

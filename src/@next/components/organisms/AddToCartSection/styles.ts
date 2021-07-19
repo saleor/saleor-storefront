@@ -1,5 +1,5 @@
 import { styled } from "@styles";
-import { black, mainColorPage } from "@styles/constants";
+import { mainColorPage } from "@styles/constants";
 
 export const AddToCartSelection = styled.div`
   padding: 0 !important;

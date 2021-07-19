@@ -7,7 +7,7 @@ import "./scss/index.scss";
 
 export interface IAddToCartButton {
   disabled: boolean;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({
