@@ -2,7 +2,6 @@ import { useAuth } from "@saleor/sdk";
 import { useRouter } from "next/router";
 import React from "react";
 
-import { Loader } from "@components/atoms";
 import { useDynamicRouteRedirect } from "@hooks";
 import { demoMode } from "@temp/constants";
 import { ShopConfig } from "@utils/ssr";
@@ -37,7 +36,7 @@ const App: React.FC<AppProps> = ({
       <OverlayProvider pathname={pathname}>
         <MetaConsumer />
         <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
-        {loading ? <Loader fullScreen /> : children}
+        {children}
         <Footer menu={footer} />
         <OverlayManager />
         <Notifications />
