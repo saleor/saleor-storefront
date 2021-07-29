@@ -16,7 +16,8 @@ import {
 import { Checkout } from "@components/templates";
 import { useRedirectToCorrectCheckoutStep } from "@hooks";
 import { paths } from "@paths";
-import { ICardData, IFormError } from "@types";
+import { paymentGatewayNames } from "@temp/constants";
+import { ICardData, IFormError, IPaymentSubmitResult } from "@types";
 
 import {
   CheckoutAddressSubpage,
@@ -150,11 +151,11 @@ const CheckoutPage: React.FC<NextPage> = () => {
       confirmationNeeded: response.data?.confirmationNeeded,
       order: response.data?.order,
       errors: response.dataError?.error,
-    };
+    } as IPaymentSubmitResult;
   };
 
   const handleSubmitPaymentSuccess = (
-    order?: CompleteCheckout_checkoutComplete_order
+    order?: CompleteCheckout_checkoutComplete_order | null
   ) => {
     setSubmitInProgress(false);
     setPaymentGatewayErrors([]);
@@ -196,7 +197,10 @@ const CheckoutPage: React.FC<NextPage> = () => {
     /**
      * Prevent proceeding in confirmation flow in case of gateways that don't support it to prevent unknown bugs.
      */
-    if (payment?.gateway !== "mirumee.payments.adyen") {
+    if (
+      payment?.gateway !== paymentGatewayNames.adyen &&
+      payment?.gateway !== paymentGatewayNames.stripe
+    ) {
       const paymentStepLink = steps.find(
         step => step.step === CheckoutStep.Payment
       )?.link;

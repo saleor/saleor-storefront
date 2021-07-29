@@ -125,6 +125,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     processPayment={(token, cardData) =>
                       processPayment(id, token, cardData)
                     }
+                    submitPayment={submitPayment}
+                    submitPaymentSuccess={submitPaymentSuccess}
                     errors={errors}
                     onError={onError}
                   />
