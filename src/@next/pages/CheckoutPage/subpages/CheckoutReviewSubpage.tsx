@@ -8,6 +8,7 @@ import React, {
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
+import { paymentGatewayNames } from "@temp/constants";
 import { IFormError } from "@types";
 
 import {
@@ -59,14 +60,14 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     : undefined;
 
   const getPaymentMethodDescription = () => {
-    if (payment?.gateway === "mirumee.payments.dummy") {
+    if (payment?.gateway === paymentGatewayNames.dummy) {
       return `Dummy: ${
         dummyStatuses.find(
           status => status.token === selectedPaymentGatewayToken
         )?.label
       }`;
     }
-    if (payment?.gateway === "mirumee.payments.adyen") {
+    if (payment?.gateway === paymentGatewayNames.adyen) {
       return `Adyen payments`;
     }
     if (payment?.creditCard) {
@@ -79,7 +80,11 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress(true);
     let data;
     let dataError;
-    if (payment?.gateway === "mirumee.payments.adyen") {
+    if (payment?.gateway === paymentGatewayNames.adyen) {
+      paymentGatewayFormRef.current?.dispatchEvent(
+        new Event("submitComplete", { cancelable: true })
+      );
+    } else if (payment?.gateway === paymentGatewayNames.stripe) {
       paymentGatewayFormRef.current?.dispatchEvent(
         new Event("submitComplete", { cancelable: true })
       );
