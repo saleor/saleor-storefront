@@ -161,6 +161,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     setPaymentGatewayErrors([]);
     handleStepSubmitSuccess(CheckoutStep.Review, {
       id: order?.id,
+      orderStatus: order?.status,
       orderNumber: order?.number,
       token: order?.token,
     });
@@ -236,6 +237,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
         setPaymentGatewayErrors([]);
         handleStepSubmitSuccess(CheckoutStep.Review, {
           id: data?.order?.id,
+          orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
         });
