@@ -212,6 +212,6 @@ npm run generate
 
 This project is licensed under the BSD-3-Clause License - see the [LICENSE](https://github.com/mirumee/saleor-storefront/blob/master/LICENSE) file for details
 
-#### Crafted with ❤️ by [Mirumee Software](http://mirumee.com)
+#### Crafted with ❤️ by [Saleor Commerce](http://saleor.io)
 
-hello@mirumee.com
+hello@saleor.io
