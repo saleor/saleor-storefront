@@ -8,6 +8,8 @@ const shippingMethods: IShippingMethod[] = [
       amount: 32,
       currency: "USD",
     },
+    active: true,
+    message: "",
   },
   {
     id: "2",
@@ -16,6 +18,8 @@ const shippingMethods: IShippingMethod[] = [
       amount: 64,
       currency: "USD",
     },
+    active: true,
+    message: "",
   },
 ];
 

@@ -51,9 +51,11 @@ const CheckoutShipping: React.FC<IProps> = ({
               ref={formRef}
               onSubmit={handleSubmit}
             >
-              {shippingMethods.map(({ id, name, price }, index) => {
+              {shippingMethods.map(({ id, name, price, active }) => {
                 const checked =
                   !!values.shippingMethod && values.shippingMethod === id;
+
+                if (!active) return null;
 
                 return (
                   <S.Tile

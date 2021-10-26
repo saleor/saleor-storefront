@@ -18,6 +18,8 @@ export interface IShippingMethod {
   id: string;
   name: string;
   price: IShippingMethodPrice | null;
+  active: boolean;
+  message: string | null;
 }
 
 export interface IProps {
