@@ -3,13 +3,13 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ARG API_URI
+ARG NEXT_PUBLIC_API_URI
 ARG SENTRY_DSN
 ARG SENTRY_APM
 ARG DEMO_MODE
 ARG GTM_ID
-ENV API_URI ${API_URI:-http://localhost:8000/graphql/}
-RUN API_URI=${API_URI} npm run build:export
+ENV NEXT_PUBLIC_API_URI ${NEXT_PUBLIC_API_URI:-http://localhost:8000/graphql/}
+RUN NEXT_PUBLIC_API_URI=${NEXT_PUBLIC_API_URI} npm run build:export
 
 FROM nginx:stable
 WORKDIR /app

@@ -8,8 +8,8 @@ COPY ./nginx/dev.conf /etc/nginx/conf.d/default.conf
 COPY package*.json ./
 RUN npm install
 COPY . .
-ARG API_URI
-ENV API_URI ${API_URI:-http://localhost:8000/graphql/}
+ARG NEXT_PUBLIC_API_URI
+ENV NEXT_PUBLIC_API_URI ${NEXT_PUBLIC_API_URI:-http://localhost:8000/graphql/}
 
 EXPOSE 3000
-CMD npm start -- --hostname 0.0.0.0
+CMD npm start
