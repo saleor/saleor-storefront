@@ -66,10 +66,10 @@ See the list of all releases here: https://github.com/mirumee/saleor-storefront/
 
 #### Using development version
 
-If you want to use the latest development version, checkout to the `master` branch:
+If you want to use the latest development version, checkout to the `main` branch:
 
 ```
-$ git checkout master
+$ git checkout main
 ```
 
 Install NPM dependencies:
@@ -215,7 +215,7 @@ npm run generate
 
 ## License
 
-This project is licensed under the BSD-3-Clause License - see the [LICENSE](https://github.com/mirumee/saleor-storefront/blob/master/LICENSE) file for details
+This project is licensed under the BSD-3-Clause License - see the [LICENSE](https://github.com/mirumee/saleor-storefront/blob/main/LICENSE) file for details
 
 #### Crafted with ❤️ by [Saleor Commerce](http://saleor.io)
 
