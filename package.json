@@ -147,7 +147,7 @@
     "lint-staged": "^10.2.9",
     "mini-css-extract-plugin": "^0.4.1",
     "next-transpile-modules": "^6.0.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "node-sass": "^4.14.1",
     "plop": "^2.7.1",
     "postcss": "^8.3.4",
